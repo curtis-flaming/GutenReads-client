@@ -11,8 +11,7 @@ import { twJoin } from "tailwind-merge";
 import { composeTailwindRenderProps } from "@/lib/primitive";
 import { Description, FieldError, FieldGroup, Label } from "./field";
 
-interface DateFieldProps<T extends DateValue>
-  extends DateFieldPrimitiveProps<T> {
+interface DateFieldProps<T extends DateValue> extends DateFieldPrimitiveProps<T> {
   label?: string;
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
@@ -33,7 +32,7 @@ const DateField = <T extends DateValue>({
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        "group flex flex-col gap-y-1",
+        "group flex flex-col gap-y-1"
       )}
     >
       {label && <Label>{label}</Label>}
@@ -58,15 +57,12 @@ const DateField = <T extends DateValue>({
   );
 };
 
-const DateInput = ({
-  className,
-  ...props
-}: Omit<DateInputProps, "children">) => {
+const DateInput = ({ className, ...props }: Omit<DateInputProps, "children">) => {
   return (
     <DateInputPrimitive
       className={composeTailwindRenderProps(
         className,
-        "px-3 py-2 text-base text-fg placeholder-muted-fg outline-hidden sm:px-2.5 sm:py-1.5 sm:text-sm/6",
+        "px-3 py-2 text-base text-fg placeholder-muted-fg outline-hidden sm:px-2.5 sm:py-1.5 sm:text-sm/6"
       )}
       {...props}
     >
@@ -76,7 +72,7 @@ const DateInput = ({
           className={twJoin(
             "inline shrink-0 rounded px-1.5 type-literal:px-0 text-fg tracking-wider caret-transparent outline-0 forced-color-adjust-none data-placeholder:not-data-focused:text-muted-fg sm:p-0.5 sm:py-0.5 sm:text-sm forced-colors:text-[ButtonText]",
             "focus:bg-accent focus:text-accent-fg focus:data-invalid:bg-danger focus:data-invalid:text-danger-fg forced-colors:focus:bg-[Highlight] forced-colors:focus:text-[HighlightText]",
-            "disabled:opacity-50 forced-colors:disabled:text-[GrayText]",
+            "disabled:opacity-50 forced-colors:disabled:text-[GrayText]"
           )}
         />
       )}

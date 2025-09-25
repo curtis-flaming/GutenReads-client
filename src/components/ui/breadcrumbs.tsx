@@ -1,14 +1,7 @@
 import { IconChevronLgRight } from "@intentui/icons";
 import { createContext, use } from "react";
-import type {
-  BreadcrumbProps,
-  BreadcrumbsProps,
-  LinkProps,
-} from "react-aria-components";
-import {
-  Breadcrumb,
-  Breadcrumbs as BreadcrumbsPrimitive,
-} from "react-aria-components";
+import type { BreadcrumbProps, BreadcrumbsProps, LinkProps } from "react-aria-components";
+import { Breadcrumb, Breadcrumbs as BreadcrumbsPrimitive } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 import { cx } from "@/lib/primitive";
 import { Link } from "./link";
@@ -34,9 +27,7 @@ const Breadcrumbs = <T extends object>({
   );
 };
 
-interface BreadcrumbsItemProps
-  extends BreadcrumbProps,
-    BreadcrumbsContextProps {
+interface BreadcrumbsItemProps extends BreadcrumbProps, BreadcrumbsContextProps {
   href?: string;
 }
 
@@ -51,16 +42,11 @@ const BreadcrumbsItem = ({
   const separatorValue = separator === true ? "chevron" : separator;
 
   return (
-    <Breadcrumb
-      {...props}
-      className={cx("flex items-center gap-2 text-sm", className)}
-    >
+    <Breadcrumb {...props} className={cx("flex items-center gap-2 text-sm", className)}>
       {({ isCurrent }) => (
         <>
           <Link href={href} {...props} />
-          {!isCurrent && separator !== false && (
-            <Separator separator={separatorValue} />
-          )}
+          {!isCurrent && separator !== false && <Separator separator={separatorValue} />}
         </>
       )}
     </Breadcrumb>

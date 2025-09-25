@@ -27,7 +27,7 @@ const Block = ({
         className={twJoin(
           "size-full rounded-[1px]",
           color || defaultBackgroundColor,
-          "hover:opacity-50",
+          "hover:opacity-50"
         )}
       />
     </div>
@@ -39,7 +39,7 @@ const Block = ({
             className={twJoin(
               "size-full rounded-[1px]",
               color || defaultBackgroundColor,
-              "hover:opacity-50",
+              "hover:opacity-50"
             )}
           />
         </div>
@@ -78,11 +78,7 @@ const Tracker = ({
       {...props}
     >
       {data.map((props, index) => (
-        <Block
-          disabledTooltip={disabledTooltip}
-          key={props.key ?? index}
-          {...props}
-        />
+        <Block disabledTooltip={disabledTooltip} key={props.key ?? index} {...props} />
       ))}
     </div>
   );

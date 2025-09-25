@@ -66,7 +66,7 @@ const TooltipContent = ({
           ...renderProps,
           inverse,
           className,
-        }),
+        })
       )}
     >
       {showArrow && (
@@ -78,9 +78,7 @@ const TooltipContent = ({
             // inverse
             className={twJoin(
               "group-placement-left:-rotate-90 block group-placement-bottom:rotate-180 group-placement-right:rotate-90 forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]",
-              inverse
-                ? "fill-fg stroke-transparent"
-                : "fill-overlay stroke-border",
+              inverse ? "fill-fg stroke-transparent" : "fill-overlay stroke-border"
             )}
           >
             <path d="M0 0 L6 6 L12 0" />

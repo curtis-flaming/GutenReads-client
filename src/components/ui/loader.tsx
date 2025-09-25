@@ -133,9 +133,7 @@ const Bars = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
     </rect>
   </svg>
 );
-const Ring = (props: React.SVGProps<SVGSVGElement>) => (
-  <IconLoader {...props} />
-);
+const Ring = (props: React.SVGProps<SVGSVGElement>) => <IconLoader {...props} />;
 const Spin = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     className={twMerge("size-4", className)}
@@ -180,10 +178,7 @@ const LOADERS = {
 const DEFAULT_SPINNER = "spin";
 
 interface LoaderProps
-  extends Omit<
-      React.ComponentPropsWithoutRef<"svg">,
-      "display" | "opacity" | "intent"
-    >,
+  extends Omit<React.ComponentPropsWithoutRef<"svg">, "display" | "opacity" | "intent">,
     LoaderVariantProps {
   variant?: keyof typeof LOADERS;
   percentage?: number;
@@ -193,15 +188,8 @@ interface LoaderProps
 }
 
 const Loader = ({ isIndeterminate = true, ref, ...props }: LoaderProps) => {
-  const {
-    className,
-    variant = DEFAULT_SPINNER,
-    intent,
-    size,
-    ...spinnerProps
-  } = props;
-  const LoaderPrimitive =
-    LOADERS[variant in LOADERS ? variant : DEFAULT_SPINNER];
+  const { className, variant = DEFAULT_SPINNER, intent, size, ...spinnerProps } = props;
+  const LoaderPrimitive = LOADERS[variant in LOADERS ? variant : DEFAULT_SPINNER];
 
   return (
     <ProgressBar

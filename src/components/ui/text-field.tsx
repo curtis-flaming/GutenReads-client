@@ -36,11 +36,7 @@ const TextField = ({
   ...props
 }: TextFieldProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const inputType = isRevealable
-    ? isPasswordVisible
-      ? "text"
-      : "password"
-    : type;
+  const inputType = isRevealable ? (isPasswordVisible ? "text" : "password") : type;
   const handleTogglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
   };
@@ -50,7 +46,7 @@ const TextField = ({
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium",
+        "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium"
       )}
     >
       {!props.children ? (

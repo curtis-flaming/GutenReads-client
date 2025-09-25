@@ -32,7 +32,7 @@ const Avatar = ({
         isSquare
           ? "rounded-(--avatar-radius) *:rounded-(--avatar-radius)"
           : "rounded-full *:rounded-full",
-        className,
+        className
       )}
     >
       {initials && (
@@ -55,11 +55,7 @@ const Avatar = ({
         </svg>
       )}
       {src && (
-        <img
-          className="size-full object-cover object-center"
-          src={src}
-          alt={alt}
-        />
+        <img className="size-full object-cover object-center" src={src} alt={alt} />
       )}
     </span>
   );

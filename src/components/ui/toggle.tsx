@@ -68,15 +68,12 @@ const toggleStyles = tv({
   compoundVariants: [
     {
       size: ["xs", "sq-xs"],
-      className:
-        "rounded-md *:data-[slot=icon]:size-3.5 sm:*:data-[slot=icon]:size-3",
+      className: "rounded-md *:data-[slot=icon]:size-3.5 sm:*:data-[slot=icon]:size-3",
     },
   ],
 });
 
-interface ToggleProps
-  extends ToggleButtonProps,
-    VariantProps<typeof toggleStyles> {
+interface ToggleProps extends ToggleButtonProps, VariantProps<typeof toggleStyles> {
   ref?: React.Ref<HTMLButtonElement>;
 }
 const Toggle = ({ className, size, intent, ref, ...props }: ToggleProps) => {
@@ -90,8 +87,8 @@ const Toggle = ({ className, size, intent, ref, ...props }: ToggleProps) => {
             size,
             intent,
             className,
-          }),
-        ),
+          })
+        )
       )}
       {...props}
     />

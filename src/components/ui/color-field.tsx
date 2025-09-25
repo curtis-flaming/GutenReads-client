@@ -39,7 +39,7 @@ const ColorField = ({
       aria-label={props["aria-label"] ?? "Color field"}
       className={cx(
         "**:data-[slot=color-swatch]:-ml-0.5 group flex w-full flex-col gap-y-1 *:data-[slot=label]:font-medium",
-        className,
+        className
       )}
     >
       {label && <Label>{label}</Label>}

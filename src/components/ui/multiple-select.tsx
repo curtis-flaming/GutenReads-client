@@ -18,13 +18,7 @@ import type {
 import { Button, ComboBox, Group, ListBox } from "react-aria-components";
 import { composeTailwindRenderProps } from "@/lib/primitive";
 import { DropdownItem, DropdownLabel, DropdownSection } from "./dropdown";
-import {
-  Description,
-  FieldGroup,
-  type FieldProps,
-  Input,
-  Label,
-} from "./field";
+import { Description, FieldGroup, type FieldProps, Input, Label } from "./field";
 import { PopoverContent } from "./popover";
 import { Tag, TagGroup, TagList } from "./tag-group";
 
@@ -43,15 +37,11 @@ interface MultipleSelectProps<T>
 }
 
 function mapToNewObject<T extends object>(
-  array: T[],
+  array: T[]
 ): { id: T[keyof T]; textValue: T[keyof T] }[] {
   return array.map((item) => {
-    const idProperty = Object.keys(item).find(
-      (key) => key === "id" || key === "key",
-    );
-    const textProperty = Object.keys(item).find(
-      (key) => key !== "id" && key !== "key",
-    );
+    const idProperty = Object.keys(item).find((key) => key === "id" || key === "key");
+    const textProperty = Object.keys(item).find((key) => key !== "id" && key !== "key");
     return {
       id: item[idProperty as keyof T],
       textValue: item[textProperty as keyof T],
@@ -71,7 +61,7 @@ const MultipleSelect = <T extends object>({
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
   const [inputValue, setInputValue] = useState("");
   const [selectedKeys, onSelectionChange] = useState<Selection>(
-    new Set(props.selectedKeys),
+    new Set(props.selectedKeys)
   );
 
   const isMax = [...selectedKeys].length >= maxItems;
@@ -92,11 +82,11 @@ const MultipleSelect = <T extends object>({
 
   const removeItem = (e: Set<Key>) => {
     onSelectionChange?.(
-      (s) => new Set([...s].filter((i) => i !== e.values().next().value)),
+      (s) => new Set([...s].filter((i) => i !== e.values().next().value))
     );
     props.onSelectionChange?.(
       // @ts-expect-error incompatible type Key and Selection
-      (s) => new Set([...s].filter((i) => i !== e.values().next().value)),
+      (s) => new Set([...s].filter((i) => i !== e.values().next().value))
     );
   };
 
@@ -113,8 +103,8 @@ const MultipleSelect = <T extends object>({
     : mapToNewObject(
         Children.map(
           children as React.ReactNode,
-          (child) => isValidElement(child) && child.props,
-        ) as T[],
+          (child) => isValidElement(child) && child.props
+        ) as T[]
       );
 
   const availableItemsToSelect = props.items
@@ -125,7 +115,7 @@ const MultipleSelect = <T extends object>({
     ? parsedItems.filter((item) => ![...selectedKeys].includes(item.id as Key))
     : Children.map(
         children as React.ReactNode,
-        (child) => isValidElement(child) && child.props,
+        (child) => isValidElement(child) && child.props
       )?.filter((item: T & any) => ![...selectedKeys].includes(item.id));
 
   return (
@@ -134,26 +124,20 @@ const MultipleSelect = <T extends object>({
       isInvalid={props.isInvalid}
       className={composeTailwindRenderProps(
         className,
-        "group flex h-fit min-w-[16rem] flex-col gap-y-1",
+        "group flex h-fit min-w-[16rem] flex-col gap-y-1"
       )}
     >
       {({ isInvalid, isDisabled }) => (
         <>
           {props.label && (
-            <Label onClick={() => inputRef.current?.focus()}>
-              {props.label}
-            </Label>
+            <Label onClick={() => inputRef.current?.focus()}>{props.label}</Label>
           )}
           <FieldGroup
             ref={triggerRef as RefObject<HTMLDivElement>}
             isDisabled={isDisabled}
             isInvalid={isInvalid}
           >
-            <TagGroup
-              onRemove={removeItem}
-              aria-hidden
-              aria-label="Selected items"
-            >
+            <TagGroup onRemove={removeItem} aria-hidden aria-label="Selected items">
               <TagList
                 className="[[role='row']]:last:-mr-1 gap-1 px-1.5 py-1 outline-hidden"
                 items={[...selectedKeys].map((key) => ({
@@ -214,7 +198,7 @@ const MultipleSelect = <T extends object>({
                 <ListBox
                   className={composeTailwindRenderProps(
                     className,
-                    "grid max-h-96 w-full grid-cols-[auto_1fr] flex-col gap-y-1 p-1 outline-hidden *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1",
+                    "grid max-h-96 w-full grid-cols-[auto_1fr] flex-col gap-y-1 p-1 outline-hidden *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1"
                   )}
                   renderEmptyState={() =>
                     renderEmptyState ? (
@@ -224,9 +208,7 @@ const MultipleSelect = <T extends object>({
                         {inputValue ? (
                           <>
                             No results found for:{" "}
-                            <strong className="font-medium text-fg">
-                              {inputValue}
-                            </strong>
+                            <strong className="font-medium text-fg">{inputValue}</strong>
                           </>
                         ) : (
                           "No options"
@@ -270,10 +252,5 @@ MultipleSelect.Item = MultipleSelectItem;
 MultipleSelect.Label = MultipleSelectLabel;
 MultipleSelect.Section = MultipleSelectSection;
 
-export {
-  MultipleSelect,
-  MultipleSelectItem,
-  MultipleSelectLabel,
-  MultipleSelectSection,
-};
+export { MultipleSelect, MultipleSelectItem, MultipleSelectLabel, MultipleSelectSection };
 export type { MultipleSelectProps };

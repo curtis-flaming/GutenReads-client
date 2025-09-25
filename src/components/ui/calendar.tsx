@@ -1,9 +1,5 @@
 import { IconChevronLgLeft, IconChevronLgRight } from "@intentui/icons";
-import {
-  type CalendarDate,
-  getLocalTimeZone,
-  today,
-} from "@internationalized/date";
+import { type CalendarDate, getLocalTimeZone, today } from "@internationalized/date";
 import { useDateFormatter } from "@react-aria/i18n";
 import { use } from "react";
 import type {
@@ -26,13 +22,7 @@ import {
 } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 import { Button } from "./button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from "./select";
+import { Select, SelectContent, SelectItem, SelectLabel, SelectTrigger } from "./select";
 
 interface CalendarProps<T extends DateValue>
   extends Omit<CalendarPrimitiveProps<T>, "visibleDuration"> {
@@ -66,8 +56,8 @@ const Calendar = <T extends DateValue>({
                     isDisabled && "text-muted-fg forced-colors:text-[GrayText]",
                     date.compare(now) === 0 &&
                       "after:-translate-x-1/2 after:pointer-events-none after:absolute after:start-1/2 after:bottom-1 after:z-10 after:size-[3px] after:rounded-full after:bg-primary selected:after:bg-primary-fg focus-visible:after:bg-primary-fg",
-                    className,
-                  ),
+                    className
+                  )
               )}
             />
           )}
@@ -95,7 +85,7 @@ const CalendarHeader = ({
       data-slot="calendar-header"
       className={twMerge(
         "flex w-full justify-between gap-1.5 pt-1 pr-1 pb-5 pl-1.5 sm:pb-4",
-        className,
+        className
       )}
       {...props}
     >
@@ -109,7 +99,7 @@ const CalendarHeader = ({
         className={twMerge(
           "mr-2 flex-1 text-left font-medium text-muted-fg sm:text-sm",
           !isRange && "sr-only",
-          className,
+          className
         )}
       />
       <div className="flex items-center gap-1">
@@ -144,9 +134,7 @@ const SelectMonth = ({ state }: { state: CalendarState }) => {
     timeZone: state.timeZone,
   });
 
-  const numMonths = state.focusedDate.calendar.getMonthsInYear(
-    state.focusedDate,
-  );
+  const numMonths = state.focusedDate.calendar.getMonthsInYear(state.focusedDate);
   for (let i = 1; i <= numMonths; i++) {
     const date = state.focusedDate.set({ month: i });
     months.push(formatter.format(date.toDate(state.timeZone)));
@@ -156,8 +144,7 @@ const SelectMonth = ({ state }: { state: CalendarState }) => {
       className="[popover-width:8rem]"
       aria-label="Select month"
       selectedKey={
-        state.focusedDate.month.toString() ??
-        (new Date().getMonth() + 1).toString()
+        state.focusedDate.month.toString() ?? (new Date().getMonth() + 1).toString()
       }
       onSelectionChange={(value) => {
         state.setFocusedDate(state.focusedDate.set({ month: Number(value) }));

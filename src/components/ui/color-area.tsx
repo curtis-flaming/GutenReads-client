@@ -10,7 +10,7 @@ const ColorArea = ({ className, ...props }: ColorAreaProps) => {
       data-slot="color-area"
       className={cx(
         "size-56 shrink-0 rounded-md bg-muted forced-colors:bg-[GrayText]",
-        className,
+        className
       )}
       style={({ defaultStyle, isDisabled }) => ({
         ...defaultStyle,

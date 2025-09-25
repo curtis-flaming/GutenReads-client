@@ -22,18 +22,15 @@ const Tree = <T extends object>({ className, ...props }: TreeProps<T>) => {
         className,
         twJoin(
           "flex cursor-default flex-col gap-y-2 overflow-auto outline-hidden forced-color-adjust-none",
-          "[--tree-active-bg:var(--color-secondary)] [--tree-active-fg:var(--color-secondary-fg)]",
-        ),
+          "[--tree-active-bg:var(--color-secondary)] [--tree-active-fg:var(--color-secondary-fg)]"
+        )
       )}
       {...props}
     />
   );
 };
 
-const TreeItem = <T extends object>({
-  className,
-  ...props
-}: TreeItemProps<T>) => {
+const TreeItem = <T extends object>({ className, ...props }: TreeItemProps<T>) => {
   return (
     <TreeItemPrimitive
       className={composeTailwindRenderProps(className, [
@@ -60,7 +57,7 @@ const TreeContent = ({ className, children, ...props }: TreeContentProps) => {
         <div
           className={twMerge(
             "relative flex w-full min-w-0 items-center truncate text-sm/6",
-            className,
+            className
           )}
         >
           {values.selectionMode === "multiple" &&
@@ -70,7 +67,7 @@ const TreeContent = ({ className, children, ...props }: TreeContentProps) => {
           <div
             className={twJoin(
               "relative w-[calc(calc(var(--tree-item-level)-1)*calc(var(--spacing)*5.5))] shrink-0",
-              "before:-ms-1 before:absolute before:inset-0 before:bg-[repeating-linear-gradient(to_right,transparent_0,transparent_calc(var(--tree-item-level)-1px),var(--border)_calc(var(--tree-item-level)-1px),var(--border)_calc(var(--tree-item-level)))]",
+              "before:-ms-1 before:absolute before:inset-0 before:bg-[repeating-linear-gradient(to_right,transparent_0,transparent_calc(var(--tree-item-level)-1px),var(--border)_calc(var(--tree-item-level)-1px),var(--border)_calc(var(--tree-item-level)))]"
             )}
           />
           {values.hasChildItems ? (
@@ -101,13 +98,13 @@ const TreeIndicator = ({
       isDisabled={values.isDisabled}
       className={twJoin(
         "size-5 shrink-0 content-center text-muted-fg hover:text-fg",
-        values.isExpanded && "text-fg",
+        values.isExpanded && "text-fg"
       )}
     >
       <IconChevronRight
         className={twJoin(
           "size-4 transition-transform duration-200 ease-in-out",
-          values.isExpanded && "rotate-90",
+          values.isExpanded && "rotate-90"
         )}
       />
     </Button>

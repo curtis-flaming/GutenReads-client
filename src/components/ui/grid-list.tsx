@@ -20,7 +20,7 @@ const GridList = <T extends object>({
   <GridListPrimitive
     className={composeTailwindRenderProps(
       className,
-      "relative max-h-96 scroll-py-1 overflow-y-auto overscroll-contain rounded-lg border *:data-drop-target:border *:data-drop-target:border-accent",
+      "relative max-h-96 scroll-py-1 overflow-y-auto overscroll-contain rounded-lg border *:data-drop-target:border *:data-drop-target:border-accent"
     )}
     {...props}
   >
@@ -55,7 +55,7 @@ const GridListItem = ({ className, children, ...props }: GridListItemProps) => {
       textValue={textValue}
       {...props}
       className={composeRenderProps(className, (className, renderProps) =>
-        itemStyles({ ...renderProps, className }),
+        itemStyles({ ...renderProps, className })
       )}
     >
       {(values) => (
@@ -84,11 +84,7 @@ const GridListItem = ({ className, children, ...props }: GridListItemProps) => {
   );
 };
 
-const GridEmptyState = ({
-  ref,
-  className,
-  ...props
-}: React.ComponentProps<"div">) => (
+const GridEmptyState = ({ ref, className, ...props }: React.ComponentProps<"div">) => (
   <div ref={ref} className={twMerge("p-6", className)} {...props} />
 );
 

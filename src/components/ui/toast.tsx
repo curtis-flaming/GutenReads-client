@@ -36,8 +36,7 @@ const Toast = ({ ...props }: ToasterProps) => {
           "--warning-text": "var(--color-warning-subtle-fg)",
 
           "--info-bg": "var(--color-info-subtle)",
-          "--info-border":
-            "color-mix(in oklab, var(--info-subtle-fg) 20%, transparent)",
+          "--info-border": "color-mix(in oklab, var(--info-subtle-fg) 20%, transparent)",
           "--info-text": "var(--color-info-subtle-fg)",
         } as React.CSSProperties
       }

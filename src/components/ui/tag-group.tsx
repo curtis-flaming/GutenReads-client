@@ -37,10 +37,7 @@ const TagGroup = ({ children, ref, className, ...props }: TagGroupProps) => {
   );
 };
 
-const TagList = <T extends object>({
-  className,
-  ...props
-}: TagListProps<T>) => {
+const TagList = <T extends object>({ className, ...props }: TagListProps<T>) => {
   return (
     <TagListPrimitive
       {...props}
@@ -59,10 +56,7 @@ const Tag = ({ className, children, ...props }: TagProps) => {
       {...props}
       className={composeRenderProps(
         className,
-        (
-          className,
-          { isFocusVisible, isSelected, isDisabled, allowsRemoving },
-        ) =>
+        (className, { isFocusVisible, isSelected, isDisabled, allowsRemoving }) =>
           twMerge(
             "inset-ring inset-ring-border inline-flex cursor-default items-center gap-x-1.5 rounded-full px-2 py-0.5 font-medium text-sm/5 outline-hidden sm:text-xs/5 forced-colors:outline",
             isSelected &&
@@ -71,8 +65,8 @@ const Tag = ({ className, children, ...props }: TagProps) => {
               "inset-ring inset-ring-current/10 bg-secondary text-secondary-fg",
             isDisabled && "opacity-50",
             allowsRemoving && "pr-2",
-            className,
-          ),
+            className
+          )
       )}
     >
       {({ allowsRemoving }) => (

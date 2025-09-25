@@ -63,13 +63,7 @@ const CHART_COLORS = {
 
 type ChartColorKeys = keyof typeof CHART_COLORS | (string & {});
 
-const DEFAULT_COLORS = [
-  "chart-1",
-  "chart-2",
-  "chart-3",
-  "chart-4",
-  "chart-5",
-] as const;
+const DEFAULT_COLORS = ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"] as const;
 
 // #endregion
 
@@ -106,7 +100,7 @@ export function valueToPercent(value: number) {
 
 const constructCategoryColors = (
   categories: string[],
-  colors: readonly ChartColorKeys[],
+  colors: readonly ChartColorKeys[]
 ): Map<string, ChartColorKeys> => {
   const categoryColors = new Map<string, ChartColorKeys>();
 
@@ -128,11 +122,7 @@ const getColorValue = (color?: string): string => {
   return CHART_COLORS[color as "chart-1"] ?? color;
 };
 
-function getPayloadConfigFromPayload(
-  config: ChartConfig,
-  payload: unknown,
-  key: string,
-) {
+function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
   if (typeof payload !== "object" || payload === null) {
     return undefined;
   }
@@ -146,19 +136,14 @@ function getPayloadConfigFromPayload(
 
   let configLabelKey: string = key;
 
-  if (
-    key in payload &&
-    typeof payload[key as keyof typeof payload] === "string"
-  ) {
+  if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
     configLabelKey = payload[key as keyof typeof payload] as string;
   } else if (
     payloadPayload &&
     key in payloadPayload &&
     typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
   ) {
-    configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
-    ] as string;
+    configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
   }
 
   return configLabelKey in config
@@ -194,10 +179,7 @@ interface BaseChartProps<TValue extends ValueType, TName extends NameType>
   cartesianGridProps?: CartesianGridProps;
 
   legend?: LegendContentType | boolean;
-  legendProps?: Omit<
-    React.ComponentProps<typeof LegendPrimitive>,
-    "content" | "ref"
-  >;
+  legendProps?: Omit<React.ComponentProps<typeof LegendPrimitive>, "content" | "ref">;
 
   xAxisProps?: XAxisPropsPrimitive;
   yAxisProps?: YAxisPrimitiveProps;
@@ -229,7 +211,7 @@ const Chart = ({
   const uniqueId = useId();
   const chartId = useMemo(
     () => `chart-${id || uniqueId.replace(/:/g, "")}`,
-    [id, uniqueId],
+    [id, uniqueId]
   );
 
   const [selectedLegend, setSelectedLegend] = useState<string | null>(null);
@@ -262,7 +244,7 @@ const Chart = ({
           "[&_.recharts-dot[fill='#fff']]:fill-(--line-color)",
           // when hover over the line chart, the active dot should not have a fill or stroke
           "[&_.recharts-active-dot>.recharts-dot]:stroke-fg/10",
-          className,
+          className
         )}
         {...props}
       >
@@ -278,7 +260,7 @@ const Chart = ({
 const THEMES = { light: "", dark: ".dark" } as const;
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color,
+    ([_, config]) => config.theme || config.color
   );
 
   if (!colorConfig.length) {
@@ -295,13 +277,12 @@ ${prefix} [data-chart=${id}] {
 ${colorConfig
   .map(([key, itemConfig]) => {
     const color =
-      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-      itemConfig.color;
+      itemConfig.theme?.[theme as keyof typeof itemConfig.theme] || itemConfig.color;
     return color ? `  --color-${key}: ${color};` : null;
   })
   .join("\n")}
 }
-`,
+`
           )
           .join("\n"),
       }}
@@ -315,7 +296,7 @@ type ChartTooltipProps<
 > = React.ComponentProps<typeof TooltipPrimitive<TValue, TName>>;
 
 const ChartTooltip = <TValue extends ValueType, TName extends NameType>(
-  props: ChartTooltipProps<TValue, TName>,
+  props: ChartTooltipProps<TValue, TName>
 ) => {
   const { layout } = useChart();
 
@@ -336,10 +317,7 @@ const ChartTooltip = <TValue extends ValueType, TName extends NameType>(
   );
 };
 
-type ChartLegendProps = Omit<
-  React.ComponentProps<typeof LegendPrimitive>,
-  "ref"
->;
+type ChartLegendProps = Omit<React.ComponentProps<typeof LegendPrimitive>, "ref">;
 
 const ChartLegend = (props: ChartLegendProps) => {
   return <LegendPrimitive align="center" verticalAlign="bottom" {...props} />;
@@ -370,10 +348,7 @@ const XAxis = ({
   };
   return (
     <XAxisPrimitive
-      className={twMerge(
-        "text-muted-fg text-xs **:[text]:fill-muted-fg",
-        className,
-      )}
+      className={twMerge("text-muted-fg text-xs **:[text]:fill-muted-fg", className)}
       interval={displayEdgeLabelsOnly ? "preserveStartEnd" : intervalType}
       tick={tick}
       ticks={ticks}
@@ -397,21 +372,15 @@ const YAxis = ({
 
   return (
     <YAxisPrimitive
-      className={twMerge(
-        "text-muted-fg text-xs **:[text]:fill-muted-fg",
-        className,
-      )}
+      className={twMerge("text-muted-fg text-xs **:[text]:fill-muted-fg", className)}
       width={(width ?? layout === "horizontal") ? 40 : 80}
       domain={domain}
       tick={{
-        transform:
-          layout === "horizontal" ? "translate(-3, 0)" : "translate(0, 0)",
+        transform: layout === "horizontal" ? "translate(-3, 0)" : "translate(0, 0)",
       }}
       dataKey={layout === "horizontal" ? undefined : dataKey}
       type={type || layout === "horizontal" ? "number" : "category"}
-      interval={
-        layout === "horizontal" ? undefined : "equidistantPreserveStart"
-      }
+      interval={layout === "horizontal" ? undefined : "equidistantPreserveStart"}
       axisLine={false}
       tickLine={false}
       {...props}
@@ -419,10 +388,7 @@ const YAxis = ({
   );
 };
 
-const CartesianGrid = ({
-  className,
-  ...props
-}: CartesianGridPrimitiveProps) => {
+const CartesianGrid = ({ className, ...props }: CartesianGridPrimitiveProps) => {
   const { layout } = useChart();
   return (
     <CartesianGridPrimitive
@@ -479,9 +445,7 @@ const ChartTooltipContent = <TValue extends ValueType, TName extends NameType>({
         : itemConfig?.label;
 
     if (labelFormatter) {
-      return (
-        <div className={labelClassName}>{labelFormatter(value, payload)}</div>
-      );
+      return <div className={labelClassName}>{labelFormatter(value, payload)}</div>;
     }
 
     if (!value) {
@@ -489,15 +453,7 @@ const ChartTooltipContent = <TValue extends ValueType, TName extends NameType>({
     }
 
     return <div className={labelClassName}>{value}</div>;
-  }, [
-    label,
-    labelFormatter,
-    payload,
-    hideLabel,
-    labelClassName,
-    config,
-    labelKey,
-  ]);
+  }, [label, labelFormatter, payload, hideLabel, labelClassName, config, labelKey]);
 
   if (!payload?.length) {
     return null;
@@ -510,19 +466,14 @@ const ChartTooltipContent = <TValue extends ValueType, TName extends NameType>({
       ref={ref}
       className={twMerge(
         "grid min-w-[12rem] items-start rounded-lg bg-overlay/70 p-3 py-2 text-overlay-fg text-xs ring ring-current/10 backdrop-blur-lg",
-        className,
+        className
       )}
     >
       {!hideLabel && (
         <>
-          {!nestLabel ? (
-            <span className="font-medium">{tooltipLabel}</span>
-          ) : null}
+          {!nestLabel ? <span className="font-medium">{tooltipLabel}</span> : null}
           {labelSeparator && (
-            <span
-              aria-hidden
-              className="mt-2 mb-3 block h-px w-full bg-bg/10"
-            />
+            <span aria-hidden className="mt-2 mb-3 block h-px w-full bg-bg/10" />
           )}
         </>
       )}
@@ -537,10 +488,9 @@ const ChartTooltipContent = <TValue extends ValueType, TName extends NameType>({
               key={key}
               className={twMerge(
                 "flex w-full flex-wrap items-stretch gap-2 *:data-[slot=icon]:text-muted-fg",
-                indicator === "dot" &&
-                  "items-center *:data-[slot=icon]:size-2.5",
+                indicator === "dot" && "items-center *:data-[slot=icon]:size-2.5",
                 indicator === "line" &&
-                  "*:data-[slot=icon]:h-full *:data-[slot=icon]:w-2.5",
+                  "*:data-[slot=icon]:h-full *:data-[slot=icon]:w-2.5"
               )}
             >
               {formatter && item?.value !== undefined && item.name ? (
@@ -558,7 +508,7 @@ const ChartTooltipContent = <TValue extends ValueType, TName extends NameType>({
                           indicator === "line" && "w-1",
                           indicator === "dashed" &&
                             "w-0 border-[1.5px] border-dashed bg-transparent",
-                          nestLabel && indicator === "dashed" && "my-0.5",
+                          nestLabel && indicator === "dashed" && "my-0.5"
                         )}
                         style={
                           {
@@ -572,7 +522,7 @@ const ChartTooltipContent = <TValue extends ValueType, TName extends NameType>({
                   <div
                     className={twMerge(
                       "flex flex-1 justify-between leading-none",
-                      nestLabel ? "items-end" : "items-center",
+                      nestLabel ? "items-end" : "items-center"
                     )}
                   >
                     <div className="grid gap-1.5">
@@ -632,7 +582,7 @@ const ChartLegendContent = ({
           : align === "left"
             ? "justify-start"
             : "justify-center",
-        className,
+        className
       )}
       selectedKeys={selectedLegend ? [selectedLegend] : undefined}
       onSelectionChange={(v) => {
@@ -652,7 +602,7 @@ const ChartLegendContent = ({
             className={twMerge(
               "*:data-[slot=icon]:-mx-0.5 flex items-center gap-2 rounded-sm px-2 py-1 text-muted-fg *:data-[slot=icon]:size-2.5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:text-muted-fg",
               "selected:bg-secondary/70 selected:text-secondary-fg",
-              "hover:bg-secondary/70 hover:text-secondary-fg",
+              "hover:bg-secondary/70 hover:text-secondary-fg"
             )}
             aria-label={"Legend Item"}
           >

@@ -23,9 +23,7 @@ const ContextMenuTriggerContext = createContext<
 const useContextMenuTrigger = () => {
   const context = use(ContextMenuTriggerContext);
   if (!context) {
-    throw new Error(
-      "useContextMenuTrigger must be used within a ContextMenuTrigger",
-    );
+    throw new Error("useContextMenuTrigger must be used within a ContextMenuTrigger");
   }
   return context;
 };
@@ -51,10 +49,7 @@ const ContextMenu = ({ children }: ContextMenuProps) => {
 
 type ContextMenuTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const ContextMenuTrigger = ({
-  className,
-  ...props
-}: ContextMenuTriggerProps) => {
+const ContextMenuTrigger = ({ className, ...props }: ContextMenuTriggerProps) => {
   const { buttonRef, setContextMenuOffset } = useContextMenuTrigger();
 
   const onContextMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -69,7 +64,7 @@ const ContextMenuTrigger = ({
     <button
       className={twMerge(
         "cursor-default focus:outline-hidden disabled:opacity-60 disabled:forced-colors:disabled:text-[GrayText]",
-        className,
+        className
       )}
       ref={buttonRef}
       aria-haspopup="menu"
@@ -81,19 +76,11 @@ const ContextMenuTrigger = ({
 
 type ContextMenuContentProps<T> = Omit<
   MenuContentProps<T>,
-  | "showArrow"
-  | "isOpen"
-  | "onOpenChange"
-  | "triggerRef"
-  | "placement"
-  | "shouldFlip"
+  "showArrow" | "isOpen" | "onOpenChange" | "triggerRef" | "placement" | "shouldFlip"
 >;
 
-const ContextMenuContent = <T extends object>(
-  props: ContextMenuContentProps<T>,
-) => {
-  const { contextMenuOffset, setContextMenuOffset, buttonRef } =
-    useContextMenuTrigger();
+const ContextMenuContent = <T extends object>(props: ContextMenuContentProps<T>) => {
+  const { contextMenuOffset, setContextMenuOffset, buttonRef } = useContextMenuTrigger();
   return contextMenuOffset ? (
     <Menu.Content
       popover={{

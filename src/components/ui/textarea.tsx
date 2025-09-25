@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  TextArea,
-  TextField,
-  type TextFieldProps,
-} from "react-aria-components";
+import { TextArea, TextField, type TextFieldProps } from "react-aria-components";
 import { twJoin } from "tailwind-merge";
 import { cx } from "@/lib/primitive";
 import { Description, FieldError, type FieldProps, Label } from "./field";
@@ -26,7 +22,7 @@ const Textarea = ({
       {...props}
       className={cx(
         "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium",
-        className,
+        className
       )}
     >
       {label && <Label>{label}</Label>}
@@ -38,7 +34,7 @@ const Textarea = ({
             "focus:border-ring/70 focus:ring-3 focus:ring-ring/20",
             "focus:invalid:border-danger/70 focus:invalid:ring-3 focus:invalid:ring-danger/20",
           ]),
-          className,
+          className
         )}
       />
       {description && <Description>{description}</Description>}

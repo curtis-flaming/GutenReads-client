@@ -22,8 +22,8 @@ const ColorThumb = ({ className, ...props }: ColorThumbProps) => {
             isDragging && "bg-muted-fg forced-colors:bg-[ButtonBorder]",
             isDisabled &&
               "opacity-50 forced-colors:border-[GrayText] forced-colors:bg-[GrayText]",
-            className,
-          ),
+            className
+          )
       )}
     />
   );

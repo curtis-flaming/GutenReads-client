@@ -1,9 +1,4 @@
-import {
-  IconChevronDown,
-  IconChevronUp,
-  IconMinus,
-  IconPlus,
-} from "@intentui/icons";
+import { IconChevronDown, IconChevronUp, IconMinus, IconPlus } from "@intentui/icons";
 import {
   Button,
   type ButtonProps,
@@ -50,7 +45,7 @@ const NumberField = ({
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium",
+        "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium"
       )}
     >
       {label && <Label>{label}</Label>}
@@ -60,7 +55,7 @@ const NumberField = ({
             "**:[button]:inset-ring **:[button]:inset-ring-fg/5 **:[button]:grid **:[button]:size-8 **:[button]:place-content-center",
             "*:[button]:first:ml-1 *:[button]:last:mr-1",
             "**:[button]:bg-secondary **:[button]:pressed:bg-secondary/80",
-          ],
+          ]
         )}
       >
         {(renderProps) => (
@@ -136,7 +131,7 @@ const StepperButton = ({
     <Button
       className={composeTailwindRenderProps(
         className,
-        "relative z-10 h-10 cursor-default pressed:text-primary-fg text-muted-fg group-disabled:bg-secondary/70 sm:pressed:bg-primary forced-colors:group-disabled:text-[GrayText]",
+        "relative z-10 h-10 cursor-default pressed:text-primary-fg text-muted-fg group-disabled:bg-secondary/70 sm:pressed:bg-primary forced-colors:group-disabled:text-[GrayText]"
       )}
       slot={slot}
       {...props}

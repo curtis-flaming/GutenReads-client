@@ -78,20 +78,11 @@ const buttonStyles = tv({
   },
 });
 
-interface ButtonProps
-  extends ButtonPrimitiveProps,
-    VariantProps<typeof buttonStyles> {
+interface ButtonProps extends ButtonPrimitiveProps, VariantProps<typeof buttonStyles> {
   ref?: React.Ref<HTMLButtonElement>;
 }
 
-const Button = ({
-  className,
-  intent,
-  size,
-  isCircle,
-  ref,
-  ...props
-}: ButtonProps) => {
+const Button = ({ className, intent, size, isCircle, ref, ...props }: ButtonProps) => {
   return (
     <ButtonPrimitive
       ref={ref}
@@ -103,14 +94,12 @@ const Button = ({
           size,
           isCircle,
           className,
-        }),
+        })
       )}
     >
       {(values) => (
         <>
-          {typeof props.children === "function"
-            ? props.children(values)
-            : props.children}
+          {typeof props.children === "function" ? props.children(values) : props.children}
         </>
       )}
     </ButtonPrimitive>

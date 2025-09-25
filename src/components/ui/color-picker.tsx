@@ -50,7 +50,7 @@ const ColorPicker = ({
             intent="plain"
             className={twJoin(
               "*:data-[slot=color-swatch]:-mx-0.5 w-auto px-2.5 *:data-[slot=color-swatch]:size-5",
-              !label && "size-10",
+              !label && "size-10"
             )}
           >
             <ColorSwatch />
@@ -69,11 +69,7 @@ const ColorPicker = ({
                     xChannel="saturation"
                     yChannel="brightness"
                   />
-                  <ColorSlider
-                    showOutput={false}
-                    colorSpace="hsb"
-                    channel="hue"
-                  />
+                  <ColorSlider showOutput={false} colorSpace="hsb" channel="hue" />
                   <div className="flex items-center gap-1.5">
                     {eyeDropper && <EyeDropper />}
                     <ColorField className="h-9" aria-label="Hex" />
@@ -111,9 +107,7 @@ const EyeDropper = () => {
       intent="outline"
       onPress={() => {
         const eyeDropper = window.EyeDropper ? new window.EyeDropper() : null;
-        eyeDropper
-          ?.open()
-          .then((result) => state.setColor(parseColor(result.sRGBHex)));
+        eyeDropper?.open().then((result) => state.setColor(parseColor(result.sRGBHex)));
       }}
     >
       <IconEyeDropper />

@@ -2,10 +2,7 @@
 
 import { IconSearch, IconX } from "@intentui/icons";
 import type { SearchFieldProps as SearchFieldPrimitiveProps } from "react-aria-components";
-import {
-  Button,
-  SearchField as SearchFieldPrimitive,
-} from "react-aria-components";
+import { Button, SearchField as SearchFieldPrimitive } from "react-aria-components";
 import { composeTailwindRenderProps } from "@/lib/primitive";
 import {
   Description,
@@ -38,7 +35,7 @@ const SearchField = ({
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "group/search-field relative flex flex-col gap-y-1 *:data-[slot=label]:font-medium",
+        "group/search-field relative flex flex-col gap-y-1 *:data-[slot=label]:font-medium"
       )}
     >
       {(values) => (

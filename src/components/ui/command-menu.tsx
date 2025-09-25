@@ -42,17 +42,13 @@ interface CommandMenuProviderProps {
   escapeButton?: boolean;
 }
 
-const CommandMenuContext = createContext<CommandMenuProviderProps | undefined>(
-  undefined,
-);
+const CommandMenuContext = createContext<CommandMenuProviderProps | undefined>(undefined);
 
 const useCommandMenu = () => {
   const context = use(CommandMenuContext);
 
   if (!context) {
-    throw new Error(
-      "useCommandMenu must be used within a <CommandMenuProvider />",
-    );
+    throw new Error("useCommandMenu must be used within a <CommandMenuProvider />");
   }
 
   return context;
@@ -107,12 +103,8 @@ const CommandMenu = ({
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [shortcut, onOpenChange]);
   return (
-    <CommandMenuContext
-      value={{ isPending: isPending, escapeButton: escapeButton }}
-    >
-      <ModalContext
-        value={{ isOpen: props.isOpen, onOpenChange: onOpenChange }}
-      >
+    <CommandMenuContext value={{ isPending: isPending, escapeButton: escapeButton }}>
+      <ModalContext value={{ isOpen: props.isOpen, onOpenChange: onOpenChange }}>
         <ModalOverlay
           isDismissable={isDismissable}
           className={({ isExiting, isEntering }) =>
@@ -121,7 +113,7 @@ const CommandMenu = ({
               "grid grid-rows-[1fr_auto] justify-items-center text-center sm:grid-rows-[1fr_auto_3fr]",
               isEntering && "fade-in animate-in duration-300",
               isExiting && "fade-out animate-out duration-200",
-              isBlurred && "backdrop-blur-sm",
+              isBlurred && "backdrop-blur-sm"
             )
           }
           {...props}
@@ -141,7 +133,7 @@ const CommandMenu = ({
                   "md:fade-out md:zoom-out-95 md:slide-out-to-bottom-0",
                 ],
                 sizes[size],
-                className,
+                className
               )
             }
           >
@@ -201,16 +193,13 @@ const CommandMenuSearch = ({
   );
 };
 
-const CommandMenuList = <T extends object>({
-  className,
-  ...props
-}: MenuProps<T>) => {
+const CommandMenuList = <T extends object>({ className, ...props }: MenuProps<T>) => {
   return (
     <CollectionRendererContext.Provider value={renderer}>
       <MenuPrimitive
         className={cx(
           "grid max-h-full flex-1 grid-cols-[auto_1fr] content-start overflow-y-auto p-2 sm:max-h-110 *:[[role=group]]:mb-6 *:[[role=group]]:last:mb-0",
-          className,
+          className
         )}
         {...props}
       />
@@ -228,7 +217,7 @@ const CommandMenuSection = <T extends object>({
       ref={ref}
       className={twMerge(
         "col-span-full grid grid-cols-[auto_1fr] content-start gap-y-[calc(var(--spacing)*0.25)]",
-        className,
+        className
       )}
       {...props}
     >
@@ -247,8 +236,7 @@ const CommandMenuItem = ({
   ...props
 }: React.ComponentProps<typeof MenuItem>) => {
   const textValue =
-    props.textValue ||
-    (typeof props.children === "string" ? props.children : undefined);
+    props.textValue || (typeof props.children === "string" ? props.children : undefined);
   return (
     <MenuItem
       {...props}
@@ -261,10 +249,7 @@ const CommandMenuItem = ({
 interface CommandMenuDescriptionProps
   extends React.ComponentProps<typeof MenuDescription> {}
 
-const CommandMenuDescription = ({
-  className,
-  ...props
-}: CommandMenuDescriptionProps) => {
+const CommandMenuDescription = ({ className, ...props }: CommandMenuDescriptionProps) => {
   return (
     <MenuDescription
       className={twMerge("col-start-3 row-start-1 ml-auto", className)}
@@ -294,16 +279,13 @@ const CommandMenuSeparator = ({
   <MenuSeparator className={twMerge("-mx-2", className)} {...props} />
 );
 
-const CommandMenuFooter = ({
-  className,
-  ...props
-}: React.ComponentProps<"div">) => {
+const CommandMenuFooter = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       className={twMerge(
         "col-span-full flex-none border-t px-2 py-1.5 text-muted-fg text-sm",
         "*:[kbd]:inset-ring *:[kbd]:inset-ring-fg/10 *:[kbd]:mx-1 *:[kbd]:inline-grid *:[kbd]:h-4 *:[kbd]:min-w-4 *:[kbd]:place-content-center *:[kbd]:rounded-xs *:[kbd]:bg-secondary",
-        className,
+        className
       )}
       {...props}
     />
@@ -322,11 +304,7 @@ CommandMenu.Keyboard = CommandMenuKeyboard;
 CommandMenu.Separator = CommandMenuSeparator;
 CommandMenu.Footer = CommandMenuFooter;
 
-export type {
-  CommandMenuProps,
-  CommandMenuSearchProps,
-  CommandMenuDescriptionProps,
-};
+export type { CommandMenuProps, CommandMenuSearchProps, CommandMenuDescriptionProps };
 export {
   CommandMenu,
   CommandMenuSearch,

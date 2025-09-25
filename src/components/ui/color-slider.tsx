@@ -26,18 +26,14 @@ const ColorSlider = ({
     <ColorSliderPrimitive
       {...props}
       data-slot="color-slider"
-      className={composeRenderProps(
-        className,
-        (className, { orientation, isDisabled }) =>
-          twMerge(
-            "group relative",
-            orientation === "horizontal" &&
-              "grid min-w-56 grid-cols-[1fr_auto]",
-            orientation === "vertical" &&
-              "flex flex-col items-center justify-center",
-            isDisabled && "opacity-50 forced-colors:bg-[GrayText]",
-            className,
-          ),
+      className={composeRenderProps(className, (className, { orientation, isDisabled }) =>
+        twMerge(
+          "group relative",
+          orientation === "horizontal" && "grid min-w-56 grid-cols-[1fr_auto]",
+          orientation === "vertical" && "flex flex-col items-center justify-center",
+          isDisabled && "opacity-50 forced-colors:bg-[GrayText]",
+          className
+        )
       )}
     >
       <div className="flex items-center">

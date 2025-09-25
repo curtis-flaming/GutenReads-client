@@ -13,13 +13,7 @@ import { cx } from "@/lib/primitive";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { DateInput } from "./date-field";
-import {
-  Description,
-  FieldError,
-  FieldGroup,
-  type FieldProps,
-  Label,
-} from "./field";
+import { Description, FieldError, FieldGroup, type FieldProps, Label } from "./field";
 import { Modal } from "./modal";
 import { PopoverContent } from "./popover";
 import { RangeCalendar } from "./range-calendar";
@@ -41,10 +35,7 @@ const DatePickerOverlay = ({
     <Modal.Content aria-label="Date picker" closeButton={false}>
       <div className="flex justify-center p-6">
         {range ? (
-          <RangeCalendar
-            pageBehavior={pageBehavior}
-            visibleDuration={visibleDuration}
-          />
+          <RangeCalendar pageBehavior={pageBehavior} visibleDuration={visibleDuration} />
         ) : (
           <Calendar />
         )}
@@ -55,15 +46,12 @@ const DatePickerOverlay = ({
       showArrow={false}
       className={twJoin(
         "flex min-w-auto max-w-none snap-x justify-center p-4 sm:min-w-[16.5rem] sm:p-2 sm:pt-3",
-        visibleDuration?.months === 1 ? "sm:max-w-2xs" : "sm:max-w-none",
+        visibleDuration?.months === 1 ? "sm:max-w-2xs" : "sm:max-w-none"
       )}
       {...props}
     >
       {range ? (
-        <RangeCalendar
-          pageBehavior={pageBehavior}
-          visibleDuration={visibleDuration}
-        />
+        <RangeCalendar pageBehavior={pageBehavior} visibleDuration={visibleDuration} />
       ) : (
         <Calendar />
       )}
@@ -99,7 +87,7 @@ const DatePicker = <T extends DateValue>({
       {...props}
       className={cx(
         "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium",
-        className,
+        className
       )}
     >
       {label && <Label>{label}</Label>}

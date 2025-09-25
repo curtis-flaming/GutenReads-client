@@ -26,10 +26,8 @@ interface FieldProps {
 
 const fieldStyles = tv({
   slots: {
-    description:
-      "text-base/6 text-muted-fg group-disabled:opacity-50 sm:text-sm/6",
-    label:
-      "select-none text-base/6 text-fg group-disabled:opacity-50 sm:text-sm/6",
+    description: "text-base/6 text-muted-fg group-disabled:opacity-50 sm:text-sm/6",
+    label: "select-none text-base/6 text-fg group-disabled:opacity-50 sm:text-sm/6",
     fieldError:
       "text-base/6 text-danger group-disabled:opacity-50 sm:text-sm/6 forced-colors:text-[Mark]",
   },
@@ -38,13 +36,7 @@ const fieldStyles = tv({
 const { description, label, fieldError } = fieldStyles();
 
 const Label = ({ className, ...props }: LabelProps) => {
-  return (
-    <LabelPrimitive
-      data-slot="label"
-      {...props}
-      className={label({ className })}
-    />
-  );
+  return <LabelPrimitive data-slot="label" {...props} className={label({ className })} />;
 };
 
 interface DescriptionProps extends TextProps {
@@ -116,7 +108,7 @@ const Input = ({ className, ref, ...props }: InputProps) => {
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "relative block w-full px-3.5 py-2 placeholder-muted-fg outline-hidden sm:px-3 sm:py-1.5 sm:text-sm/6 [&::-ms-reveal]:hidden [&::-webkit-search-cancel-button]:hidden",
+        "relative block w-full px-3.5 py-2 placeholder-muted-fg outline-hidden sm:px-3 sm:py-1.5 sm:text-sm/6 [&::-ms-reveal]:hidden [&::-webkit-search-cancel-button]:hidden"
       )}
     />
   );

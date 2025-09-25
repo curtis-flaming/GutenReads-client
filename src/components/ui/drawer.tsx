@@ -72,9 +72,7 @@ const DrawerContent = ({
                   [
                     "w-full max-w-xs overflow-y-auto",
                     "**:[[slot=header]]:text-left",
-                    isFloat
-                      ? "inset-y-2 right-2 rounded-lg"
-                      : "inset-y-0 right-0 h-auto",
+                    isFloat ? "inset-y-2 right-2 rounded-lg" : "inset-y-0 right-0 h-auto",
                   ].join(" "),
                 side === "bottom" &&
                   (isFloat
@@ -84,11 +82,9 @@ const DrawerContent = ({
                   [
                     "w-full max-w-xs overflow-y-auto",
                     "**:[[slot=header]]:text-left",
-                    isFloat
-                      ? "inset-y-2 left-2 rounded-lg"
-                      : "inset-y-0 left-0 h-auto",
+                    isFloat ? "inset-y-2 left-2 rounded-lg" : "inset-y-0 left-0 h-auto",
                   ].join(" "),
-                className,
+                className
               )}
               animate={{ x: 0, y: 0 }}
               initial={{
@@ -147,7 +143,7 @@ const DrawerContent = ({
                   "relative flex flex-col overflow-hidden outline-hidden will-change-auto",
                   side === "top" || side === "bottom"
                     ? "mx-auto max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding))] max-w-lg"
-                    : "h-full",
+                    : "h-full"
                 )}
               >
                 {notch && side === "bottom" && (
@@ -166,17 +162,11 @@ const DrawerContent = ({
   );
 };
 
-const DrawerHeader = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       slot="header"
-      className={twMerge(
-        "flex flex-col p-4 text-center sm:text-left",
-        className,
-      )}
+      className={twMerge("flex flex-col p-4 text-center sm:text-left", className)}
       {...props}
     />
   );
@@ -198,50 +188,33 @@ const DrawerDescription = ({ className, ...props }: TextProps) => (
   />
 );
 
-const DrawerBody = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+const DrawerBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     slot="body"
     className={twMerge(
       "isolate flex max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding))] flex-col overflow-auto px-4 py-1 will-change-scroll",
-      className,
+      className
     )}
     {...props}
   />
 );
 
-const DrawerFooter = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+const DrawerFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       slot="footer"
       className={twMerge(
         "isolate mt-auto flex flex-col-reverse justify-end gap-2 p-4 sm:flex-row",
-        className,
+        className
       )}
       {...props}
     />
   );
 };
 
-const DrawerClose = ({
-  className,
-  intent = "outline",
-  ref,
-  ...props
-}: ButtonProps) => {
+const DrawerClose = ({ className, intent = "outline", ref, ...props }: ButtonProps) => {
   return (
-    <Button
-      slot="close"
-      className={className}
-      ref={ref}
-      intent={intent}
-      {...props}
-    />
+    <Button slot="close" className={className} ref={ref} intent={intent} {...props} />
   );
 };
 

@@ -24,14 +24,12 @@ const Link = ({ className, ref, intent = "unstyled", ...props }: LinkProps) => {
           intent === "unstyled" && "text-current",
           intent === "primary" && "text-primary hover:text-primary/80",
           intent === "secondary" && "text-muted-fg hover:text-fg",
-        ]),
+        ])
       )}
     >
       {(values) => (
         <>
-          {typeof props.children === "function"
-            ? props.children(values)
-            : props.children}
+          {typeof props.children === "function" ? props.children(values) : props.children}
         </>
       )}
     </LinkPrimitive>

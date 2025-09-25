@@ -72,7 +72,7 @@ const ModalContent = ({
           "grid grid-rows-[1fr_auto] justify-items-center sm:grid-rows-[1fr_auto_3fr]",
           isEntering && "fade-in animate-in duration-300",
           isExiting && "fade-out animate-out duration-200",
-          isBlurred && "backdrop-blur-sm backdrop-filter",
+          isBlurred && "backdrop-blur-sm backdrop-filter"
         )
       }
       {...props}
@@ -94,7 +94,7 @@ const ModalContent = ({
             isExiting && [
               "slide-out-to-bottom animate-out",
               "md:fade-out md:zoom-out-95 md:slide-out-to-bottom-0",
-            ],
+            ]
           )
         }
       >

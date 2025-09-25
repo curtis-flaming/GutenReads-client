@@ -50,7 +50,7 @@ const ComboBox = <T extends object>({
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "group flex w-full flex-col gap-y-1 *:data-[slot=label]:font-medium",
+        "group flex w-full flex-col gap-y-1 *:data-[slot=label]:font-medium"
       )}
     >
       {label && <Label>{label}</Label>}
@@ -78,7 +78,7 @@ const ComboBoxContent = <T extends object>({
     <PopoverContent
       className={composeTailwindRenderProps(
         popover?.className,
-        "min-w-(--trigger-width) scroll-py-1 overflow-y-auto overscroll-contain",
+        "min-w-(--trigger-width) scroll-py-1 overflow-y-auto overscroll-contain"
       )}
       {...popover}
     >
@@ -87,7 +87,7 @@ const ComboBoxContent = <T extends object>({
         orientation="vertical"
         className={composeTailwindRenderProps(
           className,
-          "grid max-h-96 w-full grid-cols-[auto_1fr] flex-col gap-y-1 p-1 outline-hidden *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1",
+          "grid max-h-96 w-full grid-cols-[auto_1fr] flex-col gap-y-1 p-1 outline-hidden *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1"
         )}
         items={items}
         {...props}

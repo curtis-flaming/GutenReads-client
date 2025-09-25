@@ -17,10 +17,7 @@ const Meter = ({ label, className, ...props }: MeterProps) => {
   return (
     <MeterPrimitive
       {...props}
-      className={composeTailwindRenderProps(
-        className,
-        "flex min-w-56 flex-col gap-1",
-      )}
+      className={composeTailwindRenderProps(className, "flex min-w-56 flex-col gap-1")}
     >
       {({ percentage, valueText }) => (
         <>

@@ -97,7 +97,7 @@ const DropdownItem = ({ className, children, ...props }: DropdownItemProps) => {
     <ListBoxItemPrimitive
       textValue={textValue}
       className={composeRenderProps(className, (className, renderProps) =>
-        dropdownItemStyles({ ...renderProps, className }),
+        dropdownItemStyles({ ...renderProps, className })
       )}
       {...props}
     >
@@ -122,23 +122,14 @@ interface DropdownLabelProps extends TextProps {
 }
 
 const DropdownLabel = ({ className, ref, ...props }: DropdownLabelProps) => (
-  <Text
-    slot="label"
-    ref={ref}
-    className={twMerge("col-start-2", className)}
-    {...props}
-  />
+  <Text slot="label" ref={ref} className={twMerge("col-start-2", className)} {...props} />
 );
 
 interface DropdownDescriptionProps extends TextProps {
   ref?: React.Ref<HTMLDivElement>;
 }
 
-const DropdownDescription = ({
-  className,
-  ref,
-  ...props
-}: DropdownDescriptionProps) => (
+const DropdownDescription = ({ className, ref, ...props }: DropdownDescriptionProps) => (
   <Text
     slot="description"
     ref={ref}
@@ -164,7 +155,7 @@ const DropdownKeyboard = ({
       classNames={{
         base: twMerge(
           "absolute right-2 pl-2 group-hover:text-primary-fg group-focus:text-primary-fg",
-          className,
+          className
         ),
       }}
       {...props}

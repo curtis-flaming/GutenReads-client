@@ -59,8 +59,7 @@ const TagField = ({
   const [inputValue, setInputValue] = useState("");
 
   const existingTagCount = list.items.length;
-  const maxTags =
-    props.max !== undefined ? props.max : Number.POSITIVE_INFINITY;
+  const maxTags = props.max !== undefined ? props.max : Number.POSITIVE_INFINITY;
   const maxTagsToAdd = maxTags - existingTagCount;
 
   const insertTag = () => {
@@ -83,9 +82,7 @@ const TagField = ({
 
       if (
         formattedName &&
-        !list.items.some(
-          ({ name }) => name.toLowerCase() === formattedName.toLowerCase(),
-        )
+        !list.items.some(({ name }) => name.toLowerCase() === formattedName.toLowerCase())
       ) {
         const tag = {
           id: (list.items.at(-1)?.id ?? 0) + 1,
@@ -145,9 +142,7 @@ const TagField = ({
   return (
     <div className={twMerge("flex w-full flex-col gap-y-1.5", className)}>
       {props.label && <Label>{props.label}</Label>}
-      <Group
-        className={twJoin("flex flex-col", props.isDisabled && "opacity-50")}
-      >
+      <Group className={twJoin("flex flex-col", props.isDisabled && "opacity-50")}>
         <TagGroup aria-label="List item inserted" onRemove={onRemove}>
           <div className={tagFieldsStyles({ appearance })}>
             <TagList items={list.items}>
@@ -159,9 +154,7 @@ const TagField = ({
             </TagList>
             <TextField
               isDisabled={props.isDisabled}
-              aria-label={
-                props?.label ?? (props["aria-label"] || props.placeholder)
-              }
+              aria-label={props?.label ?? (props["aria-label"] || props.placeholder)}
               isInvalid={isInvalid}
               onKeyDown={onKeyDown}
               onChange={setInputValue}
@@ -172,9 +165,7 @@ const TagField = ({
               <Input
                 className="ml-1.5 inline px-0 sm:px-0"
                 placeholder={
-                  maxTagsToAdd <= 0
-                    ? "Remove one to add more"
-                    : props.placeholder
+                  maxTagsToAdd <= 0 ? "Remove one to add more" : props.placeholder
                 }
               />
             </TextField>

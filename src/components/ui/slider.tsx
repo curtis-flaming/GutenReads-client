@@ -73,11 +73,7 @@ const Slider = ({
     if (!showTooltip) return thumb;
 
     return (
-      <Tooltip
-        delay={0}
-        isOpen={showTooltipState}
-        onOpenChange={setShowTooltipState}
-      >
+      <Tooltip delay={0} isOpen={showTooltipState} onOpenChange={setShowTooltipState}>
         {thumb}
         <Tooltip.Content
           showArrow={false}
@@ -99,10 +95,9 @@ const Slider = ({
         twMerge([
           "group relative flex touch-none select-none flex-col disabled:opacity-50",
           orientation === "horizontal" && "w-full min-w-56 gap-y-2",
-          orientation === "vertical" &&
-            "h-full min-h-56 w-1.5 items-center gap-y-2",
+          orientation === "vertical" && "h-full min-h-56 w-1.5 items-center gap-y-2",
           className,
-        ]),
+        ])
       )}
       {...props}
     >
@@ -111,9 +106,7 @@ const Slider = ({
         {output === "inline" && (
           <SliderOutput className="text-muted-fg text-sm tabular-nums data-[orientation=vertical]:mx-auto data-[orientation=horizontal]:ml-auto">
             {({ state }) =>
-              state.values
-                .map((_, i) => state.getThumbValueLabel(i))
-                .join(" – ")
+              state.values.map((_, i) => state.getThumbValueLabel(i)).join(" – ")
             }
           </SliderOutput>
         )}
@@ -143,16 +136,13 @@ const SliderTrack = ({ className, ...props }: SliderTrackProps) => {
           "[--slider:color-mix(in_oklab,var(--color-muted)_90%,black_10%)] dark:[--slider:color-mix(in_oklab,var(--color-muted)_90%,white_10%)]",
           "group/track relative cursor-default rounded-full bg-(--slider) disabled:cursor-default disabled:opacity-60",
           "grow group-data-[orientation=horizontal]:h-1.5 group-data-[orientation=horizontal]:w-full group-data-[orientation=vertical]:w-1.5 group-data-[orientation=vertical]:flex-1",
-        ]),
+        ])
       )}
     />
   );
 };
 
-const SliderFiller = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+const SliderFiller = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   const state = React.useContext(SliderStateContext);
   const { orientation, getThumbPercent, values } = state || {};
 
@@ -183,7 +173,7 @@ const SliderFiller = ({
       style={getStyle()}
       className={twMerge(
         "group-data-[orientation=horizontal]/top-0 pointer-events-none absolute rounded-full bg-primary group-disabled/track:opacity-60 group-data-[orientation=vertical]/track:bottom-0 group-data-[orientation=horizontal]/track:h-full group-data-[orientation=vertical]/track:w-full",
-        className,
+        className
       )}
     />
   );
@@ -210,7 +200,7 @@ const SliderThumb = ({ className, ...props }: SliderThumbProps) => {
     <SliderThumbPrimitive
       {...props}
       className={composeRenderProps(className, (className, renderProps) =>
-        thumbStyles({ ...renderProps, className }),
+        thumbStyles({ ...renderProps, className })
       )}
     />
   );

@@ -23,7 +23,7 @@ const Dialog = ({
       role={role}
       className={twMerge(
         "peer/dialog group/dialog relative flex max-h-[inherit] flex-col overflow-hidden outline-hidden [--gutter:--spacing(6)] sm:[--gutter:--spacing(8)]",
-        className,
+        className
       )}
       {...props}
     />
@@ -52,7 +52,7 @@ const DialogHeader = ({ className, ...props }: DialogHeaderProps) => {
       for (const entry of entries) {
         header.parentElement?.style.setProperty(
           "--dialog-header-height",
-          `${entry.target.clientHeight}px`,
+          `${entry.target.clientHeight}px`
         );
       }
     });
@@ -67,13 +67,11 @@ const DialogHeader = ({ className, ...props }: DialogHeaderProps) => {
       ref={headerRef}
       className={twMerge(
         "relative space-y-1 p-(--gutter) pb-[calc(var(--gutter)---spacing(3))]",
-        className,
+        className
       )}
     >
       {props.title && <DialogTitle>{props.title}</DialogTitle>}
-      {props.description && (
-        <DialogDescription>{props.description}</DialogDescription>
-      )}
+      {props.description && <DialogDescription>{props.description}</DialogDescription>}
       {!props.title && typeof props.children === "string" ? (
         <DialogTitle {...props} />
       ) : (
@@ -92,7 +90,7 @@ const DialogTitle = ({ className, ref, ...props }: DialogTitleProps) => (
     ref={ref}
     className={twMerge(
       "text-balance font-semibold text-fg text-lg/6 sm:text-base/6",
-      className,
+      className
     )}
     {...props}
   />
@@ -101,16 +99,12 @@ const DialogTitle = ({ className, ref, ...props }: DialogTitleProps) => (
 interface DialogDescriptionProps extends TextProps {
   ref?: React.Ref<HTMLDivElement>;
 }
-const DialogDescription = ({
-  className,
-  ref,
-  ...props
-}: DialogDescriptionProps) => (
+const DialogDescription = ({ className, ref, ...props }: DialogDescriptionProps) => (
   <Text
     slot="description"
     className={twMerge(
       "text-pretty text-base/6 text-muted-fg group-disabled:opacity-50 sm:text-sm/6",
-      className,
+      className
     )}
     ref={ref}
     {...props}
@@ -124,7 +118,7 @@ const DialogBody = ({ className, ref, ...props }: DialogBodyProps) => (
     ref={ref}
     className={twMerge(
       "flex max-h-[calc(var(--visual-viewport-height)-var(--visual-viewport-vertical-padding)-var(--dialog-header-height,0px)-var(--dialog-footer-height,0px))] flex-1 flex-col overflow-auto px-(--gutter) py-1",
-      className,
+      className
     )}
     {...props}
   />
@@ -145,7 +139,7 @@ const DialogFooter = ({ className, ...props }: DialogFooterProps) => {
       for (const entry of entries) {
         footer.parentElement?.style.setProperty(
           "--dialog-footer-height",
-          `${entry.target.clientHeight}px`,
+          `${entry.target.clientHeight}px`
         );
       }
     });
@@ -161,27 +155,16 @@ const DialogFooter = ({ className, ...props }: DialogFooterProps) => {
       data-slot="dialog-footer"
       className={twMerge(
         "mt-auto flex flex-col-reverse justify-between gap-3 p-(--gutter) pt-[calc(var(--gutter)---spacing(3))] group-not-has-data-[slot=dialog-body]/dialog:pt-0 group-not-has-data-[slot=dialog-body]/popover:pt-0 sm:flex-row",
-        className,
+        className
       )}
       {...props}
     />
   );
 };
 
-const DialogClose = ({
-  className,
-  intent = "outline",
-  ref,
-  ...props
-}: ButtonProps) => {
+const DialogClose = ({ className, intent = "outline", ref, ...props }: ButtonProps) => {
   return (
-    <Button
-      slot="close"
-      className={className}
-      ref={ref}
-      intent={intent}
-      {...props}
-    />
+    <Button slot="close" className={className} ref={ref} intent={intent} {...props} />
   );
 };
 
@@ -190,17 +173,14 @@ interface CloseButtonIndicatorProps extends Omit<ButtonProps, "children"> {
   isDismissable?: boolean | undefined;
 }
 
-const DialogCloseIcon = ({
-  className,
-  ...props
-}: CloseButtonIndicatorProps) => {
+const DialogCloseIcon = ({ className, ...props }: CloseButtonIndicatorProps) => {
   return props.isDismissable ? (
     <ButtonPrimitive
       aria-label="Close"
       slot="close"
       className={composeTailwindRenderProps(
         className,
-        "close absolute top-1 right-1 z-50 grid size-8 place-content-center rounded-xl hover:bg-secondary focus:bg-secondary focus:outline-hidden focus-visible:ring-1 focus-visible:ring-primary sm:top-2 sm:right-2 sm:size-7 sm:rounded-md",
+        "close absolute top-1 right-1 z-50 grid size-8 place-content-center rounded-xl hover:bg-secondary focus:bg-secondary focus:outline-hidden focus-visible:ring-1 focus-visible:ring-primary sm:top-2 sm:right-2 sm:size-7 sm:rounded-md"
       )}
     >
       <IconX className="size-4" />

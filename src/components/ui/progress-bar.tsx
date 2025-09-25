@@ -15,18 +15,12 @@ interface ProgressBarProps extends ProgressBarPrimitiveProps {
 
 const ProgressBar = ({ label, ref, className, ...props }: ProgressBarProps) => {
   return (
-    <ProgressBarPrimitive
-      ref={ref}
-      className={cx("flex flex-col", className)}
-      {...props}
-    >
+    <ProgressBarPrimitive ref={ref} className={cx("flex flex-col", className)} {...props}>
       {({ percentage, valueText, isIndeterminate }) => (
         <>
           <div className="flex justify-between gap-2">
             {label && <Label>{label}</Label>}
-            <span className="text-muted-fg text-sm tabular-nums">
-              {valueText}
-            </span>
+            <span className="text-muted-fg text-sm tabular-nums">{valueText}</span>
           </div>
           <div className="-outline-offset-1 relative mt-1 h-2 min-w-64 overflow-hidden rounded-full bg-secondary outline-1 outline-transparent">
             {!isIndeterminate ? (

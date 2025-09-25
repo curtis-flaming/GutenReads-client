@@ -1,7 +1,5 @@
 import { IconChevronLgLeft, IconChevronLgRight } from "@intentui/icons";
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { createContext, use, useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { cx } from "@/lib/primitive";
@@ -40,9 +38,7 @@ interface CarouselRootProps {
   CarouselButton?: typeof CarouselButton;
 }
 
-interface CarouselProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    CarouselRootProps {
+interface CarouselProps extends React.HTMLAttributes<HTMLDivElement>, CarouselRootProps {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
@@ -63,7 +59,7 @@ const Carousel = ({
       ...opts,
       axis: orientation === "horizontal" ? "x" : "y",
     },
-    plugins,
+    plugins
   );
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -95,7 +91,7 @@ const Carousel = ({
         scrollNext();
       }
     },
-    [scrollPrev, scrollNext],
+    [scrollPrev, scrollNext]
   );
 
   useEffect(() => {
@@ -126,8 +122,7 @@ const Carousel = ({
         carouselRef,
         api: api,
         opts,
-        orientation:
-          orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+        orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
         scrollPrev,
         scrollNext,
         canScrollPrev,
@@ -147,10 +142,7 @@ const Carousel = ({
   );
 };
 
-const CarouselContent = ({
-  className,
-  ...props
-}: React.ComponentProps<"div">) => {
+const CarouselContent = ({ className, ...props }: React.ComponentProps<"div">) => {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -159,7 +151,7 @@ const CarouselContent = ({
         className={twMerge(
           "flex",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
-          className,
+          className
         )}
         {...props}
       />
@@ -175,18 +167,14 @@ const CarouselItem = ({ className, ...props }: React.ComponentProps<"div">) => {
       className={twMerge(
         "xd24r group relative min-w-0 shrink-0 grow-0 basis-full focus:outline-hidden focus-visible:outline-hidden",
         orientation === "horizontal" ? "pl-4" : "pt-4",
-        className,
+        className
       )}
       {...props}
     />
   );
 };
 
-const CarouselHandler = ({
-  ref,
-  className,
-  ...props
-}: React.ComponentProps<"div">) => {
+const CarouselHandler = ({ ref, className, ...props }: React.ComponentProps<"div">) => {
   const { orientation } = useCarousel();
   return (
     <div
@@ -195,7 +183,7 @@ const CarouselHandler = ({
       className={twMerge(
         "relative z-10 mt-6 flex items-center gap-x-2",
         orientation === "horizontal" ? "justify-end" : "justify-center",
-        className,
+        className
       )}
       {...props}
     />
@@ -242,10 +230,4 @@ Carousel.Item = CarouselItem;
 Carousel.Button = CarouselButton;
 
 export type { CarouselApi };
-export {
-  Carousel,
-  CarouselContent,
-  CarouselHandler,
-  CarouselItem,
-  CarouselButton,
-};
+export { Carousel, CarouselContent, CarouselHandler, CarouselItem, CarouselButton };

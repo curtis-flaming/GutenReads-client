@@ -16,17 +16,13 @@ interface CheckboxGroupProps
   extends CheckboxGroupPrimitiveProps,
     Omit<FieldProps, "placeholder"> {}
 
-const CheckboxGroup = ({
-  className,
-  children,
-  ...props
-}: CheckboxGroupProps) => {
+const CheckboxGroup = ({ className, children, ...props }: CheckboxGroupProps) => {
   return (
     <CheckboxGroupPrimitive
       {...props}
       className={cx(
         "space-y-3 has-[[slot=description]]:space-y-6 has-[[slot=description]]:**:data-[slot=label]:font-medium **:[[slot=description]]:block",
-        className,
+        className
       )}
     >
       {(values) => (
@@ -59,10 +55,7 @@ const Checkbox = ({
     >
       {composeRenderProps(
         children,
-        (
-          children,
-          { isSelected, isIndeterminate, isFocusVisible, isInvalid },
-        ) => {
+        (children, { isSelected, isIndeterminate, isFocusVisible, isInvalid }) => {
           const isStringChild = typeof children === "string";
           const hasCustomChildren = typeof children !== "undefined";
 
@@ -94,7 +87,7 @@ const Checkbox = ({
                 "*:[[slot=description]]:col-start-2 *:[[slot=description]]:row-start-2",
                 "has-[[slot=description]]:**:data-[slot=label]:font-medium",
                 props.slot !== "selection" &&
-                  "gap-x-3 gap-y-1 *:data-[slot=indicator]:mt-0.75 sm:*:data-[slot=indicator]:mt-1",
+                  "gap-x-3 gap-y-1 *:data-[slot=indicator]:mt-0.75 sm:*:data-[slot=indicator]:mt-1"
               )}
             >
               <span
@@ -120,7 +113,7 @@ const Checkbox = ({
               {content}
             </div>
           );
-        },
+        }
       )}
     </CheckboxPrimitive>
   );

@@ -5,12 +5,7 @@ interface SkeletonProps extends React.ComponentProps<"div"> {
   soft?: boolean;
 }
 
-const Skeleton = ({
-  ref,
-  soft = false,
-  className,
-  ...props
-}: SkeletonProps) => {
+const Skeleton = ({ ref, soft = false, className, ...props }: SkeletonProps) => {
   return (
     <div
       data-slot="skeleton"
@@ -18,7 +13,7 @@ const Skeleton = ({
       className={twMerge(
         "shrink-0 animate-pulse rounded-lg",
         soft ? "bg-muted" : "bg-secondary",
-        className,
+        className
       )}
       {...props}
     />

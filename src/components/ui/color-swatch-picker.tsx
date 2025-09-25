@@ -38,7 +38,7 @@ const ColorSwatchPickerItem = ({
     <ColorSwatchPickerItemPrimitive
       className={composeTailwindRenderProps(
         className,
-        "relative overflow-hidden rounded-sm outline-hidden disabled:opacity-50",
+        "relative overflow-hidden rounded-sm outline-hidden disabled:opacity-50"
       )}
       {...props}
     >
@@ -50,7 +50,7 @@ const ColorSwatchPickerItem = ({
                 className={twMerge(
                   (values.isSelected || values.isFocused || values.isPressed) &&
                     "inset-ring-fg/30",
-                  values.isDisabled && "opacity-50",
+                  values.isDisabled && "opacity-50"
                 )}
               />
               {(values.isSelected || values.isFocused || values.isPressed) && (

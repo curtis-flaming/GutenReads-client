@@ -32,9 +32,7 @@ import {
 } from "./dropdown";
 import { PopoverContent, type PopoverContentProps } from "./popover";
 
-const Menu = (props: MenuTriggerPrimitiveProps) => (
-  <MenuTriggerPrimitive {...props} />
-);
+const Menu = (props: MenuTriggerPrimitiveProps) => <MenuTriggerPrimitive {...props} />;
 
 const MenuSubmenu = ({ delay = 0, ...props }) => (
   <SubmenuTriggerPrimitive {...props} delay={delay}>
@@ -52,7 +50,7 @@ const MenuTrigger = ({ className, ref, ...props }: MenuTriggerProps) => (
     data-slot="menu-trigger"
     className={cx(
       "relative inline text-left outline-hidden focus-visible:ring-1 focus-visible:ring-primary",
-      className,
+      className
     )}
     {...props}
   />
@@ -93,7 +91,7 @@ const MenuContent = <T extends object>({
         data-slot="menu-content"
         className={composeTailwindRenderProps(
           className,
-          "grid max-h-[inherit] grid-cols-[auto_1fr] overflow-y-auto overscroll-contain p-1 outline-hidden [clip-path:inset(0_0_0_0_round_calc(var(--radius-lg)-2px))] *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1",
+          "grid max-h-[inherit] grid-cols-[auto_1fr] overflow-y-auto overscroll-contain p-1 outline-hidden [clip-path:inset(0_0_0_0_round_calc(var(--radius-lg)-2px))] *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1"
         )}
         {...props}
       />
@@ -107,12 +105,7 @@ interface MenuItemProps
   isDanger?: boolean;
 }
 
-const MenuItem = ({
-  className,
-  isDanger = false,
-  children,
-  ...props
-}: MenuItemProps) => {
+const MenuItem = ({ className, isDanger = false, children, ...props }: MenuItemProps) => {
   const textValue =
     props.textValue || (typeof children === "string" ? children : undefined);
   return (
@@ -127,10 +120,10 @@ const MenuItem = ({
               ? twMerge(
                   "open:data-danger:bg-danger/10 open:data-danger:text-danger",
                   "open:bg-accent open:text-accent-fg open:*:data-[slot=icon]:text-accent-fg open:*:[.text-muted-fg]:text-accent-fg",
-                  className,
+                  className
                 )
               : className,
-          }),
+          })
       )}
       textValue={textValue}
       {...props}
@@ -148,10 +141,7 @@ const MenuItem = ({
                 </span>
               )}
               {values.selectionMode === "multiple" && (
-                <IconCheck
-                  className="-mx-0.5 mr-2 size-4"
-                  data-slot="check-indicator"
-                />
+                <IconCheck className="-mx-0.5 mr-2 size-4" data-slot="check-indicator" />
               )}
             </>
           )}
@@ -174,16 +164,12 @@ export interface MenuHeaderProps extends React.ComponentProps<typeof Header> {
   separator?: boolean;
 }
 
-const MenuHeader = ({
-  className,
-  separator = false,
-  ...props
-}: MenuHeaderProps) => (
+const MenuHeader = ({ className, separator = false, ...props }: MenuHeaderProps) => (
   <Header
     className={twMerge(
       "col-span-full px-2.5 py-2 font-semibold text-base sm:text-sm",
       separator && "-mx-1 mb-1 border-b sm:px-3 sm:pb-[0.625rem]",
-      className,
+      className
     )}
     {...props}
   />
@@ -202,11 +188,7 @@ const MenuSection = <T extends object>({
   ...props
 }: MenuSectionProps<T>) => {
   return (
-    <MenuSectionPrimitive
-      ref={ref}
-      className={section({ className })}
-      {...props}
-    >
+    <MenuSectionPrimitive ref={ref} className={section({ className })} {...props}>
       {"title" in props && <Header className={header()}>{props.title}</Header>}
       <Collection items={props.items}>{props.children}</Collection>
     </MenuSectionPrimitive>
@@ -229,12 +211,7 @@ Menu.Description = MenuDescription;
 Menu.Trigger = MenuTrigger;
 Menu.Submenu = MenuSubmenu;
 
-export type {
-  MenuContentProps,
-  MenuTriggerProps,
-  MenuItemProps,
-  MenuSectionProps,
-};
+export type { MenuContentProps, MenuTriggerProps, MenuItemProps, MenuSectionProps };
 export {
   Menu,
   MenuKeyboard,

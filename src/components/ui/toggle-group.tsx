@@ -12,15 +12,7 @@ import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 import { cx } from "@/lib/primitive";
 
-type ToggleSize =
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "sq-xs"
-  | "sq-sm"
-  | "sq-md"
-  | "sq-lg";
+type ToggleSize = "xs" | "sm" | "md" | "lg" | "sq-xs" | "sq-sm" | "sq-md" | "sq-lg";
 
 interface ToggleGroupContextValue
   extends Pick<ToggleButtonGroupProps, "selectionMode" | "orientation"> {
@@ -160,8 +152,8 @@ const ToggleGroupItem = ({ className, ...props }: ToggleGroupItemProps) => {
             orientation,
             selectionMode,
             className,
-          }),
-        ),
+          })
+        )
       )}
       {...props}
     />

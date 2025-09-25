@@ -23,7 +23,7 @@ const Tabs = ({ className, ref, ...props }: TabsProps) => {
     <TabsPrimitive
       className={cx(
         "group/tabs flex orientation-vertical:w-full orientation-vertical:flex-row orientation-horizontal:flex-col gap-4 forced-color-adjust-none",
-        className,
+        className
       )}
       ref={ref}
       {...props}
@@ -34,11 +34,7 @@ const Tabs = ({ className, ref, ...props }: TabsProps) => {
 interface TabListProps<T extends object> extends TabListPrimitiveProps<T> {
   ref?: React.RefObject<HTMLDivElement>;
 }
-const TabList = <T extends object>({
-  className,
-  ref,
-  ...props
-}: TabListProps<T>) => {
+const TabList = <T extends object>({ className, ref, ...props }: TabListProps<T>) => {
   return (
     <TabListPrimitive
       ref={ref}
@@ -46,11 +42,10 @@ const TabList = <T extends object>({
       className={composeRenderProps(className, (className, { orientation }) =>
         twMerge([
           "flex forced-color-adjust-none",
-          orientation === "horizontal" &&
-            "flex-row gap-x-5 border-border border-b",
+          orientation === "horizontal" && "flex-row gap-x-5 border-border border-b",
           orientation === "vertical" && "flex-col items-start gap-y-4 border-l",
           className,
-        ]),
+        ])
       )}
     />
   );
@@ -71,7 +66,7 @@ const Tab = ({ children, className, ref, ...props }: TabProps) => {
         "selected:text-fg text-muted-fg focus:ring-0",
         "disabled:opacity-50",
         "href" in props && "cursor-pointer",
-        className,
+        className
       )}
     >
       {({ isSelected }) => (
@@ -83,7 +78,7 @@ const Tab = ({ children, className, ref, ...props }: TabProps) => {
               className={twMerge(
                 "absolute rounded bg-fg",
                 "group-orientation-horizontal/tabs:-bottom-px group-orientation-horizontal/tabs:inset-x-0 group-orientation-horizontal/tabs:h-0.5 group-orientation-horizontal/tabs:w-full",
-                "group-orientation-vertical/tabs:left-0 group-orientation-vertical/tabs:h-[calc(100%-10%)] group-orientation-vertical/tabs:w-0.5 group-orientation-vertical/tabs:transform",
+                "group-orientation-vertical/tabs:left-0 group-orientation-vertical/tabs:h-[calc(100%-10%)] group-orientation-vertical/tabs:w-0.5 group-orientation-vertical/tabs:transform"
               )}
             />
           )}
@@ -101,10 +96,7 @@ const TabPanel = ({ className, ref, ...props }: TabPanelProps) => {
     <TabPanelPrimitive
       {...props}
       ref={ref}
-      className={cx(
-        "flex-1 text-fg text-sm focus-visible:outline-hidden",
-        className,
-      )}
+      className={cx("flex-1 text-fg text-sm focus-visible:outline-hidden", className)}
     />
   );
 };

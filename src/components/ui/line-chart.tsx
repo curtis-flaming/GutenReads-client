@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  Line,
-  LineChart as LineChartPrimitive,
-  type LineProps,
-} from "recharts";
-import type {
-  NameType,
-  ValueType,
-} from "recharts/types/component/DefaultTooltipContent";
+import { Line, LineChart as LineChartPrimitive, type LineProps } from "recharts";
+import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 import { twMerge } from "tailwind-merge";
 import {
   type BaseChartProps,
@@ -111,9 +104,7 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
 
           {legend && (
             <ChartLegend
-              content={
-                typeof legend === "boolean" ? <ChartLegendContent /> : legend
-              }
+              content={typeof legend === "boolean" ? <ChartLegendContent /> : legend}
               {...legendProps}
             />
           )}
@@ -143,15 +134,13 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
                     name={category}
                     type="linear"
                     dataKey={category}
-                    stroke={getColorValue(
-                      values.color || categoryColors.get(category),
-                    )}
+                    stroke={getColorValue(values.color || categoryColors.get(category))}
                     style={
                       {
                         strokeOpacity,
                         strokeWidth: 2,
                         "--line-color": getColorValue(
-                          values.color || categoryColors.get(category),
+                          values.color || categoryColors.get(category)
                         ),
                       } as React.CSSProperties
                     }

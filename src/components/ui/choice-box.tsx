@@ -1,15 +1,6 @@
 import { createContext, use } from "react";
-import type {
-  GridListItemProps,
-  GridListProps,
-  TextProps,
-} from "react-aria-components";
-import {
-  composeRenderProps,
-  GridList,
-  GridListItem,
-  Text,
-} from "react-aria-components";
+import type { GridListItemProps, GridListProps, TextProps } from "react-aria-components";
+import { composeRenderProps, GridList, GridListItem, Text } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
@@ -80,7 +71,7 @@ const ChoiceBox = <T extends object>({
             columns,
             gap,
           }),
-          className,
+          className
         )}
         {...props}
       />
@@ -161,7 +152,7 @@ const ChoiceBoxItem = ({
             isFocused: !isReadOnly && renderProps.isFocused,
             isActive: (!isReadOnly && isSelected) || isFocusVisible,
             className,
-          }),
+          })
       )}
     >
       {composeRenderProps(children, (children, { selectionMode }) => {
@@ -177,9 +168,7 @@ const ChoiceBoxItem = ({
         ) : (
           <>
             {label && <ChoiceBoxLabel>{label}</ChoiceBoxLabel>}
-            {description && (
-              <ChoiceBoxDescription>{description}</ChoiceBoxDescription>
-            )}
+            {description && <ChoiceBoxDescription>{description}</ChoiceBoxDescription>}
           </>
         );
         return (
@@ -211,7 +200,7 @@ const ChoiceBoxLabel = ({ className, ref, ...props }: ChoiceBoxLabelProps) => {
         "select-none text-base/6 text-fg group-disabled:opacity-50 sm:text-sm/6",
         "col-start-1 row-start-1",
         "group-has-data-[slot=icon]:col-start-2",
-        className,
+        className
       )}
       {...props}
     />
@@ -234,7 +223,7 @@ const ChoiceBoxDescription = ({
         "group-has-data-[slot=icon]:col-start-2",
         "text-base/6 text-muted-fg sm:text-sm/6",
         "group-disabled:opacity-50",
-        className,
+        className
       )}
       {...props}
     />

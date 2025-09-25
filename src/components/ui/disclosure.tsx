@@ -34,7 +34,7 @@ const DisclosureGroup = ({
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "peer cursor-default disabled:cursor-not-allowed disabled:opacity-75",
+        "peer cursor-default disabled:cursor-not-allowed disabled:opacity-75"
       )}
     >
       {(values) => (
@@ -57,7 +57,7 @@ const Disclosure = ({ className, ref, ...props }: DisclosureProps) => {
       {...props}
       className={composeTailwindRenderProps(
         className,
-        "peer group/disclosure w-full min-w-60 border-b disabled:opacity-60",
+        "peer group/disclosure w-full min-w-60 border-b disabled:opacity-60"
       )}
     >
       {props.children}
@@ -68,11 +68,7 @@ const Disclosure = ({ className, ref, ...props }: DisclosureProps) => {
 interface DisclosureTriggerProps extends ButtonProps {
   ref?: React.Ref<HTMLButtonElement>;
 }
-const DisclosureTrigger = ({
-  className,
-  ref,
-  ...props
-}: DisclosureTriggerProps) => {
+const DisclosureTrigger = ({ className, ref, ...props }: DisclosureTriggerProps) => {
   return (
     <Heading>
       <Button
@@ -80,7 +76,7 @@ const DisclosureTrigger = ({
         slot="trigger"
         className={composeTailwindRenderProps(
           className,
-          "group/trigger [&[aria-expanded=true]_[data-slot=disclosure-chevron]]:-rotate-90 **:data-[slot=icon]:-mx-0.5 flex w-full items-center justify-between gap-x-2 py-3 text-left font-medium open:text-fg focus:text-fg focus:outline-hidden disabled:cursor-default disabled:opacity-50 **:data-[slot=disclosure-chevron]:size-5 **:data-[slot=icon]:shrink-0 **:data-[slot=icon]:text-muted-fg sm:text-sm forced-colors:disabled:text-[GrayText] **:[span]:flex **:[span]:items-center **:[span]:gap-x-1 **:[span]:*:data-[slot=icon]:mr-1",
+          "group/trigger [&[aria-expanded=true]_[data-slot=disclosure-chevron]]:-rotate-90 **:data-[slot=icon]:-mx-0.5 flex w-full items-center justify-between gap-x-2 py-3 text-left font-medium open:text-fg focus:text-fg focus:outline-hidden disabled:cursor-default disabled:opacity-50 **:data-[slot=disclosure-chevron]:size-5 **:data-[slot=icon]:shrink-0 **:data-[slot=icon]:text-muted-fg sm:text-sm forced-colors:disabled:text-[GrayText] **:[span]:flex **:[span]:items-center **:[span]:gap-x-1 **:[span]:*:data-[slot=icon]:mr-1"
         )}
         {...props}
       >
@@ -103,11 +99,7 @@ const DisclosureTrigger = ({
 interface DisclosurePanelProps extends DisclosurePanelPrimitiveProps {
   ref?: React.Ref<HTMLDivElement>;
 }
-const DisclosurePanel = ({
-  className,
-  ref,
-  ...props
-}: DisclosurePanelProps) => {
+const DisclosurePanel = ({ className, ref, ...props }: DisclosurePanelProps) => {
   const { isExpanded } = use(DisclosureStateContext)!;
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -118,7 +110,7 @@ const DisclosurePanel = ({
       for (const entry of entries) {
         el.parentElement?.style.setProperty(
           "--disclosure-height",
-          `${entry.target.clientHeight}px`,
+          `${entry.target.clientHeight}px`
         );
       }
     });
@@ -131,9 +123,7 @@ const DisclosurePanel = ({
       data-slot="disclosure-panel"
       className={composeTailwindRenderProps(className, [
         "overflow-hidden text-muted-fg **:data-[slot=disclosure-group]:border-t **:data-[slot=disclosure-group]:**:[.internal-chevron]:hidden has-data-[slot=disclosure-group]:**:[button]:px-4",
-        isExpanded
-          ? "animate-disclosure-expanded"
-          : "animate-disclosure-collapsed",
+        isExpanded ? "animate-disclosure-expanded" : "animate-disclosure-collapsed",
       ])}
       {...props}
     >

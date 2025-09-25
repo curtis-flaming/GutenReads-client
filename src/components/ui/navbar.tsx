@@ -51,7 +51,7 @@ const NavbarProvider = ({
 
       setOpenInternal(value);
     },
-    [setOpenProp, open],
+    [setOpenProp, open]
   );
 
   const toggleNavbar = useCallback(() => {
@@ -65,7 +65,7 @@ const NavbarProvider = ({
       isMobile: isMobile ?? false,
       toggleNavbar,
     }),
-    [open, setOpen, isMobile, toggleNavbar],
+    [open, setOpen, isMobile, toggleNavbar]
   );
 
   if (isMobile === undefined) {
@@ -78,7 +78,7 @@ const NavbarProvider = ({
         className={twMerge(
           "peer/navbar group/navbar relative isolate z-10 flex w-full flex-col",
           "has-data-navbar-inset:min-h-svh has-data-navbar-inset:bg-navbar dark:has-data-navbar-inset:bg-bg",
-          className,
+          className
         )}
         {...props}
       />
@@ -145,7 +145,7 @@ const Navbar = ({
             "*:data-[navbar=content]:max-w-7xl *:data-[navbar=content]:rounded-xl *:data-[navbar=content]:border *:data-[navbar=content]:bg-navbar *:data-[navbar=content]:px-4 *:data-[navbar=content]:shadow-xs",
           ["default", "inset"].includes(intent) && "px-6",
           intent === "default" && "border-b bg-navbar",
-          className,
+          className
         )}
       >
         <div
@@ -159,16 +159,13 @@ const Navbar = ({
   );
 };
 
-const NavbarSection = ({
-  className,
-  ...props
-}: React.ComponentProps<"div">) => {
+const NavbarSection = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       data-slot="navbar-section"
       className={twMerge(
         "col-span-full grid grid-cols-[auto_1fr] flex-col gap-3 gap-y-0.5 md:flex md:flex-none md:grid-cols-none md:flex-row md:items-center md:gap-2.5",
-        className,
+        className
       )}
       {...props}
     >
@@ -201,15 +198,13 @@ const NavbarItem = ({ className, isCurrent, ...props }: NavbarItemProps) => {
           "outline-hidden focus-visible:inset-ring focus-visible:inset-ring-ring focus-visible:ring-2 focus-visible:ring-ring/20",
           "text-left disabled:cursor-default disabled:opacity-50",
         ],
-        className,
+        className
       )}
       {...props}
     >
       {(values) => (
         <>
-          {typeof props.children === "function"
-            ? props.children(values)
-            : props.children}
+          {typeof props.children === "function" ? props.children(values) : props.children}
 
           {(isCurrent || values.isCurrent) && (
             <span
@@ -217,7 +212,7 @@ const NavbarItem = ({ className, isCurrent, ...props }: NavbarItemProps) => {
               className={twJoin(
                 "absolute rounded-full bg-fg [--gutter:--spacing(0.5)]",
                 "-left-4 inset-y-2 w-(--gutter) md:inset-y-auto md:w-auto",
-                "md:-bottom-[--spacing(3.4)] md:group-data-[navbar=inset]/navbar-intent:-bottom-[--spacing(3.1)] md:inset-x-2 md:h-(--gutter)",
+                "md:-bottom-[--spacing(3.4)] md:group-data-[navbar=inset]/navbar-intent:-bottom-[--spacing(3.1)] md:inset-x-2 md:h-(--gutter)"
               )}
             />
           )}
@@ -227,35 +222,15 @@ const NavbarItem = ({ className, isCurrent, ...props }: NavbarItemProps) => {
   );
 };
 
-const NavbarSpacer = ({
-  className,
-  ref,
-  ...props
-}: React.ComponentProps<"div">) => {
-  return (
-    <div ref={ref} className={twMerge("-ml-4 flex-1", className)} {...props} />
-  );
+const NavbarSpacer = ({ className, ref, ...props }: React.ComponentProps<"div">) => {
+  return <div ref={ref} className={twMerge("-ml-4 flex-1", className)} {...props} />;
 };
 
-const NavbarStart = ({
-  className,
-  ref,
-  ...props
-}: React.ComponentProps<"div">) => {
-  return (
-    <div
-      ref={ref}
-      className={twMerge("p-2 py-4 md:p-2", className)}
-      {...props}
-    />
-  );
+const NavbarStart = ({ className, ref, ...props }: React.ComponentProps<"div">) => {
+  return <div ref={ref} className={twMerge("p-2 py-4 md:p-2", className)} {...props} />;
 };
 
-const NavbarGap = ({
-  className,
-  ref,
-  ...props
-}: React.ComponentProps<"div">) => {
+const NavbarGap = ({ className, ref, ...props }: React.ComponentProps<"div">) => {
   return <div ref={ref} className={twMerge("mx-2", className)} {...props} />;
 };
 
@@ -264,19 +239,11 @@ const NavbarSeparator = ({
   ...props
 }: React.ComponentProps<typeof Separator>) => {
   return (
-    <Separator
-      orientation="vertical"
-      className={twMerge("h-5", className)}
-      {...props}
-    />
+    <Separator orientation="vertical" className={twMerge("h-5", className)} {...props} />
   );
 };
 
-const NavbarMobile = ({
-  className,
-  ref,
-  ...props
-}: React.ComponentProps<"div">) => {
+const NavbarMobile = ({ className, ref, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
       ref={ref}
@@ -284,7 +251,7 @@ const NavbarMobile = ({
       className={twMerge(
         "group/navbar-mobile flex items-center gap-x-3 px-4 py-2.5 md:hidden",
         "group-has-data-navbar-sticky/navbar:sticky group-has-data-navbar-sticky/navbar:top-0 group-has-data-navbar-sticky/navbar:border-b group-has-data-navbar-sticky/navbar:bg-navbar",
-        className,
+        className
       )}
       {...props}
     />
@@ -303,7 +270,7 @@ const NavbarInset = ({
       data-navbar-inset={true}
       className={twMerge(
         "flex flex-1 flex-col bg-navbar pb-2 md:px-2 dark:bg-bg",
-        className,
+        className
       )}
       {...props}
     >
@@ -318,12 +285,7 @@ interface NavbarTriggerProps extends ButtonProps {
   ref?: React.RefObject<HTMLButtonElement>;
 }
 
-const NavbarTrigger = ({
-  className,
-  onPress,
-  ref,
-  ...props
-}: NavbarTriggerProps) => {
+const NavbarTrigger = ({ className, onPress, ref, ...props }: NavbarTriggerProps) => {
   const { toggleNavbar } = useNavbar();
   return (
     <Button
@@ -355,12 +317,7 @@ const NavbarLabel = ({ className, ...props }: React.ComponentProps<"span">) => {
   );
 };
 
-export type {
-  NavbarProviderProps,
-  NavbarProps,
-  NavbarTriggerProps,
-  NavbarItemProps,
-};
+export type { NavbarProviderProps, NavbarProps, NavbarTriggerProps, NavbarItemProps };
 export {
   NavbarProvider,
   Navbar,

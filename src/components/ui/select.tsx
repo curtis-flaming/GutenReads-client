@@ -24,9 +24,7 @@ import type { FieldProps } from "./field";
 import { Description, FieldError, Label } from "./field";
 import { PopoverContent } from "./popover";
 
-interface SelectProps<T extends object>
-  extends SelectPrimitiveProps<T>,
-    FieldProps {
+interface SelectProps<T extends object> extends SelectPrimitiveProps<T>, FieldProps {
   items?: Iterable<T>;
 }
 
@@ -44,7 +42,7 @@ const Select = <T extends object>({
       {...props}
       className={cx(
         "group/select flex w-full flex-col gap-y-1 *:data-[slot=label]:font-medium",
-        className,
+        className
       )}
     >
       {(values) => (
@@ -75,7 +73,7 @@ const SelectContent = <T extends object>({
     <PopoverContent
       className={cx(
         "min-w-(--trigger-width) scroll-py-1 overflow-y-auto overscroll-contain",
-        popover?.className,
+        popover?.className
       )}
       {...popover}
     >
@@ -84,7 +82,7 @@ const SelectContent = <T extends object>({
         orientation="vertical"
         className={cx(
           "grid max-h-96 w-full grid-cols-[auto_1fr] flex-col gap-y-1 p-1 outline-hidden *:[[role='group']+[role=group]]:mt-4 *:[[role='group']+[role=separator]]:mt-1",
-          className,
+          className
         )}
         items={items}
         {...props}
@@ -98,24 +96,18 @@ interface SelectTriggerProps extends React.ComponentProps<typeof Button> {
   className?: string;
 }
 
-const SelectTrigger = ({
-  children,
-  className,
-  ...props
-}: SelectTriggerProps) => {
+const SelectTrigger = ({ children, className, ...props }: SelectTriggerProps) => {
   return (
     <Button
       className={cx(
         "inset-ring inset-ring-input flex w-full min-w-0 cursor-default items-center gap-x-2 rounded-lg px-3.5 py-2 text-start text-fg shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] outline-hidden transition duration-200 sm:py-1.5 sm:pr-2 sm:pl-3 sm:text-sm/6 sm:*:text-sm/6 dark:shadow-none",
         "group-open/select:inset-ring-ring/70 group-open/select:ring-3 group-open/select:ring-ring/20",
-        className,
+        className
       )}
     >
       {(values) => (
         <>
-          {props.prefix && (
-            <span className="text-muted-fg">{props.prefix}</span>
-          )}
+          {props.prefix && <span className="text-muted-fg">{props.prefix}</span>}
           {typeof children === "function" ? children(values) : children}
 
           {!children && (

@@ -2,10 +2,7 @@
 
 import { type ComponentProps, Fragment, useId } from "react";
 import { Area, AreaChart as AreaChartPrimitive } from "recharts";
-import type {
-  NameType,
-  ValueType,
-} from "recharts/types/component/DefaultTooltipContent";
+import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 import { twMerge } from "tailwind-merge";
 import {
   type BaseChartProps,
@@ -25,10 +22,7 @@ import {
 
 interface AreaChartProps<TValue extends ValueType, TName extends NameType>
   extends BaseChartProps<TValue, TName> {
-  chartProps?: Omit<
-    ComponentProps<typeof AreaChartPrimitive>,
-    "data" | "stackOffset"
-  >;
+  chartProps?: Omit<ComponentProps<typeof AreaChartPrimitive>, "data" | "stackOffset">;
   areaProps?: Partial<ComponentProps<typeof Area>>;
   connectNulls?: boolean;
   fillType?: "gradient" | "solid" | "none";
@@ -94,11 +88,7 @@ export const AreaChart = <TValue extends ValueType, TName extends NameType>({
       case "gradient":
         return (
           <>
-            <stop
-              offset="5%"
-              stopColor="currentColor"
-              stopOpacity={stopOpacity}
-            />
+            <stop offset="5%" stopColor="currentColor" stopOpacity={stopOpacity} />
             <stop offset="95%" stopColor="currentColor" stopOpacity={0} />
           </>
         );
@@ -149,9 +139,7 @@ export const AreaChart = <TValue extends ValueType, TName extends NameType>({
 
           {legend && (
             <ChartLegend
-              content={
-                typeof legend === "boolean" ? <ChartLegendContent /> : legend
-              }
+              content={typeof legend === "boolean" ? <ChartLegendContent /> : legend}
               {...legendProps}
             />
           )}
@@ -193,7 +181,7 @@ export const AreaChart = <TValue extends ValueType, TName extends NameType>({
                       <linearGradient
                         style={{
                           color: getColorValue(
-                            values.color || categoryColors.get(category),
+                            values.color || categoryColors.get(category)
                           ),
                         }}
                         id={categoryId}
@@ -213,9 +201,7 @@ export const AreaChart = <TValue extends ValueType, TName extends NameType>({
                       dot={false}
                       name={category}
                       dataKey={category}
-                      stroke={getColorValue(
-                        values.color || categoryColors.get(category),
-                      )}
+                      stroke={getColorValue(values.color || categoryColors.get(category))}
                       style={{
                         strokeWidth: 2,
                         strokeOpacity,

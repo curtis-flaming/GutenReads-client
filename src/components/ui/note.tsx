@@ -47,7 +47,7 @@ const Note = ({
             intent === "warning" && "border-warning-subtle-fg/40",
             intent === "success" && "border-success-subtle-fg/40",
             intent === "danger" && "border-danger-subtle-fg/40",
-            intent === "info" && "border-info-subtle-fg/40",
+            intent === "info" && "border-info-subtle-fg/40"
           )}
         >
           <div
@@ -56,7 +56,7 @@ const Note = ({
               intent === "warning" && "border-warning-subtle-fg/85",
               intent === "success" && "border-success-subtle-fg/85",
               intent === "danger" && "border-danger-subtle-fg/85",
-              intent === "info" && "border-info-subtle-fg/85",
+              intent === "info" && "border-info-subtle-fg/85"
             )}
           >
             <IconComponent className="size-5 shrink-0" />
