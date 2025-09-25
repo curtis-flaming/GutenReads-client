@@ -1,7 +1,10 @@
-import { type ComponentProps, startTransition } from "react"
-import { Bar, BarChart as BarChartPrimitive } from "recharts"
-import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent"
-import { twMerge } from "tailwind-merge"
+import { type ComponentProps, startTransition } from "react";
+import { Bar, BarChart as BarChartPrimitive } from "recharts";
+import type {
+  NameType,
+  ValueType,
+} from "recharts/types/component/DefaultTooltipContent";
+import { twMerge } from "tailwind-merge";
 import {
   type BaseChartProps,
   CartesianGrid,
@@ -16,17 +19,20 @@ import {
   valueToPercent,
   XAxis,
   YAxis,
-} from "./chart"
+} from "./chart";
 
 interface BarChartProps<TValue extends ValueType, TName extends NameType>
   extends BaseChartProps<TValue, TName> {
-  barCategoryGap?: number
-  barRadius?: number
-  barGap?: number
-  barSize?: number
-  barProps?: Partial<React.ComponentProps<typeof Bar>>
+  barCategoryGap?: number;
+  barRadius?: number;
+  barGap?: number;
+  barSize?: number;
+  barProps?: Partial<React.ComponentProps<typeof Bar>>;
 
-  chartProps?: Omit<ComponentProps<typeof BarChartPrimitive>, "data" | "stackOffset">
+  chartProps?: Omit<
+    ComponentProps<typeof BarChartPrimitive>,
+    "data" | "stackOffset"
+  >;
 }
 
 const BarChart = <TValue extends ValueType, TName extends NameType>({
@@ -69,9 +75,9 @@ const BarChart = <TValue extends ValueType, TName extends NameType>({
   chartProps,
   ...props
 }: BarChartProps<TValue, TName>) => {
-  const categoryColors = constructCategoryColors(Object.keys(config), colors)
+  const categoryColors = constructCategoryColors(Object.keys(config), colors);
 
-  const stacked = type === "stacked" || type === "percent"
+  const stacked = type === "stacked" || type === "percent";
   return (
     <Chart
       className={twMerge("w-full", className)}
@@ -84,7 +90,7 @@ const BarChart = <TValue extends ValueType, TName extends NameType>({
       {({ onLegendSelect, selectedLegend }) => (
         <BarChartPrimitive
           onClick={() => {
-            onLegendSelect(null)
+            onLegendSelect(null);
           }}
           data={data}
           margin={{
@@ -97,7 +103,9 @@ const BarChart = <TValue extends ValueType, TName extends NameType>({
           barGap={barGap}
           barSize={barSize}
           barCategoryGap={barCategoryGap}
-          stackOffset={type === "percent" ? "expand" : stacked ? "sign" : undefined}
+          stackOffset={
+            type === "percent" ? "expand" : stacked ? "sign" : undefined
+          }
           {...chartProps}
         >
           {!hideGridLines && <CartesianGrid strokeDasharray="4 4" />}
@@ -117,7 +125,9 @@ const BarChart = <TValue extends ValueType, TName extends NameType>({
 
           {legend && (
             <ChartLegend
-              content={typeof legend === "boolean" ? <ChartLegendContent /> : legend}
+              content={
+                typeof legend === "boolean" ? <ChartLegendContent /> : legend
+              }
               {...legendProps}
             />
           )}
@@ -125,7 +135,11 @@ const BarChart = <TValue extends ValueType, TName extends NameType>({
           {tooltip && (
             <ChartTooltip
               content={
-                typeof tooltip === "boolean" ? <ChartTooltipContent accessibilityLayer /> : tooltip
+                typeof tooltip === "boolean" ? (
+                  <ChartTooltipContent accessibilityLayer />
+                ) : (
+                  tooltip
+                )
               }
               {...tooltipProps}
             />
@@ -138,30 +152,38 @@ const BarChart = <TValue extends ValueType, TName extends NameType>({
                     key={category}
                     name={category}
                     dataKey={category}
-                    stroke={getColorValue(values.color || categoryColors.get(category))}
+                    stroke={getColorValue(
+                      values.color || categoryColors.get(category),
+                    )}
                     strokeWidth={1}
                     stackId={stacked ? "stack" : undefined}
                     onClick={(_item, _number, event) => {
-                      event.stopPropagation()
+                      event.stopPropagation();
 
                       startTransition(() => {
-                        onLegendSelect(category)
-                      })
+                        onLegendSelect(category);
+                      });
                     }}
                     radius={barRadius ?? (stacked ? undefined : 4)}
-                    strokeOpacity={selectedLegend && selectedLegend !== category ? 0.2 : 0}
-                    fillOpacity={selectedLegend && selectedLegend !== category ? 0.1 : 1}
-                    fill={getColorValue(values.color || categoryColors.get(category))}
+                    strokeOpacity={
+                      selectedLegend && selectedLegend !== category ? 0.2 : 0
+                    }
+                    fillOpacity={
+                      selectedLegend && selectedLegend !== category ? 0.1 : 1
+                    }
+                    fill={getColorValue(
+                      values.color || categoryColors.get(category),
+                    )}
                     {...barProps}
                   />
-                )
+                );
               })
             : children}
         </BarChartPrimitive>
       )}
     </Chart>
-  )
-}
+  );
+};
 
-export type { BarChartProps }
-export { BarChart }
+export type { BarChartProps };
+export { BarChart };

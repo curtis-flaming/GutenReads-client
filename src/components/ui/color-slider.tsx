@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   ColorSlider as ColorSliderPrimitive,
@@ -6,29 +6,38 @@ import {
   composeRenderProps,
   SliderOutput,
   SliderTrack,
-} from "react-aria-components"
-import { twJoin, twMerge } from "tailwind-merge"
-import { ColorThumb } from "./color-thumb"
-import { Label } from "./field"
+} from "react-aria-components";
+import { twJoin, twMerge } from "tailwind-merge";
+import { ColorThumb } from "./color-thumb";
+import { Label } from "./field";
 
 interface ColorSliderProps extends ColorSliderPrimitiveProps {
-  label?: string
-  showOutput?: boolean
+  label?: string;
+  showOutput?: boolean;
 }
 
-const ColorSlider = ({ showOutput = true, label, className, ...props }: ColorSliderProps) => {
+const ColorSlider = ({
+  showOutput = true,
+  label,
+  className,
+  ...props
+}: ColorSliderProps) => {
   return (
     <ColorSliderPrimitive
       {...props}
       data-slot="color-slider"
-      className={composeRenderProps(className, (className, { orientation, isDisabled }) =>
-        twMerge(
-          "group relative",
-          orientation === "horizontal" && "grid min-w-56 grid-cols-[1fr_auto]",
-          orientation === "vertical" && "flex flex-col items-center justify-center",
-          isDisabled && "opacity-50 forced-colors:bg-[GrayText]",
-          className,
-        ),
+      className={composeRenderProps(
+        className,
+        (className, { orientation, isDisabled }) =>
+          twMerge(
+            "group relative",
+            orientation === "horizontal" &&
+              "grid min-w-56 grid-cols-[1fr_auto]",
+            orientation === "vertical" &&
+              "flex flex-col items-center justify-center",
+            isDisabled && "opacity-50 forced-colors:bg-[GrayText]",
+            className,
+          ),
       )}
     >
       <div className="flex items-center">
@@ -54,8 +63,8 @@ const ColorSlider = ({ showOutput = true, label, className, ...props }: ColorSli
         <ColorThumb />
       </SliderTrack>
     </ColorSliderPrimitive>
-  )
-}
+  );
+};
 
-export type { ColorSliderProps }
-export { ColorSlider }
+export type { ColorSliderProps };
+export { ColorSlider };

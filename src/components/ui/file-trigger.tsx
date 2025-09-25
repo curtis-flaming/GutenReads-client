@@ -1,16 +1,18 @@
-import { IconCamera, IconFolder, IconPaperclip45 } from "@intentui/icons"
+import { IconCamera, IconFolder, IconPaperclip45 } from "@intentui/icons";
 import {
   FileTrigger as FileTriggerPrimitive,
   type FileTriggerProps as FileTriggerPrimitiveProps,
-} from "react-aria-components"
-import type { VariantProps } from "tailwind-variants"
-import { Button, type buttonStyles } from "./button"
-import { Loader } from "./loader"
+} from "react-aria-components";
+import type { VariantProps } from "tailwind-variants";
+import { Button, type buttonStyles } from "./button";
+import { Loader } from "./loader";
 
-interface FileTriggerProps extends FileTriggerPrimitiveProps, VariantProps<typeof buttonStyles> {
-  isDisabled?: boolean
-  ref?: React.RefObject<HTMLInputElement>
-  className?: string
+interface FileTriggerProps
+  extends FileTriggerPrimitiveProps,
+    VariantProps<typeof buttonStyles> {
+  isDisabled?: boolean;
+  ref?: React.RefObject<HTMLInputElement>;
+  className?: string;
 }
 
 const FileTrigger = ({
@@ -55,8 +57,8 @@ const FileTrigger = ({
         )}
       </Button>
     </FileTriggerPrimitive>
-  )
-}
+  );
+};
 
-export type { FileTriggerProps }
-export { FileTrigger }
+export type { FileTriggerProps };
+export { FileTrigger };

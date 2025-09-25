@@ -3,17 +3,18 @@ import {
   type TimeFieldProps as TimeFieldPrimitiveProps,
   type TimeValue,
   type ValidationResult,
-} from "react-aria-components"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { DateInput } from "./date-field"
-import { Description, FieldError, FieldGroup, Label } from "./field"
+} from "react-aria-components";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { DateInput } from "./date-field";
+import { Description, FieldError, FieldGroup, Label } from "./field";
 
-interface TimeFieldProps<T extends TimeValue> extends TimeFieldPrimitiveProps<T> {
-  label?: string
-  description?: string
-  errorMessage?: string | ((validation: ValidationResult) => string)
-  prefix?: React.ReactNode | string
-  suffix?: React.ReactNode | string
+interface TimeFieldProps<T extends TimeValue>
+  extends TimeFieldPrimitiveProps<T> {
+  label?: string;
+  description?: string;
+  errorMessage?: string | ((validation: ValidationResult) => string);
+  prefix?: React.ReactNode | string;
+  suffix?: React.ReactNode | string;
 }
 
 const TimeField = <T extends TimeValue>({
@@ -52,8 +53,8 @@ const TimeField = <T extends TimeValue>({
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
     </TimeFieldPrimitive>
-  )
-}
+  );
+};
 
-export type { TimeFieldProps }
-export { TimeField }
+export type { TimeFieldProps };
+export { TimeField };

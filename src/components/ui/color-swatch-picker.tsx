@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
-import type { ColorSwatchPickerItemProps, ColorSwatchPickerProps } from "react-aria-components"
+import type {
+  ColorSwatchPickerItemProps,
+  ColorSwatchPickerProps,
+} from "react-aria-components";
 import {
   ColorSwatchPickerItem as ColorSwatchPickerItemPrimitive,
   ColorSwatchPicker as ColorSwatchPickerPrimitive,
-} from "react-aria-components"
-import { twMerge } from "tailwind-merge"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { ColorSwatch } from "./color-swatch"
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { ColorSwatch } from "./color-swatch";
 
 const ColorSwatchPicker = ({
   children,
@@ -23,10 +26,14 @@ const ColorSwatchPicker = ({
     >
       {children}
     </ColorSwatchPickerPrimitive>
-  )
-}
+  );
+};
 
-const ColorSwatchPickerItem = ({ className, children, ...props }: ColorSwatchPickerItemProps) => {
+const ColorSwatchPickerItem = ({
+  className,
+  children,
+  ...props
+}: ColorSwatchPickerItemProps) => {
   return (
     <ColorSwatchPickerItemPrimitive
       className={composeTailwindRenderProps(
@@ -41,12 +48,16 @@ const ColorSwatchPickerItem = ({ className, children, ...props }: ColorSwatchPic
             <>
               <ColorSwatch
                 className={twMerge(
-                  (values.isSelected || values.isFocused || values.isPressed) && "inset-ring-fg/30",
+                  (values.isSelected || values.isFocused || values.isPressed) &&
+                    "inset-ring-fg/30",
                   values.isDisabled && "opacity-50",
                 )}
               />
               {(values.isSelected || values.isFocused || values.isPressed) && (
-                <span aria-hidden className="absolute right-1 bottom-1 size-1 rounded-full bg-fg" />
+                <span
+                  aria-hidden
+                  className="absolute right-1 bottom-1 size-1 rounded-full bg-fg"
+                />
               )}
             </>
           ) : typeof children === "function" ? (
@@ -57,9 +68,9 @@ const ColorSwatchPickerItem = ({ className, children, ...props }: ColorSwatchPic
         </>
       )}
     </ColorSwatchPickerItemPrimitive>
-  )
-}
+  );
+};
 
-ColorSwatchPicker.Item = ColorSwatchPickerItem
+ColorSwatchPicker.Item = ColorSwatchPickerItem;
 
-export { ColorSwatchPicker, ColorSwatchPickerItem }
+export { ColorSwatchPicker, ColorSwatchPickerItem };

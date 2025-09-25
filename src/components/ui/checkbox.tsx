@@ -1,20 +1,26 @@
-import { IconCheck, IconMinus } from "@intentui/icons"
+import { IconCheck, IconMinus } from "@intentui/icons";
 import type {
   CheckboxGroupProps as CheckboxGroupPrimitiveProps,
   CheckboxProps as CheckboxPrimitiveProps,
-} from "react-aria-components"
+} from "react-aria-components";
 import {
   CheckboxGroup as CheckboxGroupPrimitive,
   Checkbox as CheckboxPrimitive,
   composeRenderProps,
-} from "react-aria-components"
-import { twMerge } from "tailwind-merge"
-import { cx } from "@/lib/primitive"
-import { Description, FieldError, type FieldProps, Label } from "./field"
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+import { cx } from "@/lib/primitive";
+import { Description, FieldError, type FieldProps, Label } from "./field";
 
-interface CheckboxGroupProps extends CheckboxGroupPrimitiveProps, Omit<FieldProps, "placeholder"> {}
+interface CheckboxGroupProps
+  extends CheckboxGroupPrimitiveProps,
+    Omit<FieldProps, "placeholder"> {}
 
-const CheckboxGroup = ({ className, children, ...props }: CheckboxGroupProps) => {
+const CheckboxGroup = ({
+  className,
+  children,
+  ...props
+}: CheckboxGroupProps) => {
   return (
     <CheckboxGroupPrimitive
       {...props}
@@ -32,25 +38,39 @@ const CheckboxGroup = ({ className, children, ...props }: CheckboxGroupProps) =>
         </>
       )}
     </CheckboxGroupPrimitive>
-  )
-}
+  );
+};
 
-interface CheckboxProps extends CheckboxPrimitiveProps, Pick<FieldProps, "label" | "description"> {}
+interface CheckboxProps
+  extends CheckboxPrimitiveProps,
+    Pick<FieldProps, "label" | "description"> {}
 
-const Checkbox = ({ className, children, description, label, ...props }: CheckboxProps) => {
+const Checkbox = ({
+  className,
+  children,
+  description,
+  label,
+  ...props
+}: CheckboxProps) => {
   return (
-    <CheckboxPrimitive {...props} className={cx("group block disabled:opacity-50", className)}>
+    <CheckboxPrimitive
+      {...props}
+      className={cx("group block disabled:opacity-50", className)}
+    >
       {composeRenderProps(
         children,
-        (children, { isSelected, isIndeterminate, isFocusVisible, isInvalid }) => {
-          const isStringChild = typeof children === "string"
-          const hasCustomChildren = typeof children !== "undefined"
+        (
+          children,
+          { isSelected, isIndeterminate, isFocusVisible, isInvalid },
+        ) => {
+          const isStringChild = typeof children === "string";
+          const hasCustomChildren = typeof children !== "undefined";
 
           const indicator = isIndeterminate ? (
             <IconMinus data-slot="check-indicator" />
           ) : isSelected ? (
             <IconCheck data-slot="check-indicator" />
-          ) : null
+          ) : null;
 
           const content = hasCustomChildren ? (
             isStringChild ? (
@@ -63,7 +83,7 @@ const Checkbox = ({ className, children, description, label, ...props }: Checkbo
               {label && <Label>{label}</Label>}
               {description && <Description>{description}</Description>}
             </>
-          )
+          );
 
           return (
             <div
@@ -91,19 +111,20 @@ const Checkbox = ({ className, children, description, label, ...props }: Checkbo
                     "inset-ring-primary ring-3 ring-ring/20",
                     "group-invalid:inset-ring-danger/70 group-invalid:text-danger-fg group-invalid:ring-danger/20",
                   ],
-                  isInvalid && "inset-ring-danger/70 bg-danger/20 text-danger-fg ring-danger/20",
+                  isInvalid &&
+                    "inset-ring-danger/70 bg-danger/20 text-danger-fg ring-danger/20",
                 ])}
               >
                 {indicator}
               </span>
               {content}
             </div>
-          )
+          );
         },
       )}
     </CheckboxPrimitive>
-  )
-}
+  );
+};
 
-export type { CheckboxGroupProps, CheckboxProps }
-export { CheckboxGroup, Checkbox }
+export type { CheckboxGroupProps, CheckboxProps };
+export { CheckboxGroup, Checkbox };

@@ -6,17 +6,18 @@ import {
   DateSegment,
   type DateValue,
   type ValidationResult,
-} from "react-aria-components"
-import { twJoin } from "tailwind-merge"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Description, FieldError, FieldGroup, Label } from "./field"
+} from "react-aria-components";
+import { twJoin } from "tailwind-merge";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { Description, FieldError, FieldGroup, Label } from "./field";
 
-interface DateFieldProps<T extends DateValue> extends DateFieldPrimitiveProps<T> {
-  label?: string
-  description?: string
-  errorMessage?: string | ((validation: ValidationResult) => string)
-  prefix?: React.ReactNode
-  suffix?: React.ReactNode
+interface DateFieldProps<T extends DateValue>
+  extends DateFieldPrimitiveProps<T> {
+  label?: string;
+  description?: string;
+  errorMessage?: string | ((validation: ValidationResult) => string);
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
 }
 
 const DateField = <T extends DateValue>({
@@ -30,7 +31,10 @@ const DateField = <T extends DateValue>({
   return (
     <DateFieldPrimitive
       {...props}
-      className={composeTailwindRenderProps(props.className, "group flex flex-col gap-y-1")}
+      className={composeTailwindRenderProps(
+        props.className,
+        "group flex flex-col gap-y-1",
+      )}
     >
       {label && <Label>{label}</Label>}
       <FieldGroup>
@@ -51,10 +55,13 @@ const DateField = <T extends DateValue>({
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
     </DateFieldPrimitive>
-  )
-}
+  );
+};
 
-const DateInput = ({ className, ...props }: Omit<DateInputProps, "children">) => {
+const DateInput = ({
+  className,
+  ...props
+}: Omit<DateInputProps, "children">) => {
   return (
     <DateInputPrimitive
       className={composeTailwindRenderProps(
@@ -74,8 +81,8 @@ const DateInput = ({ className, ...props }: Omit<DateInputProps, "children">) =>
         />
       )}
     </DateInputPrimitive>
-  )
-}
+  );
+};
 
-export type { DateFieldProps }
-export { DateField, DateInput }
+export type { DateFieldProps };
+export { DateField, DateInput };

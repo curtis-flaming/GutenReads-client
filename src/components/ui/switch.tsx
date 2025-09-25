@@ -1,13 +1,13 @@
 import {
   Switch as SwitchPrimitive,
   type SwitchProps as SwitchPrimitiveProps,
-} from "react-aria-components"
-import { twJoin, twMerge } from "tailwind-merge"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Label } from "./field"
+} from "react-aria-components";
+import { twJoin, twMerge } from "tailwind-merge";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { Label } from "./field";
 
 interface SwitchProps extends SwitchPrimitiveProps {
-  ref?: React.RefObject<HTMLLabelElement>
+  ref?: React.RefObject<HTMLLabelElement>;
 }
 const Switch = ({ children, className, ref, ...props }: SwitchProps) => {
   return (
@@ -62,8 +62,8 @@ const Switch = ({ children, className, ref, ...props }: SwitchProps) => {
         </>
       )}
     </SwitchPrimitive>
-  )
-}
+  );
+};
 
-export type { SwitchProps }
-export { Switch }
+export type { SwitchProps };
+export { Switch };

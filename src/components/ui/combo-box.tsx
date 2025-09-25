@@ -1,27 +1,39 @@
-import { IconChevronsY } from "@intentui/icons"
-import type React from "react"
+import { IconChevronsY } from "@intentui/icons";
+import type React from "react";
 import type {
   ComboBoxProps as ComboboxPrimitiveProps,
   InputProps,
   ListBoxProps,
   PopoverProps,
-} from "react-aria-components"
+} from "react-aria-components";
 import {
   ComboBoxContext,
   ComboBox as ComboboxPrimitive,
   ListBox,
   useSlottedContext,
-} from "react-aria-components"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Button } from "./button"
-import { DropdownDescription, DropdownItem, DropdownLabel, DropdownSection } from "./dropdown"
-import { Description, FieldError, FieldGroup, type FieldProps, Input, Label } from "./field"
-import { PopoverContent } from "./popover"
+} from "react-aria-components";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { Button } from "./button";
+import {
+  DropdownDescription,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSection,
+} from "./dropdown";
+import {
+  Description,
+  FieldError,
+  FieldGroup,
+  type FieldProps,
+  Input,
+  Label,
+} from "./field";
+import { PopoverContent } from "./popover";
 
 interface ComboBoxProps<T extends object>
   extends Omit<ComboboxPrimitiveProps<T>, "children">,
     FieldProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const ComboBox = <T extends object>({
@@ -46,13 +58,13 @@ const ComboBox = <T extends object>({
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
     </ComboboxPrimitive>
-  )
-}
+  );
+};
 
 interface ComboBoxListProps<T extends object>
   extends Omit<ListBoxProps<T>, "layout" | "orientation">,
     Pick<PopoverProps, "placement"> {
-  popover?: Omit<PopoverProps, "children">
+  popover?: Omit<PopoverProps, "children">;
 }
 
 const ComboBoxContent = <T extends object>({
@@ -83,11 +95,11 @@ const ComboBoxContent = <T extends object>({
         {children}
       </ListBox>
     </PopoverContent>
-  )
-}
+  );
+};
 
 const ComboBoxInput = (props: InputProps) => {
-  const context = useSlottedContext(ComboBoxContext)!
+  const context = useSlottedContext(ComboBoxContext)!;
   return (
     <FieldGroup>
       <Input {...props} placeholder={props?.placeholder} />
@@ -104,22 +116,22 @@ const ComboBoxInput = (props: InputProps) => {
         )}
       </Button>
     </FieldGroup>
-  )
-}
+  );
+};
 
-const ComboBoxSection = DropdownSection
-const ComboBoxItem = DropdownItem
-const ComboBoxLabel = DropdownLabel
-const ComboBoxDescription = DropdownDescription
+const ComboBoxSection = DropdownSection;
+const ComboBoxItem = DropdownItem;
+const ComboBoxLabel = DropdownLabel;
+const ComboBoxDescription = DropdownDescription;
 
-ComboBox.Input = ComboBoxInput
-ComboBox.Content = ComboBoxContent
-ComboBox.Item = ComboBoxItem
-ComboBox.Label = ComboBoxLabel
-ComboBox.Description = ComboBoxDescription
-ComboBox.Section = ComboBoxSection
+ComboBox.Input = ComboBoxInput;
+ComboBox.Content = ComboBoxContent;
+ComboBox.Item = ComboBoxItem;
+ComboBox.Label = ComboBoxLabel;
+ComboBox.Description = ComboBoxDescription;
+ComboBox.Section = ComboBoxSection;
 
-export type { ComboBoxProps, ComboBoxListProps }
+export type { ComboBoxProps, ComboBoxListProps };
 export {
   ComboBox,
   ComboBoxInput,
@@ -128,4 +140,4 @@ export {
   ComboBoxLabel,
   ComboBoxDescription,
   ComboBoxSection,
-}
+};

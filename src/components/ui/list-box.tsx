@@ -1,19 +1,27 @@
-import { IconCheck, IconHamburger } from "@intentui/icons"
+import { IconCheck, IconHamburger } from "@intentui/icons";
 import type {
   ListBoxItemProps,
   ListBoxProps,
   ListBoxSectionProps as ListBoxSectionPrimitiveProps,
-} from "react-aria-components"
+} from "react-aria-components";
 import {
   composeRenderProps,
   ListBoxItem as ListBoxItemPrimitive,
   ListBox as ListBoxPrimitive,
-} from "react-aria-components"
-import { twMerge } from "tailwind-merge"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { DropdownDescription, DropdownLabel, DropdownSection, dropdownItemStyles } from "./dropdown"
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import {
+  DropdownDescription,
+  DropdownLabel,
+  DropdownSection,
+  dropdownItemStyles,
+} from "./dropdown";
 
-const ListBox = <T extends object>({ className, ...props }: ListBoxProps<T>) => (
+const ListBox = <T extends object>({
+  className,
+  ...props
+}: ListBoxProps<T>) => (
   <ListBoxPrimitive
     className={composeTailwindRenderProps(
       className,
@@ -22,10 +30,14 @@ const ListBox = <T extends object>({ className, ...props }: ListBoxProps<T>) => 
     data-slot="list-box"
     {...props}
   />
-)
+);
 
-const ListBoxItem = <T extends object>({ children, className, ...props }: ListBoxItemProps<T>) => {
-  const textValue = typeof children === "string" ? children : undefined
+const ListBoxItem = <T extends object>({
+  children,
+  className,
+  ...props
+}: ListBoxItemProps<T>) => {
+  const textValue = typeof children === "string" ? children : undefined;
   return (
     <ListBoxItemPrimitive
       textValue={textValue}
@@ -39,7 +51,8 @@ const ListBoxItem = <T extends object>({ children, className, ...props }: ListBo
       {...props}
     >
       {(renderProps) => {
-        const { allowsDragging, isSelected, isFocused, isDragging } = renderProps
+        const { allowsDragging, isSelected, isFocused, isDragging } =
+          renderProps;
 
         return (
           <>
@@ -53,7 +66,9 @@ const ListBoxItem = <T extends object>({ children, className, ...props }: ListBo
                 )}
               />
             )}
-            {isSelected && <IconCheck className="-mx-0.5 mr-2" data-slot="checked-icon" />}
+            {isSelected && (
+              <IconCheck className="-mx-0.5 mr-2" data-slot="checked-icon" />
+            )}
             {typeof children === "function" ? (
               children(renderProps)
             ) : typeof children === "string" ? (
@@ -62,32 +77,44 @@ const ListBoxItem = <T extends object>({ children, className, ...props }: ListBo
               children
             )}
           </>
-        )
+        );
       }}
     </ListBoxItemPrimitive>
-  )
-}
+  );
+};
 
 interface ListBoxSectionProps<T> extends ListBoxSectionPrimitiveProps<T> {
-  title?: string
+  title?: string;
 }
 
-const ListBoxSection = <T extends object>({ className, ...props }: ListBoxSectionProps<T>) => {
+const ListBoxSection = <T extends object>({
+  className,
+  ...props
+}: ListBoxSectionProps<T>) => {
   return (
     <DropdownSection
-      className={twMerge("*:data-[slot=list-box-item]:last:-mb-1.5 gap-y-1", className)}
+      className={twMerge(
+        "*:data-[slot=list-box-item]:last:-mb-1.5 gap-y-1",
+        className,
+      )}
       {...props}
     />
-  )
-}
+  );
+};
 
-const ListBoxLabel = DropdownLabel
-const ListBoxDescription = DropdownDescription
+const ListBoxLabel = DropdownLabel;
+const ListBoxDescription = DropdownDescription;
 
-ListBox.Section = ListBoxSection
-ListBox.Label = ListBoxLabel
-ListBox.Description = ListBoxDescription
-ListBox.Item = ListBoxItem
+ListBox.Section = ListBoxSection;
+ListBox.Label = ListBoxLabel;
+ListBox.Description = ListBoxDescription;
+ListBox.Item = ListBoxItem;
 
-export type { ListBoxItemProps, ListBoxSectionProps }
-export { ListBox, ListBoxSection, ListBoxItem, ListBoxLabel, ListBoxDescription }
+export type { ListBoxItemProps, ListBoxSectionProps };
+export {
+  ListBox,
+  ListBoxSection,
+  ListBoxItem,
+  ListBoxLabel,
+  ListBoxDescription,
+};

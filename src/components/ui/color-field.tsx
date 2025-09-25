@@ -1,16 +1,23 @@
-import type { ColorFieldProps as ColorFieldPrimitiveProps } from "react-aria-components"
-import { ColorField as ColorFieldPrimitive } from "react-aria-components"
-import { twJoin } from "tailwind-merge"
-import { cx } from "@/lib/primitive"
-import { ColorPicker } from "./color-picker"
-import { ColorSwatch } from "./color-swatch"
-import { Description, FieldError, FieldGroup, type FieldProps, Input, Label } from "./field"
+import type { ColorFieldProps as ColorFieldPrimitiveProps } from "react-aria-components";
+import { ColorField as ColorFieldPrimitive } from "react-aria-components";
+import { twJoin } from "tailwind-merge";
+import { cx } from "@/lib/primitive";
+import { ColorPicker } from "./color-picker";
+import { ColorSwatch } from "./color-swatch";
+import {
+  Description,
+  FieldError,
+  FieldGroup,
+  type FieldProps,
+  Input,
+  Label,
+} from "./field";
 
 interface ColorFieldProps extends ColorFieldPrimitiveProps, FieldProps {
-  prefix?: React.ReactNode
-  suffix?: React.ReactNode
-  isLoading?: boolean
-  enableColorPicker?: boolean
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  isLoading?: boolean;
+  enableColorPicker?: boolean;
 }
 
 const ColorField = ({
@@ -25,7 +32,7 @@ const ColorField = ({
   className,
   ...props
 }: ColorFieldProps) => {
-  const value = props.value ?? props.defaultValue
+  const value = props.value ?? props.defaultValue;
   return (
     <ColorFieldPrimitive
       {...props}
@@ -68,8 +75,8 @@ const ColorField = ({
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
     </ColorFieldPrimitive>
-  )
-}
+  );
+};
 
-export type { ColorFieldProps }
-export { ColorField }
+export type { ColorFieldProps };
+export { ColorField };

@@ -1,9 +1,9 @@
-import { IconBulletFill } from "@intentui/icons"
-import { OTPInput, OTPInputContext } from "input-otp"
-import { use } from "react"
-import { twMerge } from "tailwind-merge"
+import { IconBulletFill } from "@intentui/icons";
+import { OTPInput, OTPInputContext } from "input-otp";
+import { use } from "react";
+import { twMerge } from "tailwind-merge";
 
-type InputOTOPProps = React.ComponentProps<typeof OTPInput>
+type InputOTOPProps = React.ComponentProps<typeof OTPInput>;
 const InputOTP = ({
   className,
   autoFocus = true,
@@ -19,29 +19,41 @@ const InputOTP = ({
       "flex items-center gap-2 has-disabled:opacity-50",
       containerClassName,
     )}
-    className={twMerge("mt-auto h-[2.5rem] bg-danger disabled:cursor-not-allowed", className)}
+    className={twMerge(
+      "mt-auto h-[2.5rem] bg-danger disabled:cursor-not-allowed",
+      className,
+    )}
     {...props}
   />
-)
+);
 
-type InputOTPGroupProps = React.ComponentProps<"div">
+type InputOTPGroupProps = React.ComponentProps<"div">;
 const InputOTPGroup = ({ className, ref, ...props }: InputOTPGroupProps) => (
-  <div ref={ref} className={twMerge("flex items-center gap-x-1.5", className)} {...props} />
-)
+  <div
+    ref={ref}
+    className={twMerge("flex items-center gap-x-1.5", className)}
+    {...props}
+  />
+);
 
 interface InputOTPSlotProps extends React.ComponentProps<"div"> {
-  index: number
+  index: number;
 }
 
-const InputOTPSlot = ({ index, className, ref, ...props }: InputOTPSlotProps) => {
-  const inputOTPContext = use(OTPInputContext)
-  const slot = inputOTPContext.slots[index]
+const InputOTPSlot = ({
+  index,
+  className,
+  ref,
+  ...props
+}: InputOTPSlotProps) => {
+  const inputOTPContext = use(OTPInputContext);
+  const slot = inputOTPContext.slots[index];
 
   if (!slot) {
-    throw new Error("Slot not found")
+    throw new Error("Slot not found");
   }
 
-  const { char, hasFakeCaret, isActive } = slot
+  const { char, hasFakeCaret, isActive } = slot;
 
   return (
     <div
@@ -60,19 +72,24 @@ const InputOTPSlot = ({ index, className, ref, ...props }: InputOTPSlotProps) =>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-type InputOTPSeparatorProps = React.ComponentProps<"div">
+type InputOTPSeparatorProps = React.ComponentProps<"div">;
 const InputOTPSeparator = ({ ref, ...props }: InputOTPSeparatorProps) => (
   <div ref={ref} {...props}>
     <IconBulletFill className="size-2" />
   </div>
-)
+);
 
-InputOTP.Group = InputOTPGroup
-InputOTP.Slot = InputOTPSlot
-InputOTP.Separator = InputOTPSeparator
+InputOTP.Group = InputOTPGroup;
+InputOTP.Slot = InputOTPSlot;
+InputOTP.Separator = InputOTPSeparator;
 
-export type { InputOTPGroupProps, InputOTOPProps, InputOTPSlotProps, InputOTPSeparatorProps }
-export { InputOTP }
+export type {
+  InputOTPGroupProps,
+  InputOTOPProps,
+  InputOTPSlotProps,
+  InputOTPSeparatorProps,
+};
+export { InputOTP };

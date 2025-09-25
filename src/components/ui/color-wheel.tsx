@@ -1,14 +1,17 @@
-"use client"
+"use client";
 
 import {
   ColorWheel as ColorWheelPrimitive,
   type ColorWheelProps as ColorWheelPrimitiveProps,
   ColorWheelTrack,
-} from "react-aria-components"
+} from "react-aria-components";
 
-import { ColorThumb } from "./color-thumb"
+import { ColorThumb } from "./color-thumb";
 
-type ColorWheelProps = Omit<ColorWheelPrimitiveProps, "outerRadius" | "innerRadius">
+type ColorWheelProps = Omit<
+  ColorWheelPrimitiveProps,
+  "outerRadius" | "innerRadius"
+>;
 
 const ColorWheel = (props: ColorWheelProps) => {
   return (
@@ -24,8 +27,8 @@ const ColorWheel = (props: ColorWheelProps) => {
       />
       <ColorThumb />
     </ColorWheelPrimitive>
-  )
-}
+  );
+};
 
-export type { ColorWheelProps }
-export { ColorWheel }
+export type { ColorWheelProps };
+export { ColorWheel };

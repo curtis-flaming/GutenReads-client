@@ -19,6 +19,6 @@
     "hooks": "@/hooks"
   },
   "registries": {
-     "@intentui": "https://intentui.com/r/{name}"
+    "@intentui": "https://intentui.com/r/{name}"
   }
 }

@@ -1,6 +1,10 @@
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
-const DescriptionList = ({ className, ref, ...props }: React.ComponentProps<"dl">) => {
+const DescriptionList = ({
+  className,
+  ref,
+  ...props
+}: React.ComponentProps<"dl">) => {
   return (
     <dl
       ref={ref}
@@ -10,10 +14,14 @@ const DescriptionList = ({ className, ref, ...props }: React.ComponentProps<"dl"
       )}
       {...props}
     />
-  )
-}
+  );
+};
 
-const DescriptionTerm = ({ className, ref, ...props }: React.ComponentProps<"dt">) => {
+const DescriptionTerm = ({
+  className,
+  ref,
+  ...props
+}: React.ComponentProps<"dt">) => {
   return (
     <dt
       ref={ref}
@@ -23,18 +31,24 @@ const DescriptionTerm = ({ className, ref, ...props }: React.ComponentProps<"dt"
       )}
       {...props}
     />
-  )
-}
+  );
+};
 
-const DescriptionDetails = ({ className, ...props }: React.ComponentProps<"dd">) => {
+const DescriptionDetails = ({
+  className,
+  ...props
+}: React.ComponentProps<"dd">) => {
   return (
     <dd
       {...props}
-      className={twMerge("pt-1 pb-3 text-fg sm:border-t sm:nth-2:border-none sm:py-3", className)}
+      className={twMerge(
+        "pt-1 pb-3 text-fg sm:border-t sm:nth-2:border-none sm:py-3",
+        className,
+      )}
     />
-  )
-}
+  );
+};
 
-DescriptionList.Term = DescriptionTerm
-DescriptionList.Details = DescriptionDetails
-export { DescriptionList, DescriptionTerm, DescriptionDetails }
+DescriptionList.Term = DescriptionTerm;
+DescriptionList.Details = DescriptionDetails;
+export { DescriptionList, DescriptionTerm, DescriptionDetails };

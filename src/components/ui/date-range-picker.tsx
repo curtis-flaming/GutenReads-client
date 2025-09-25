@@ -1,25 +1,26 @@
-"use client"
+"use client";
 
-import type { DateDuration } from "@internationalized/date"
-import type { Placement } from "@react-types/overlays"
+import type { DateDuration } from "@internationalized/date";
+import type { Placement } from "@react-types/overlays";
 import {
   DateRangePicker as DateRangePickerPrimitive,
   type DateRangePickerProps as DateRangePickerPrimitiveProps,
   type DateValue,
   type ValidationResult,
-} from "react-aria-components"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { DateInput } from "./date-field"
-import { DatePickerIcon, DatePickerOverlay } from "./date-picker"
-import { Description, FieldError, FieldGroup, Label } from "./field"
+} from "react-aria-components";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { DateInput } from "./date-field";
+import { DatePickerIcon, DatePickerOverlay } from "./date-picker";
+import { Description, FieldError, FieldGroup, Label } from "./field";
 
-interface DateRangePickerProps<T extends DateValue> extends DateRangePickerPrimitiveProps<T> {
-  label?: string
-  description?: string
-  errorMessage?: string | ((validation: ValidationResult) => string)
-  visibleDuration?: DateDuration
-  pageBehavior?: "visible" | "single"
-  contentPlacement?: Placement
+interface DateRangePickerProps<T extends DateValue>
+  extends DateRangePickerPrimitiveProps<T> {
+  label?: string;
+  description?: string;
+  errorMessage?: string | ((validation: ValidationResult) => string);
+  visibleDuration?: DateDuration;
+  pageBehavior?: "visible" | "single";
+  contentPlacement?: Placement;
 }
 
 const DateRangePicker = <T extends DateValue>({
@@ -53,9 +54,13 @@ const DateRangePicker = <T extends DateValue>({
       </FieldGroup>
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
-      <DatePickerOverlay placement={contentPlacement} visibleDuration={visibleDuration} range />
+      <DatePickerOverlay
+        placement={contentPlacement}
+        visibleDuration={visibleDuration}
+        range
+      />
     </DateRangePickerPrimitive>
-  )
-}
-export type { DateRangePickerProps }
-export { DateRangePicker }
+  );
+};
+export type { DateRangePickerProps };
+export { DateRangePicker };

@@ -1,23 +1,26 @@
-"use client"
+"use client";
 
-import { IconCircleExclamation } from "@intentui/icons"
-import { motion } from "motion/react"
+import { IconCircleExclamation } from "@intentui/icons";
+import { motion } from "motion/react";
 import {
   Meter as MeterPrimitive,
   type MeterProps as MeterPrimitiveProps,
-} from "react-aria-components"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Label } from "./field"
+} from "react-aria-components";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { Label } from "./field";
 
 interface MeterProps extends MeterPrimitiveProps {
-  label?: string
+  label?: string;
 }
 
 const Meter = ({ label, className, ...props }: MeterProps) => {
   return (
     <MeterPrimitive
       {...props}
-      className={composeTailwindRenderProps(className, "flex min-w-56 flex-col gap-1")}
+      className={composeTailwindRenderProps(
+        className,
+        "flex min-w-56 flex-col gap-1",
+      )}
     >
       {({ percentage, valueText }) => (
         <>
@@ -49,28 +52,28 @@ const Meter = ({ label, className, ...props }: MeterProps) => {
         </>
       )}
     </MeterPrimitive>
-  )
-}
+  );
+};
 
 const getColor = (percentage: number) => {
   if (percentage < 30) {
-    return "var(--primary)"
+    return "var(--primary)";
   }
 
   if (percentage < 50) {
-    return "var(--success)"
+    return "var(--success)";
   }
 
   if (percentage < 70) {
-    return "#eab308"
+    return "#eab308";
   }
 
   if (percentage < 80) {
-    return "var(--warning)"
+    return "var(--warning)";
   }
 
-  return "var(--danger)"
-}
+  return "var(--danger)";
+};
 
-export type { MeterProps }
-export { Meter }
+export type { MeterProps };
+export { Meter };

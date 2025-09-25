@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   IconChevronLgLeft,
@@ -6,14 +6,23 @@ import {
   IconChevronWallLeft,
   IconChevronWallRight,
   IconDotsHorizontal,
-} from "@intentui/icons"
-import type { ListBoxItemProps, ListBoxProps, ListBoxSectionProps } from "react-aria-components"
-import { ListBox, ListBoxItem, ListBoxSection, Separator } from "react-aria-components"
-import { twMerge } from "tailwind-merge"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { type ButtonProps, buttonStyles } from "./button"
+} from "@intentui/icons";
+import type {
+  ListBoxItemProps,
+  ListBoxProps,
+  ListBoxSectionProps,
+} from "react-aria-components";
+import {
+  ListBox,
+  ListBoxItem,
+  ListBoxSection,
+  Separator,
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { type ButtonProps, buttonStyles } from "./button";
 
-type PaginationProps = React.ComponentProps<"nav">
+type PaginationProps = React.ComponentProps<"nav">;
 const Pagination = ({ className, ref, ...props }: PaginationProps) => (
   <nav
     aria-label="pagination"
@@ -21,23 +30,31 @@ const Pagination = ({ className, ref, ...props }: PaginationProps) => (
     className={twMerge("mx-auto flex w-full justify-center gap-1.5", className)}
     {...props}
   />
-)
+);
 
 interface PaginationSectionProps<T> extends ListBoxSectionProps<T> {
-  ref?: React.RefObject<HTMLElement>
+  ref?: React.RefObject<HTMLElement>;
 }
 const PaginationSection = <T extends object>({
   className,
   ref,
   ...props
 }: PaginationSectionProps<T>) => (
-  <ListBoxSection ref={ref} {...props} className={twMerge("flex gap-1.5", className)} />
-)
+  <ListBoxSection
+    ref={ref}
+    {...props}
+    className={twMerge("flex gap-1.5", className)}
+  />
+);
 
 interface PaginationListProps<T> extends ListBoxProps<T> {
-  ref?: React.RefObject<HTMLDivElement>
+  ref?: React.RefObject<HTMLDivElement>;
 }
-const PaginationList = <T extends object>({ className, ref, ...props }: PaginationListProps<T>) => {
+const PaginationList = <T extends object>({
+  className,
+  ref,
+  ...props
+}: PaginationListProps<T>) => {
   return (
     <ListBox
       ref={ref}
@@ -47,26 +64,34 @@ const PaginationList = <T extends object>({ className, ref, ...props }: Paginati
       className={composeTailwindRenderProps(className, "flex flex-row gap-1.5")}
       {...props}
     />
-  )
-}
+  );
+};
 
 const renderListItem = (
   props: ListBoxItemProps & {
-    textValue?: string
-    "aria-current"?: string | undefined
-    isDisabled?: boolean
-    className?: string
+    textValue?: string;
+    "aria-current"?: string | undefined;
+    isDisabled?: boolean;
+    className?: string;
   },
   children: React.ReactNode,
-) => <ListBoxItem {...props}>{children}</ListBoxItem>
+) => <ListBoxItem {...props}>{children}</ListBoxItem>;
 
 interface PaginationItemProps
   extends ListBoxItemProps,
     Pick<ButtonProps, "isCircle" | "size" | "intent"> {
-  children?: React.ReactNode
-  className?: string
-  isCurrent?: boolean
-  segment?: "label" | "separator" | "ellipsis" | "default" | "last" | "first" | "previous" | "next"
+  children?: React.ReactNode;
+  className?: string;
+  isCurrent?: boolean;
+  segment?:
+    | "label"
+    | "separator"
+    | "ellipsis"
+    | "default"
+    | "last"
+    | "first"
+    | "previous"
+    | "next";
 }
 
 const PaginationItem = ({
@@ -83,7 +108,7 @@ const PaginationItem = ({
       ? children
       : typeof children === "number"
         ? children.toString()
-        : undefined
+        : undefined;
 
   const renderPaginationIndicator = (indicator: React.ReactNode) =>
     renderListItem(
@@ -93,23 +118,29 @@ const PaginationItem = ({
         isDisabled: isCurrent,
         className: buttonStyles({
           intent: "outline",
-          className: twMerge("size-9 cursor-default font-normal text-fg", className),
+          className: twMerge(
+            "size-9 cursor-default font-normal text-fg",
+            className,
+          ),
         }),
         ...props,
       },
       indicator,
-    )
+    );
 
   switch (segment) {
     case "label":
       return renderListItem(
         {
           textValue: textValue,
-          className: twMerge("grid place-content-center px-3.5 tabular-nums", className),
+          className: twMerge(
+            "grid place-content-center px-3.5 tabular-nums",
+            className,
+          ),
           ...props,
         },
         children,
-      )
+      );
     case "separator":
       return renderListItem(
         {
@@ -117,8 +148,11 @@ const PaginationItem = ({
           className: twMerge("grid place-content-center", className),
           ...props,
         },
-        <Separator orientation="vertical" className="h-4 w-px shrink-0 rotate-[14deg] bg-border" />,
-      )
+        <Separator
+          orientation="vertical"
+          className="h-4 w-px shrink-0 rotate-[14deg] bg-border"
+        />,
+      );
     case "ellipsis":
       return renderListItem(
         {
@@ -126,18 +160,24 @@ const PaginationItem = ({
           className: twMerge("outline-hidden", className),
           ...props,
         },
-        <span aria-hidden className={twMerge("grid size-9 place-content-center px-2", className)}>
+        <span
+          aria-hidden
+          className={twMerge(
+            "grid size-9 place-content-center px-2",
+            className,
+          )}
+        >
           <IconDotsHorizontal />
         </span>,
-      )
+      );
     case "previous":
-      return renderPaginationIndicator(<IconChevronLgLeft />)
+      return renderPaginationIndicator(<IconChevronLgLeft />);
     case "next":
-      return renderPaginationIndicator(<IconChevronLgRight />)
+      return renderPaginationIndicator(<IconChevronLgRight />);
     case "first":
-      return renderPaginationIndicator(<IconChevronWallLeft />)
+      return renderPaginationIndicator(<IconChevronWallLeft />);
     case "last":
-      return renderPaginationIndicator(<IconChevronWallRight />)
+      return renderPaginationIndicator(<IconChevronWallRight />);
     default:
       return renderListItem(
         {
@@ -155,13 +195,18 @@ const PaginationItem = ({
           ...props,
         },
         children,
-      )
+      );
   }
-}
+};
 
-Pagination.Item = PaginationItem
-Pagination.List = PaginationList
-Pagination.Section = PaginationSection
+Pagination.Item = PaginationItem;
+Pagination.List = PaginationList;
+Pagination.Section = PaginationSection;
 
-export type { PaginationProps, PaginationListProps, PaginationSectionProps, PaginationItemProps }
-export { Pagination, PaginationItem, PaginationList, PaginationSection }
+export type {
+  PaginationProps,
+  PaginationListProps,
+  PaginationSectionProps,
+  PaginationItemProps,
+};
+export { Pagination, PaginationItem, PaginationList, PaginationSection };

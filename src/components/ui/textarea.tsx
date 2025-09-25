@@ -1,12 +1,16 @@
-"use client"
+"use client";
 
-import { TextArea, TextField, type TextFieldProps } from "react-aria-components"
-import { twJoin } from "tailwind-merge"
-import { cx } from "@/lib/primitive"
-import { Description, FieldError, type FieldProps, Label } from "./field"
+import {
+  TextArea,
+  TextField,
+  type TextFieldProps,
+} from "react-aria-components";
+import { twJoin } from "tailwind-merge";
+import { cx } from "@/lib/primitive";
+import { Description, FieldError, type FieldProps, Label } from "./field";
 
 interface TextareaProps extends Omit<TextFieldProps, "className">, FieldProps {
-  className?: string | ((v: TextFieldProps) => string)
+  className?: string | ((v: TextFieldProps) => string);
 }
 
 const Textarea = ({
@@ -20,7 +24,10 @@ const Textarea = ({
   return (
     <TextField
       {...props}
-      className={cx("group flex flex-col gap-y-1 *:data-[slot=label]:font-medium", className)}
+      className={cx(
+        "group flex flex-col gap-y-1 *:data-[slot=label]:font-medium",
+        className,
+      )}
     >
       {label && <Label>{label}</Label>}
       <TextArea
@@ -37,8 +44,8 @@ const Textarea = ({
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
     </TextField>
-  )
-}
+  );
+};
 
-export type { TextareaProps }
-export { Textarea }
+export type { TextareaProps };
+export { Textarea };

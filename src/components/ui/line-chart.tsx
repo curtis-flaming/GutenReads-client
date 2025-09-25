@@ -1,8 +1,15 @@
-"use client"
+"use client";
 
-import { Line, LineChart as LineChartPrimitive, type LineProps } from "recharts"
-import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent"
-import { twMerge } from "tailwind-merge"
+import {
+  Line,
+  LineChart as LineChartPrimitive,
+  type LineProps,
+} from "recharts";
+import type {
+  NameType,
+  ValueType,
+} from "recharts/types/component/DefaultTooltipContent";
+import { twMerge } from "tailwind-merge";
 import {
   type BaseChartProps,
   CartesianGrid,
@@ -17,13 +24,16 @@ import {
   valueToPercent,
   XAxis,
   YAxis,
-} from "./chart"
+} from "./chart";
 
 interface LineChartProps<TValue extends ValueType, TName extends NameType>
   extends BaseChartProps<TValue, TName> {
-  connectNulls?: boolean
-  lineProps?: LineProps
-  chartProps?: Omit<React.ComponentProps<typeof LineChartPrimitive>, "data" | "stackOffset">
+  connectNulls?: boolean;
+  lineProps?: LineProps;
+  chartProps?: Omit<
+    React.ComponentProps<typeof LineChartPrimitive>,
+    "data" | "stackOffset"
+  >;
 }
 
 export const LineChart = <TValue extends ValueType, TName extends NameType>({
@@ -61,7 +71,7 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
   lineProps,
   ...props
 }: LineChartProps<TValue, TName>) => {
-  const categoryColors = constructCategoryColors(Object.keys(config), colors)
+  const categoryColors = constructCategoryColors(Object.keys(config), colors);
 
   return (
     <Chart
@@ -74,7 +84,7 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
       {({ onLegendSelect, selectedLegend }) => (
         <LineChartPrimitive
           onClick={() => {
-            onLegendSelect(null)
+            onLegendSelect(null);
           }}
           data={data}
           margin={{
@@ -101,7 +111,9 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
 
           {legend && (
             <ChartLegend
-              content={typeof legend === "boolean" ? <ChartLegendContent /> : legend}
+              content={
+                typeof legend === "boolean" ? <ChartLegendContent /> : legend
+              }
               {...legendProps}
             />
           )}
@@ -109,7 +121,11 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
           {tooltip && (
             <ChartTooltip
               content={
-                typeof tooltip === "boolean" ? <ChartTooltipContent accessibilityLayer /> : tooltip
+                typeof tooltip === "boolean" ? (
+                  <ChartTooltipContent accessibilityLayer />
+                ) : (
+                  tooltip
+                )
               }
               {...tooltipProps}
             />
@@ -117,7 +133,8 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
 
           {!children
             ? Object.entries(config).map(([category, values]) => {
-                const strokeOpacity = selectedLegend && selectedLegend !== category ? 0.1 : 1
+                const strokeOpacity =
+                  selectedLegend && selectedLegend !== category ? 0.1 : 1;
 
                 return (
                   <Line
@@ -126,12 +143,16 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
                     name={category}
                     type="linear"
                     dataKey={category}
-                    stroke={getColorValue(values.color || categoryColors.get(category))}
+                    stroke={getColorValue(
+                      values.color || categoryColors.get(category),
+                    )}
                     style={
                       {
                         strokeOpacity,
                         strokeWidth: 2,
-                        "--line-color": getColorValue(values.color || categoryColors.get(category)),
+                        "--line-color": getColorValue(
+                          values.color || categoryColors.get(category),
+                        ),
                       } as React.CSSProperties
                     }
                     strokeLinejoin="round"
@@ -139,11 +160,11 @@ export const LineChart = <TValue extends ValueType, TName extends NameType>({
                     connectNulls={connectNulls}
                     {...lineProps}
                   />
-                )
+                );
               })
             : children}
         </LineChartPrimitive>
       )}
     </Chart>
-  )
-}
+  );
+};

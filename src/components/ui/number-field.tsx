@@ -1,16 +1,21 @@
-import { IconChevronDown, IconChevronUp, IconMinus, IconPlus } from "@intentui/icons"
+import {
+  IconChevronDown,
+  IconChevronUp,
+  IconMinus,
+  IconPlus,
+} from "@intentui/icons";
 import {
   Button,
   type ButtonProps,
   NumberField as NumberFieldPrimitive,
   type NumberFieldProps as NumberFieldPrimitiveProps,
   type ValidationResult,
-} from "react-aria-components"
-import { twJoin } from "tailwind-merge"
-import { tv } from "tailwind-variants"
-import { useMediaQuery } from "@/hooks/use-media-query"
-import { composeTailwindRenderProps } from "@/lib/primitive"
-import { Description, FieldError, FieldGroup, Input, Label } from "./field"
+} from "react-aria-components";
+import { twJoin } from "tailwind-merge";
+import { tv } from "tailwind-variants";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { composeTailwindRenderProps } from "@/lib/primitive";
+import { Description, FieldError, FieldGroup, Input, Label } from "./field";
 
 const fieldBorderStyles = tv({
   base: "group-focus:border-primary/70 forced-colors:border-[Highlight]",
@@ -22,13 +27,13 @@ const fieldBorderStyles = tv({
       true: "group-focus:border-input/70",
     },
   },
-})
+});
 
 interface NumberFieldProps extends NumberFieldPrimitiveProps {
-  label?: string
-  description?: string
-  placeholder?: string
-  errorMessage?: string | ((validation: ValidationResult) => string)
+  label?: string;
+  description?: string;
+  placeholder?: string;
+  errorMessage?: string | ((validation: ValidationResult) => string);
 }
 
 const NumberField = ({
@@ -39,7 +44,7 @@ const NumberField = ({
   errorMessage,
   ...props
 }: NumberFieldProps) => {
-  const isMobile = useMediaQuery("(max-width: 768px)") ?? false
+  const isMobile = useMediaQuery("(max-width: 768px)") ?? false;
   return (
     <NumberFieldPrimitive
       {...props}
@@ -73,14 +78,22 @@ const NumberField = ({
                 })}
               >
                 <div className="flex h-full flex-col">
-                  <StepperButton slot="increment" emblemType="chevron" className="h-4 px-1" />
+                  <StepperButton
+                    slot="increment"
+                    emblemType="chevron"
+                    className="h-4 px-1"
+                  />
                   <div
                     className={fieldBorderStyles({
                       ...renderProps,
                       className: "border-input border-b",
                     })}
                   />
-                  <StepperButton slot="decrement" emblemType="chevron" className="h-4 px-1" />
+                  <StepperButton
+                    slot="decrement"
+                    emblemType="chevron"
+                    className="h-4 px-1"
+                  />
                 </div>
               </div>
             ) : (
@@ -92,13 +105,13 @@ const NumberField = ({
       {description && <Description>{description}</Description>}
       <FieldError>{errorMessage}</FieldError>
     </NumberFieldPrimitive>
-  )
-}
+  );
+};
 
 interface StepperButtonProps extends ButtonProps {
-  slot: "increment" | "decrement"
-  emblemType?: "chevron" | "default"
-  className?: string
+  slot: "increment" | "decrement";
+  emblemType?: "chevron" | "default";
+  className?: string;
 }
 
 const StepperButton = ({
@@ -118,7 +131,7 @@ const StepperButton = ({
       <IconPlus />
     ) : (
       <IconMinus />
-    )
+    );
   return (
     <Button
       className={composeTailwindRenderProps(
@@ -130,8 +143,8 @@ const StepperButton = ({
     >
       {icon}
     </Button>
-  )
-}
+  );
+};
 
-export type { NumberFieldProps }
-export { NumberField }
+export type { NumberFieldProps };
+export { NumberField };

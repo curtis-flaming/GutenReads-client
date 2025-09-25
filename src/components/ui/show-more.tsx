@@ -1,7 +1,7 @@
-import { composeRenderProps, Text, ToggleButton } from "react-aria-components"
-import { tv } from "tailwind-variants"
+import { composeRenderProps, Text, ToggleButton } from "react-aria-components";
+import { tv } from "tailwind-variants";
 
-import { buttonStyles } from "./button"
+import { buttonStyles } from "./button";
 
 const showMoreStyles = tv({
   base: "text-sm leading-6 before:border-border after:border-border",
@@ -26,13 +26,13 @@ const showMoreStyles = tv({
   defaultVariants: {
     orientation: "horizontal",
   },
-})
+});
 
 interface ShowMoreProps extends React.ComponentProps<typeof ToggleButton> {
-  className?: string
-  orientation?: "horizontal" | "vertical"
-  as?: "text" | "button"
-  text?: string
+  className?: string;
+  orientation?: "horizontal" | "vertical";
+  as?: "text" | "button";
+  text?: string;
 }
 
 const ShowMore = ({
@@ -59,8 +59,8 @@ const ShowMore = ({
         <Text slot="description">{props.text}</Text>
       )}
     </div>
-  )
-}
+  );
+};
 
-export type { ShowMoreProps }
-export { ShowMore }
+export type { ShowMoreProps };
+export { ShowMore };
