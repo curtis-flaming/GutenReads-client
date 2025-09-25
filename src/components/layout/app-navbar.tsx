@@ -1,6 +1,5 @@
 "use client";
 import {
-  IconBrandIntentui,
   IconChevronLgDown,
   IconSearch,
   IconShoppingBag,
