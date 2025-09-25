@@ -1,4 +1,3 @@
-"use client";
 import { IconCheck } from "@intentui/icons";
 import type {
   ListBoxItemProps,

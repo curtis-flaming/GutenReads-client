@@ -1,5 +1,3 @@
-"use client";
-
 import { IconBulletFill, IconCheck, IconChevronLgRight } from "@intentui/icons";
 import type {
   ButtonProps,

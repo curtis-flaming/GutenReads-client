@@ -1,5 +1,3 @@
-"use client";
-
 import { IconChevronLeft } from "@intentui/icons";
 import { use, useEffect, useRef } from "react";
 import type {

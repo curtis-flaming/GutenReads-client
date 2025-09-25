@@ -1,4 +1,3 @@
-"use client";
 import { IconX } from "@intentui/icons";
 import type {
   TagGroupProps as TagGroupPrimitiveProps,

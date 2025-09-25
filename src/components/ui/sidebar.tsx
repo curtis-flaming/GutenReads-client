@@ -1,5 +1,3 @@
-"use client";
-
 import { IconSidebarFill } from "@intentui/icons";
 import {
   createContext,

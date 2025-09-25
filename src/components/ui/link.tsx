@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Link as LinkPrimitive,
   type LinkProps as LinkPrimitiveProps,

@@ -1,4 +1,3 @@
-"use client";
 import { IconChevronsY } from "@intentui/icons";
 import type {
   ListBoxProps,

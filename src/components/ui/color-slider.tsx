@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ColorSlider as ColorSliderPrimitive,
   type ColorSliderProps as ColorSliderPrimitiveProps,

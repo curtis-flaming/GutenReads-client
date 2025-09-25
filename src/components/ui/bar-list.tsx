@@ -1,4 +1,3 @@
-"use client";
 import { useMemo } from "react";
 import { Button, Link } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";

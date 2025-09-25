@@ -1,5 +1,3 @@
-"use client";
-
 import { IconEyeDropper } from "@intentui/icons";
 import { parseColor } from "@react-stately/color";
 import { use } from "react";
