@@ -4,165 +4,164 @@
  */
 
 export interface paths {
-  "/api/auth/register": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/api/auth/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["RegisterRequest"];
+                    "text/json": components["schemas"]["RegisterRequest"];
+                    "application/*+json": components["schemas"]["RegisterRequest"];
+                };
+            };
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad Request */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["GutenReadsProblemDetails"];
+                        "application/json": components["schemas"]["GutenReadsProblemDetails"];
+                        "text/json": components["schemas"]["GutenReadsProblemDetails"];
+                    };
+                };
+                /** @description Internal Server Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["GutenReadsProblemDetails"];
+                        "application/json": components["schemas"]["GutenReadsProblemDetails"];
+                        "text/json": components["schemas"]["GutenReadsProblemDetails"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-          "text/json": components["schemas"]["RegisterRequest"];
-          "application/*+json": components["schemas"]["RegisterRequest"];
+    "/api/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["LoginRequest"];
+                    "text/json": components["schemas"]["LoginRequest"];
+                    "application/*+json": components["schemas"]["LoginRequest"];
+                };
+            };
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["GutenReadsProblemDetails"];
+                        "application/json": components["schemas"]["GutenReadsProblemDetails"];
+                        "text/json": components["schemas"]["GutenReadsProblemDetails"];
+                    };
+                };
+                /** @description Internal Server Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["GutenReadsProblemDetails"];
+                        "application/json": components["schemas"]["GutenReadsProblemDetails"];
+                        "text/json": components["schemas"]["GutenReadsProblemDetails"];
+                    };
+                };
+            };
         };
-        /** @description Bad Request */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "text/plain": components["schemas"]["GutenReadsProblemDetails"];
-            "application/json": components["schemas"]["GutenReadsProblemDetails"];
-            "text/json": components["schemas"]["GutenReadsProblemDetails"];
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "text/plain": components["schemas"]["GutenReadsProblemDetails"];
-            "application/json": components["schemas"]["GutenReadsProblemDetails"];
-            "text/json": components["schemas"]["GutenReadsProblemDetails"];
-          };
-        };
-      };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/api/auth/login": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-          "text/json": components["schemas"]["LoginRequest"];
-          "application/*+json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "text/plain": components["schemas"]["GutenReadsProblemDetails"];
-            "application/json": components["schemas"]["GutenReadsProblemDetails"];
-            "text/json": components["schemas"]["GutenReadsProblemDetails"];
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "text/plain": components["schemas"]["GutenReadsProblemDetails"];
-            "application/json": components["schemas"]["GutenReadsProblemDetails"];
-            "text/json": components["schemas"]["GutenReadsProblemDetails"];
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    GutenReadsProblemDetails: {
-      type?: string | null;
-      title?: string | null;
-      /** Format: int32 */
-      status?: number | null;
-      detail?: string | null;
-      instance?: string | null;
-      requestId?: string | null;
-      traceId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      additionalDetails?: {
-        [key: string]: unknown;
-      } | null;
-    } & {
-      [key: string]: unknown;
+    schemas: {
+        GutenReadsProblemDetails: {
+            type?: string | null;
+            title?: string | null;
+            /** Format: int32 */
+            status?: number | null;
+            detail?: string | null;
+            instance?: string | null;
+            requestId?: string | null;
+            traceId?: string | null;
+            /** Format: date-time */
+            timestamp?: string;
+            additionalDetails?: {
+                [key: string]: unknown;
+            } | null;
+        } & {
+            [key: string]: unknown;
+        };
+        LoginRequest: {
+            email: string | null;
+            password: string | null;
+        };
+        RegisterRequest: {
+            email: string | null;
+            username: string | null;
+            password: string | null;
+        };
     };
-    LoginRequest: {
-      email: string | null;
-      password: string | null;
-    };
-    RegisterRequest: {
-      email: string | null;
-      username: string | null;
-      password: string | null;
-      role?: string | null;
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;

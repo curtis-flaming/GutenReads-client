@@ -10,6 +10,7 @@ const authMiddleware: Middleware = {
   },
 };
 
-const client = createClient<paths>({ baseUrl: "http://localhost:5211/api/" }); // TODO: change to env
+const fetchClient = createClient<paths>({ baseUrl: "http://localhost:5211/" }); // TODO: change to env
+fetchClient.use(authMiddleware);
 
-export { client };
+export { fetchClient as client };
