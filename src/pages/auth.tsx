@@ -5,10 +5,15 @@ import { Container } from "@/components/ui/container";
 import { Form } from "@/components/ui/form";
 import { Link } from "@/components/ui/link";
 import { TextField } from "@/components/ui/text-field";
+import { useEffect } from "react";
 import { useLocation } from "@tanstack/react-router";
 
 export function Auth() {
   const location = useLocation();
+
+  useEffect(() => {
+    client.GET("/api/users/current");
+  }, []);
 
   const isLogin = location.pathname === "/login";
 
@@ -78,7 +83,9 @@ function LoginForm() {
           password: data.password as string,
         },
       })
-      .then((res) => {});
+      .then((res) => {
+        console.log(">>>>>>>>>>>>", res);
+      });
   }
   return (
     <Form onSubmit={onSubmit} className="flex flex-col gap-y-4">

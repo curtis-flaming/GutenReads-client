@@ -1,5 +1,5 @@
 import createClient, { type Middleware } from "openapi-fetch";
-import type { paths } from "./type-gen/schema";
+import type { paths } from "./openapi-ts/raw-schema";
 
 const authMiddleware: Middleware = {
   async onRequest({ request }) {
@@ -10,7 +10,11 @@ const authMiddleware: Middleware = {
   },
 };
 
-const fetchClient = createClient<paths>({ baseUrl: "http://localhost:5211/" }); // TODO: change to env
+const fetchClient = createClient<paths>({
+  baseUrl: "/",
+  credentials: "include", // Include cookies in requests
+});
+
 fetchClient.use(authMiddleware);
 
 export { fetchClient as client };

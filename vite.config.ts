@@ -17,4 +17,28 @@ export default defineConfig({
       "@": resolve(__dirname, "./src"),
     },
   },
+  server: {
+    port: 3000,
+    proxy: {
+      "/api": {
+        target: "http://localhost:5211",
+        changeOrigin: true,
+      },
+    },
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:5211",
+    //     changeOrigin: true,
+    //     secure: false,
+    //     configure: (proxy) => {
+    //       proxy.on("proxyReq", (proxyReq, req) => {
+    //         // Forward cookies from the client
+    //         if (req.headers.cookie) {
+    //           proxyReq.setHeader("cookie", req.headers.cookie);
+    //         }
+    //       });
+    //     },
+    //   },
+    // },
+  },
 });

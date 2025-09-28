@@ -16,6 +16,7 @@ import {
   MenuSeparator,
   MenuTrigger,
 } from "@/components/ui/menu";
+import { client } from "@/api/fetchClient";
 
 export function UserMenu() {
   return (
@@ -54,7 +55,11 @@ export function UserMenu() {
           Customer Support
         </MenuItem>
         <MenuSeparator />
-        <MenuItem href="#logout">
+        <MenuItem
+          onClick={() => {
+            client.POST("/api/auth/logout");
+          }}
+        >
           <IconLogout />
           Log out
         </MenuItem>
