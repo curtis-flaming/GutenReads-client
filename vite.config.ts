@@ -25,20 +25,5 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-    // proxy: {
-    //   "/api": {
-    //     target: "http://localhost:5211",
-    //     changeOrigin: true,
-    //     secure: false,
-    //     configure: (proxy) => {
-    //       proxy.on("proxyReq", (proxyReq, req) => {
-    //         // Forward cookies from the client
-    //         if (req.headers.cookie) {
-    //           proxyReq.setHeader("cookie", req.headers.cookie);
-    //         }
-    //       });
-    //     },
-    //   },
-    // },
   },
 });

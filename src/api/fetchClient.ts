@@ -1,5 +1,5 @@
 import createClient, { type Middleware } from "openapi-fetch";
-import type { paths } from "./openapi-ts/raw-schema";
+import type { paths } from "./openapi-ts/generated-schema";
 
 const authMiddleware: Middleware = {
   async onRequest({ request }) {

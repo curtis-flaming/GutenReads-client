@@ -1,4 +1,4 @@
-import type { components } from "./raw-schema";
+import type { components } from "./generated-schema";
 
 export type RegisterRequest = components["schemas"]["RegisterRequest"];
 export type LoginRequest = components["schemas"]["LoginRequest"];

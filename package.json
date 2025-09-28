@@ -8,7 +8,7 @@
     "build": "vite build && tsc",
     "serve": "vite preview",
     "test": "vitest run",
-    "gen": "openapi-typescript http://localhost:5211/swagger/v1/swagger.json -o ./src/api/type-gen/schema.ts",
+    "gen": "openapi-typescript http://localhost:5211/swagger/v1/swagger.json -o ./src/api/openapi-ts/generated-schema.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "prettier --write ."
