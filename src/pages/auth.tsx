@@ -1,3 +1,4 @@
+import { useLoginUser } from "@/api/endpoints/auth/mutations";
 import { client } from "@/api/fetchClient";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -5,15 +6,10 @@ import { Container } from "@/components/ui/container";
 import { Form } from "@/components/ui/form";
 import { Link } from "@/components/ui/link";
 import { TextField } from "@/components/ui/text-field";
-import { useEffect } from "react";
 import { useLocation } from "@tanstack/react-router";
 
 export function Auth() {
   const location = useLocation();
-
-  useEffect(() => {
-    client.GET("/api/users/current");
-  }, []);
 
   const isLogin = location.pathname === "/login";
 
@@ -71,21 +67,17 @@ function RegisterForm() {
 
 // #region LoginForm
 function LoginForm() {
+  const { mutate } = useLoginUser();
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    client
-      .POST("/api/auth/login", {
-        body: {
-          email: data.email as string,
-          password: data.password as string,
-        },
-      })
-      .then((res) => {
-        console.log(">>>>>>>>>>>>", res);
-      });
+    mutate({
+      email: data.email as string,
+      password: data.password as string,
+    });
   }
   return (
     <Form onSubmit={onSubmit} className="flex flex-col gap-y-4">

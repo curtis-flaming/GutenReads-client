@@ -22,8 +22,12 @@ import {
 } from "@/components/ui/navbar";
 import { Separator } from "@/components/ui/separator";
 import { UserMenu } from "./user-menu";
+import { currentUserOptions } from "@/api/endpoints/users/options";
+import { useQuery } from "@tanstack/react-query";
 
 export default function AppNavbar(props: NavbarProps) {
+  const { data: currentUser } = useQuery(currentUserOptions);
+
   return (
     <NavbarProvider>
       <Navbar {...props}>
@@ -57,9 +61,6 @@ export default function AppNavbar(props: NavbarProps) {
         <NavbarSpacer />
         <Button intent="plain" size="sq-sm" aria-label="Search for products">
           <IconSearch />
-        </Button>
-        <Button intent="plain" size="sq-sm" aria-label="Your Bag">
-          <IconShoppingBag />
         </Button>
         <NavbarSeparator className="mr-2.5" />
         <UserMenu />

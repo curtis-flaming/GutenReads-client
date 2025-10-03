@@ -17,44 +17,25 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { client } from "@/api/fetchClient";
+import { useQuery } from "@tanstack/react-query";
+import { currentUserOptions } from "@/api/endpoints/users/options";
 
 export function UserMenu() {
+  const { data: currentUser } = useQuery(currentUserOptions);
+
   return (
     <Menu>
       <MenuTrigger aria-label="Open Menu">
-        <Avatar initials="UN" size="md" isSquare />
+        <Avatar initials={currentUser?.userName[0]} size="md" isSquare />
       </MenuTrigger>
       <MenuContent placement="bottom right" className="min-w-60 sm:min-w-56">
         <MenuSection>
           <MenuHeader separator>
-            <span className="block">User Name</span>
-            <span className="font-normal text-muted-fg">@user</span>
+            <span className="block">{currentUser?.userName}</span>
+            <span className="font-normal text-muted-fg">@{currentUser?.userName}</span>
           </MenuHeader>
         </MenuSection>
 
-        <MenuItem href="#dashboard">
-          <IconDashboard />
-          Dashboard
-        </MenuItem>
-        <MenuItem href="#settings">
-          <IconSettings />
-          Settings
-        </MenuItem>
-        <MenuItem href="#security">
-          <IconShield />
-          Security
-        </MenuItem>
-        <MenuSeparator />
-        <MenuItem>
-          <IconCommandRegular />
-          Command Menu
-        </MenuItem>
-
-        <MenuItem href="#contact">
-          <IconHeadphones />
-          Customer Support
-        </MenuItem>
-        <MenuSeparator />
         <MenuItem
           onClick={() => {
             client.POST("/api/auth/logout");

@@ -2,16 +2,14 @@ import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./openapi-ts/generated-schema";
 
 const authMiddleware: Middleware = {
-  async onRequest({ request }) {
-    const jwt = localStorage.getItem("access_token");
-
-    request.headers.set("Authorization", "Bearer " + jwt);
-    return request;
+  onResponse({ response }) {
+    console.log("onResponse", response);
   },
 };
 
 const fetchClient = createClient<paths>({
-  baseUrl: "/",
+  baseUrl: "https://gutenreads-production.up.railway.app/",
+  // baseUrl: "/",
   credentials: "include", // Include cookies in requests
 });
 

@@ -21,9 +21,10 @@ function RootComponent() {
     <Providers>
       <AppNavbar />
       <Outlet />
-      <TanstackDevtools
+      {/* <TanstackDevtools
         config={{
           position: "bottom-left",
+          openHotkey: [""],
         }}
         plugins={[
           {
@@ -32,7 +33,7 @@ function RootComponent() {
           },
           TanStackQueryDevtools,
         ]}
-      />
+      /> */}
     </Providers>
   );
 }
