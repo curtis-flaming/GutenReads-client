@@ -1,16 +1,21 @@
 import createClient, { type Middleware } from "openapi-fetch";
-import type { paths } from "./type-gen/schema";
+import type { paths } from "./openapi-ts/generated-schema";
+import Cookies from "js-cookie";
 
 const authMiddleware: Middleware = {
-  async onRequest({ request }) {
-    const jwt = localStorage.getItem("access_token");
-
-    request.headers.set("Authorization", "Bearer " + jwt);
-    return request;
+  onRequest({ request }) {
+    const token = Cookies.get("token");
+    if (token) {
+      request.headers.set("Authorization", `Bearer ${token}`);
+    }
   },
 };
 
-const fetchClient = createClient<paths>({ baseUrl: "http://localhost:5211/" }); // TODO: change to env
+const fetchClient = createClient<paths>({
+  baseUrl: import.meta.env.VITE_API_URL || "/",
+  credentials: "include", // Include cookies in requests
+});
+
 fetchClient.use(authMiddleware);
 
 export { fetchClient as client };

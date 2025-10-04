@@ -1,3 +1,4 @@
+import { useLoginUser, useRegisterUser } from "@/api/endpoints/auth/mutations";
 import { client } from "@/api/fetchClient";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -38,17 +39,17 @@ export function Auth() {
 
 // #region RegisterForm
 function RegisterForm() {
+  const { mutate: registerUser } = useRegisterUser();
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    client.POST("/api/auth/register", {
-      body: {
-        email: data.email as string,
-        username: data.username as string,
-        password: data.password as string,
-      },
+    registerUser({
+      email: data.email as string,
+      username: data.username as string,
+      password: data.password as string,
     });
   }
 
@@ -66,19 +67,17 @@ function RegisterForm() {
 
 // #region LoginForm
 function LoginForm() {
+  const { mutate } = useLoginUser();
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    client
-      .POST("/api/auth/login", {
-        body: {
-          email: data.email as string,
-          password: data.password as string,
-        },
-      })
-      .then((res) => {});
+    mutate({
+      email: data.email as string,
+      password: data.password as string,
+    });
   }
   return (
     <Form onSubmit={onSubmit} className="flex flex-col gap-y-4">

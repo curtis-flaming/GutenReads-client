@@ -22,61 +22,12 @@ import {
 } from "@/components/ui/navbar";
 import { Separator } from "@/components/ui/separator";
 import { UserMenu } from "./user-menu";
-
-const categories = [
-  {
-    id: 1,
-    label: "Electronics",
-    url: "#",
-  },
-  {
-    id: 2,
-    label: "Fashion",
-    url: "#",
-  },
-  {
-    id: 3,
-    label: "Home & Kitchen",
-    url: "#",
-  },
-  {
-    id: 4,
-    label: "Sports",
-    url: "#",
-  },
-  {
-    id: 5,
-    label: "Books",
-    url: "#",
-  },
-  {
-    id: 6,
-    label: "Beauty & Personal Care",
-    url: "#",
-  },
-  {
-    id: 7,
-    label: "Grocery",
-    url: "#",
-  },
-  {
-    id: 8,
-    label: "Toys & Games",
-    url: "#",
-  },
-  {
-    id: 9,
-    label: "Automotive",
-    url: "#",
-  },
-  {
-    id: 10,
-    label: "Health & Wellness",
-    url: "#",
-  },
-];
+import { currentUserOptions } from "@/api/endpoints/users/options";
+import { useQuery } from "@tanstack/react-query";
 
 export default function AppNavbar(props: NavbarProps) {
+  const { data: currentUser } = useQuery(currentUserOptions);
+
   return (
     <NavbarProvider>
       <Navbar {...props}>
@@ -95,25 +46,6 @@ export default function AppNavbar(props: NavbarProps) {
           <NavbarItem href="#" isCurrent>
             Home
           </NavbarItem>
-          {/* <NavbarItem href="#">Shop</NavbarItem>
-          <NavbarItem href="#">Offers</NavbarItem>
-          <NavbarItem href="#">Orders</NavbarItem>
-          <Menu>
-            <NavbarItem>
-              Categories
-              <IconChevronLgDown className="col-start-3" />
-            </NavbarItem>
-            <MenuContent
-              className="min-w-(--trigger-width) sm:min-w-56"
-              items={categories}
-            >
-              {(item) => (
-                <MenuItem id={item.id} textValue={item.label} href={item.url}>
-                  {item.label}
-                </MenuItem>
-              )}
-            </MenuContent>
-          </Menu> */}
         </NavbarSection>
         <NavbarSpacer />
         <NavbarSection className="max-md:hidden">
@@ -121,7 +53,7 @@ export default function AppNavbar(props: NavbarProps) {
             <IconSearch />
           </Button>
           <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
-          <UserMenu />
+          {currentUser ? <UserMenu /> : <Link href={{ to: "/login" }}>Login</Link>}
         </NavbarSection>
       </Navbar>
       <NavbarMobile>
@@ -129,9 +61,6 @@ export default function AppNavbar(props: NavbarProps) {
         <NavbarSpacer />
         <Button intent="plain" size="sq-sm" aria-label="Search for products">
           <IconSearch />
-        </Button>
-        <Button intent="plain" size="sq-sm" aria-label="Your Bag">
-          <IconShoppingBag />
         </Button>
         <NavbarSeparator className="mr-2.5" />
         <UserMenu />
