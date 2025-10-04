@@ -2,6 +2,7 @@ import { client } from "@/api/fetchClient";
 import type { LoginRequest, RegisterRequest } from "@/api/openapi-ts/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { currentUserOptions } from "../users/options";
+import Cookies from "js-cookie";
 
 export function useRegisterUser() {
   const queryClient = useQueryClient();
@@ -10,7 +11,8 @@ export function useRegisterUser() {
       return client.POST("/api/auth/register", { body });
     },
     onSuccess(responseData) {
-      queryClient.setQueryData(currentUserOptions.queryKey, responseData.data);
+      Cookies.set("token", responseData.data?.token as string);
+      queryClient.setQueryData(currentUserOptions.queryKey, responseData.data?.user);
     },
   });
 }
@@ -22,7 +24,7 @@ export function useLoginUser() {
       return client.POST("/api/auth/login", { body });
     },
     onSuccess(responseData) {
-      // queryClient.setQueryData(currentUserOptions.queryKey, responseData.data);
+      Cookies.set("token", responseData.data?.token as string);
       queryClient.fetchQuery(currentUserOptions);
     },
   });
@@ -31,11 +33,10 @@ export function useLoginUser() {
 export function useLogoutUser() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => {
-      return client.POST("/api/auth/logout");
-    },
-    onSuccess() {
-      queryClient.refetchQueries(currentUserOptions);
+    onMutate() {
+      Cookies.remove("token");
+      queryClient.removeQueries();
+      queryClient.clear();
     },
   });
 }

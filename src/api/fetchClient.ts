@@ -1,15 +1,18 @@
 import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./openapi-ts/generated-schema";
+import Cookies from "js-cookie";
 
 const authMiddleware: Middleware = {
-  onResponse({ response }) {
-    console.log("onResponse", response);
+  onRequest({ request }) {
+    const token = Cookies.get("token");
+    if (token) {
+      request.headers.set("Authorization", `Bearer ${token}`);
+    }
   },
 };
 
 const fetchClient = createClient<paths>({
-  baseUrl: "https://gutenreads-production.up.railway.app/",
-  // baseUrl: "/",
+  baseUrl: import.meta.env.VITE_API_URL || "/",
   credentials: "include", // Include cookies in requests
 });
 

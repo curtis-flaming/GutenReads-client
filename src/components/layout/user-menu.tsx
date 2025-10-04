@@ -19,9 +19,11 @@ import {
 import { client } from "@/api/fetchClient";
 import { useQuery } from "@tanstack/react-query";
 import { currentUserOptions } from "@/api/endpoints/users/options";
+import { useLogoutUser } from "@/api/endpoints/auth/mutations";
 
 export function UserMenu() {
   const { data: currentUser } = useQuery(currentUserOptions);
+  const { mutate: logout } = useLogoutUser();
 
   return (
     <Menu>
@@ -36,11 +38,7 @@ export function UserMenu() {
           </MenuHeader>
         </MenuSection>
 
-        <MenuItem
-          onClick={() => {
-            client.POST("/api/auth/logout");
-          }}
-        >
+        <MenuItem onClick={() => logout()}>
           <IconLogout />
           Log out
         </MenuItem>

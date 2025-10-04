@@ -53,7 +53,7 @@ export default function AppNavbar(props: NavbarProps) {
             <IconSearch />
           </Button>
           <Separator orientation="vertical" className="mr-3 ml-1 h-5" />
-          <UserMenu />
+          {currentUser ? <UserMenu /> : <Link href={{ to: "/login" }}>Login</Link>}
         </NavbarSection>
       </Navbar>
       <NavbarMobile>

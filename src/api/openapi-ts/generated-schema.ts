@@ -34,9 +34,9 @@ export interface paths {
             [name: string]: unknown;
           };
           content: {
-            "text/plain": components["schemas"]["CurrentUserViewModel"];
-            "application/json": components["schemas"]["CurrentUserViewModel"];
-            "text/json": components["schemas"]["CurrentUserViewModel"];
+            "text/plain": components["schemas"]["AuthResponse"];
+            "application/json": components["schemas"]["AuthResponse"];
+            "text/json": components["schemas"]["AuthResponse"];
           };
         };
         /** @description Bad Request */
@@ -99,9 +99,9 @@ export interface paths {
             [name: string]: unknown;
           };
           content: {
-            "text/plain": components["schemas"]["CurrentUserViewModel"];
-            "application/json": components["schemas"]["CurrentUserViewModel"];
-            "text/json": components["schemas"]["CurrentUserViewModel"];
+            "text/plain": components["schemas"]["AuthResponse"];
+            "application/json": components["schemas"]["AuthResponse"];
+            "text/json": components["schemas"]["AuthResponse"];
           };
         };
         /** @description Unauthorized */
@@ -215,57 +215,19 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/api/users/frogout": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Frogout"];
-          "text/json": components["schemas"]["Frogout"];
-          "application/*+json": components["schemas"]["Frogout"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    AuthResponse: {
+      user: components["schemas"]["CurrentUserViewModel"];
+      token: string | null;
+    };
     CurrentUserViewModel: {
       id: string | null;
       email: string | null;
       userName: string | null;
       role: string | null;
-    };
-    Frogout: {
-      foo?: string | null;
     };
     GutenReadsProblemDetails: {
       type?: string | null;
