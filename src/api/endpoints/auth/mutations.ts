@@ -35,7 +35,6 @@ export function useLogoutUser() {
   return useMutation({
     onMutate() {
       Cookies.remove("token");
-      queryClient.removeQueries();
       queryClient.clear();
     },
   });

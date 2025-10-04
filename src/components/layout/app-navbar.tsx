@@ -35,7 +35,7 @@ export default function AppNavbar(props: NavbarProps) {
           <Link
             className="flex items-center gap-x-2 font-medium"
             aria-label="Goto documentation of Navbar"
-            href="/docs/components/layouts/navbar"
+            href={{ to: "/" }}
           >
             <IconBookOpenText className="size-6 sm:size-5" />
             <span>GutenReads</span>
@@ -43,8 +43,8 @@ export default function AppNavbar(props: NavbarProps) {
         </NavbarStart>
         <NavbarGap />
         <NavbarSection>
-          <NavbarItem href="#" isCurrent>
-            Home
+          <NavbarItem href={{ to: "/books" }} isCurrent>
+            Books 📚
           </NavbarItem>
         </NavbarSection>
         <NavbarSpacer />

@@ -1,5 +1,4 @@
 import { useLoginUser, useRegisterUser } from "@/api/endpoints/auth/mutations";
-import { client } from "@/api/fetchClient";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
