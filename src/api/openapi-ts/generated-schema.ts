@@ -167,6 +167,43 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/api/books": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["Book"][];
+            "application/json": components["schemas"]["Book"][];
+            "text/json": components["schemas"]["Book"][];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/api/users/current": {
     parameters: {
       query?: never;
@@ -222,6 +259,27 @@ export interface components {
     AuthResponse: {
       user: components["schemas"]["CurrentUserViewModel"];
       token: string | null;
+    };
+    Author: {
+      id: string | null;
+      name: string | null;
+      /** Format: int32 */
+      birthYear?: number | null;
+      /** Format: int32 */
+      deathYear?: number | null;
+      books?: components["schemas"]["Book"][] | null;
+    };
+    Book: {
+      /** Format: int32 */
+      id: number;
+      title: string | null;
+      summaries?: string[] | null;
+      translators?: string[] | null;
+      subjects?: string[] | null;
+      bookshelves?: string[] | null;
+      languages?: string[] | null;
+      imageUrl: string | null;
+      authors?: components["schemas"]["Author"][] | null;
     };
     CurrentUserViewModel: {
       id: string | null;
