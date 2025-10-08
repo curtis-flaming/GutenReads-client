@@ -7,3 +7,5 @@ export type CurrentUser = components["schemas"]["CurrentUserViewModel"];
 
 export type GutenReadsProblemDetails = components["schemas"]["GutenReadsProblemDetails"];
 export type ValidationProblemDetails = components["schemas"]["ValidationProblemDetails"];
+
+export type Book = components["schemas"]["Book"];
