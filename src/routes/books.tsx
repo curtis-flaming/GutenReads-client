@@ -28,7 +28,7 @@ function BookCard({ book }: { book: components["schemas"]["Book"] }) {
       </Card.Header>
       <Card.Content>
         <div className="flex gap-2">
-          <span className="flex-1">{book.summaries?.[0]}</span>
+          <p className="flex-1">{book.summaries?.[0]}</p>
           <div className="">
             <img className="w-40" src={book.imageUrl} alt={book.title} />
           </div>
