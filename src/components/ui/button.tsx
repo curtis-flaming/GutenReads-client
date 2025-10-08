@@ -2,8 +2,8 @@ import {
   Button as ButtonPrimitive,
   type ButtonProps as ButtonPrimitiveProps,
   composeRenderProps,
-} from "react-aria-components";
-import { tv, type VariantProps } from "tailwind-variants";
+} from "react-aria-components"
+import { tv, type VariantProps } from "tailwind-variants"
 
 const buttonStyles = tv({
   base: [
@@ -76,10 +76,10 @@ const buttonStyles = tv({
     size: "md",
     isCircle: false,
   },
-});
+})
 
 interface ButtonProps extends ButtonPrimitiveProps, VariantProps<typeof buttonStyles> {
-  ref?: React.Ref<HTMLButtonElement>;
+  ref?: React.Ref<HTMLButtonElement>
 }
 
 const Button = ({ className, intent, size, isCircle, ref, ...props }: ButtonProps) => {
@@ -94,17 +94,15 @@ const Button = ({ className, intent, size, isCircle, ref, ...props }: ButtonProp
           size,
           isCircle,
           className,
-        })
+        }),
       )}
     >
       {(values) => (
-        <>
-          {typeof props.children === "function" ? props.children(values) : props.children}
-        </>
+        <>{typeof props.children === "function" ? props.children(values) : props.children}</>
       )}
     </ButtonPrimitive>
-  );
-};
+  )
+}
 
-export type { ButtonProps };
-export { Button, buttonStyles };
+export type { ButtonProps }
+export { Button, buttonStyles }

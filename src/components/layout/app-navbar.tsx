@@ -6,7 +6,6 @@ import {
 } from "@intentui/icons";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/components/ui/link";
-import { Menu, MenuContent, MenuItem } from "@/components/ui/menu";
 import {
   Navbar,
   NavbarGap,

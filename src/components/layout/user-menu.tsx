@@ -1,11 +1,4 @@
-import {
-  IconCommandRegular,
-  IconDashboard,
-  IconHeadphones,
-  IconLogout,
-  IconSettings,
-  IconShield,
-} from "@intentui/icons";
+import { IconLogout } from "@intentui/icons";
 import { Avatar } from "@/components/ui/avatar";
 import {
   Menu,
@@ -13,10 +6,8 @@ import {
   MenuHeader,
   MenuItem,
   MenuSection,
-  MenuSeparator,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { client } from "@/api/fetchClient";
 import { useQuery } from "@tanstack/react-query";
 import { currentUserOptions } from "@/api/endpoints/users/options";
 import { useLogoutUser } from "@/api/endpoints/auth/mutations";

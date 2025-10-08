@@ -1,13 +1,15 @@
+"use client"
+
 import type {
   DialogTriggerProps,
   PopoverProps as PopoverPrimitiveProps,
-} from "react-aria-components";
+} from "react-aria-components"
 import {
   DialogTrigger as DialogTriggerPrimitive,
   OverlayArrow,
   Popover as PopoverPrimitive,
-} from "react-aria-components";
-import { composeTailwindRenderProps } from "@/lib/primitive";
+} from "react-aria-components"
+import { cx } from "@/lib/primitive"
 import {
   DialogBody,
   DialogClose,
@@ -16,21 +18,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog";
+} from "./dialog"
 
-type PopoverProps = DialogTriggerProps;
+type PopoverProps = DialogTriggerProps
 const Popover = (props: PopoverProps) => {
-  return <DialogTriggerPrimitive {...props} />;
-};
+  return <DialogTriggerPrimitive {...props} />
+}
 
-const PopoverTitle = DialogTitle;
-const PopoverHeader = DialogHeader;
-const PopoverBody = DialogBody;
-const PopoverFooter = DialogFooter;
+const PopoverTitle = DialogTitle
+const PopoverHeader = DialogHeader
+const PopoverBody = DialogBody
+const PopoverFooter = DialogFooter
 
 interface PopoverContentProps extends PopoverPrimitiveProps {
-  showArrow?: boolean;
-  ref?: React.Ref<HTMLDivElement>;
+  showArrow?: boolean
+  ref?: React.Ref<HTMLDivElement>
 }
 
 const PopoverContent = ({
@@ -40,19 +42,19 @@ const PopoverContent = ({
   ref,
   ...props
 }: PopoverContentProps) => {
-  const offset = props.offset ?? (showArrow ? 12 : 8);
+  const offset = props.offset ?? (showArrow ? 12 : 8)
   return (
     <PopoverPrimitive
       ref={ref}
       offset={offset}
-      className={composeTailwindRenderProps(className, [
+      className={cx(
         "group/popover min-w-(--trigger-width) max-w-xs origin-(--trigger-anchor-point) rounded-xl border bg-overlay text-overlay-fg shadow-xs outline-hidden transition-transform [--gutter:--spacing(6)] sm:text-sm dark:backdrop-saturate-200 **:[[role=dialog]]:[--gutter:--spacing(4)]",
-        "entering:fade-in entering:animate-in",
-        "exiting:fade-out exiting:animate-out",
+        "entering:fade-in exiting:fade-out entering:animate-in exiting:animate-out",
         "placement-left:entering:slide-in-from-right-1 placement-right:entering:slide-in-from-left-1 placement-top:entering:slide-in-from-bottom-1 placement-bottom:entering:slide-in-from-top-1",
         "placement-left:exiting:slide-out-to-right-1 placement-right:exiting:slide-out-to-left-1 placement-top:exiting:slide-out-to-bottom-1 placement-bottom:exiting:slide-out-to-top-1",
         "forced-colors:bg-[Canvas]",
-      ])}
+        className,
+      )}
       {...props}
     >
       {(values) => (
@@ -73,23 +75,23 @@ const PopoverContent = ({
         </>
       )}
     </PopoverPrimitive>
-  );
-};
+  )
+}
 
-const PopoverTrigger = DialogTrigger;
-const PopoverClose = DialogClose;
-const PopoverDescription = DialogDescription;
+const PopoverTrigger = DialogTrigger
+const PopoverClose = DialogClose
+const PopoverDescription = DialogDescription
 
-Popover.Trigger = PopoverTrigger;
-Popover.Close = PopoverClose;
-Popover.Description = PopoverDescription;
-Popover.Content = PopoverContent;
-Popover.Body = PopoverBody;
-Popover.Footer = PopoverFooter;
-Popover.Header = PopoverHeader;
-Popover.Title = PopoverTitle;
+Popover.Trigger = PopoverTrigger
+Popover.Close = PopoverClose
+Popover.Description = PopoverDescription
+Popover.Content = PopoverContent
+Popover.Body = PopoverBody
+Popover.Footer = PopoverFooter
+Popover.Header = PopoverHeader
+Popover.Title = PopoverTitle
 
-export type { PopoverProps, PopoverContentProps };
+export type { PopoverProps, PopoverContentProps }
 export {
   Popover,
   PopoverTrigger,
@@ -100,4 +102,4 @@ export {
   PopoverFooter,
   PopoverHeader,
   PopoverTitle,
-};
+}
