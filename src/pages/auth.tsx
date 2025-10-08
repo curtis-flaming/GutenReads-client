@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Form } from "@/components/ui/form";
 import { Link } from "@/components/ui/link";
 import { TextField } from "@/components/ui/text-field";
-import { useLocation } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 
 export function Auth() {
   const location = useLocation();
@@ -38,6 +38,7 @@ export function Auth() {
 
 // #region RegisterForm
 function RegisterForm() {
+  const navigate = useNavigate();
   const { mutate: registerUser } = useRegisterUser();
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -45,11 +46,18 @@ function RegisterForm() {
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    registerUser({
-      email: data.email as string,
-      username: data.username as string,
-      password: data.password as string,
-    });
+    registerUser(
+      {
+        email: data.email as string,
+        username: data.username as string,
+        password: data.password as string,
+      },
+      {
+        onSuccess: () => {
+          navigate({ to: "/" });
+        },
+      }
+    );
   }
 
   return (
@@ -67,16 +75,24 @@ function RegisterForm() {
 // #region LoginForm
 function LoginForm() {
   const { mutate } = useLoginUser();
+  const navigate = useNavigate();
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    mutate({
-      email: data.email as string,
-      password: data.password as string,
-    });
+    mutate(
+      {
+        email: data.email as string,
+        password: data.password as string,
+      },
+      {
+        onSuccess: () => {
+          navigate({ to: "/" });
+        },
+      }
+    );
   }
   return (
     <Form onSubmit={onSubmit} className="flex flex-col gap-y-4">
