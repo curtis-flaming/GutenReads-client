@@ -59,6 +59,7 @@
     "jiti": "^2.6.0",
     "jsdom": "^26.0.0",
     "openapi-typescript": "^7.9.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.1",
     "vite": "^6.3.5",

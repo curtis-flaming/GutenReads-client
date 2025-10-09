@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsRoute = ComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BooksRoute = BooksRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/books': typeof BooksRoute
+  '/components': typeof ComponentsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/books': typeof BooksRoute
+  '/components': typeof ComponentsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/books': typeof BooksRoute
+  '/components': typeof ComponentsRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/books' | '/login' | '/register'
+  fullPaths: '/' | '/books' | '/components' | '/login' | '/register'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/books' | '/login' | '/register'
-  id: '__root__' | '/' | '/books' | '/login' | '/register'
+  to: '/' | '/books' | '/components' | '/login' | '/register'
+  id: '__root__' | '/' | '/books' | '/components' | '/login' | '/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BooksRoute: typeof BooksRoute
+  ComponentsRoute: typeof ComponentsRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components': {
+      id: '/components'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/books': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BooksRoute: BooksRoute,
+  ComponentsRoute: ComponentsRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
 }

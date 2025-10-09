@@ -46,6 +46,11 @@ export default function AppNavbar(props: NavbarProps) {
             Books 📚
           </NavbarItem>
         </NavbarSection>
+        <NavbarSection>
+          <NavbarItem href={{ to: "/components" }} isCurrent>
+            COMPS
+          </NavbarItem>
+        </NavbarSection>
         <NavbarSpacer />
         <NavbarSection className="max-md:hidden">
           <Button intent="plain" size="sq-sm" aria-label="Search for products">
