@@ -1,6 +1,6 @@
+import Cookies from "js-cookie";
 import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./openapi-ts/generated-schema";
-import Cookies from "js-cookie";
 
 const authMiddleware: Middleware = {
   onRequest({ request }) {

@@ -1,9 +1,4 @@
-import {
-  IconChevronLgDown,
-  IconSearch,
-  IconShoppingBag,
-  IconBookOpenText,
-} from "@intentui/icons";
+import { currentUserOptions } from "@/api/endpoints/users/options";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/components/ui/link";
 import {
@@ -20,9 +15,9 @@ import {
   NavbarTrigger,
 } from "@/components/ui/navbar";
 import { Separator } from "@/components/ui/separator";
-import { UserMenu } from "./user-menu";
-import { currentUserOptions } from "@/api/endpoints/users/options";
+import { IconBookOpenText, IconSearch } from "@intentui/icons";
 import { useQuery } from "@tanstack/react-query";
+import { UserMenu } from "./user-menu";
 
 export default function AppNavbar(props: NavbarProps) {
   const { data: currentUser } = useQuery(currentUserOptions);

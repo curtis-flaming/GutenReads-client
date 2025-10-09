@@ -1,12 +1,16 @@
-import type { DialogProps, DialogTriggerProps, ModalOverlayProps } from "react-aria-components"
+import type {
+  DialogProps,
+  DialogTriggerProps,
+  ModalOverlayProps,
+} from "react-aria-components";
 import {
   composeRenderProps,
   DialogTrigger as DialogTriggerPrimitive,
   Modal,
   ModalOverlay,
-} from "react-aria-components"
-import { twJoin } from "tailwind-merge"
-import { tv } from "tailwind-variants"
+} from "react-aria-components";
+import { twJoin } from "tailwind-merge";
+import { tv } from "tailwind-variants";
 import {
   Dialog,
   DialogBody,
@@ -17,9 +21,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog"
+} from "./dialog";
 
-type Sides = "top" | "bottom" | "left" | "right"
+type Sides = "top" | "bottom" | "left" | "right";
 const generateCompoundVariants = (sides: Array<Sides>) => {
   return sides.map((side) => ({
     side,
@@ -32,8 +36,8 @@ const generateCompoundVariants = (sides: Array<Sides>) => {
           : side === "left"
             ? "left-2 inset-y-2 rounded-lg ring-1 border-r-0"
             : "right-2 inset-y-2 rounded-lg ring-1 border-l-0",
-  }))
-}
+  }));
+};
 
 const sheetContentStyles = tv({
   base: [
@@ -61,21 +65,21 @@ const sheetContentStyles = tv({
     },
   },
   compoundVariants: generateCompoundVariants(["top", "bottom", "left", "right"]),
-})
+});
 
-type SheetProps = DialogTriggerProps
+type SheetProps = DialogTriggerProps;
 const Sheet = (props: SheetProps) => {
-  return <DialogTriggerPrimitive {...props} />
-}
+  return <DialogTriggerPrimitive {...props} />;
+};
 
 interface SheetContentProps
   extends Omit<ModalOverlayProps, "children">,
     Pick<DialogProps, "aria-label" | "role" | "aria-labelledby" | "children"> {
-  closeButton?: boolean
-  isBlurred?: boolean
-  isFloat?: boolean
-  side?: Sides
-  overlay?: Omit<ModalOverlayProps, "children">
+  closeButton?: boolean;
+  isBlurred?: boolean;
+  isFloat?: boolean;
+  side?: Sides;
+  overlay?: Omit<ModalOverlayProps, "children">;
 }
 
 const SheetContent = ({
@@ -90,7 +94,7 @@ const SheetContent = ({
   children,
   ...props
 }: SheetContentProps) => {
-  const isDismissable = isDismissableInternal ?? role !== "alertdialog"
+  const isDismissable = isDismissableInternal ?? role !== "alertdialog";
   return (
     <ModalOverlay
       isDismissable={isDismissable}
@@ -98,7 +102,7 @@ const SheetContent = ({
         "fixed inset-0 z-50 h-(--visual-viewport-height,100vh) w-screen overflow-hidden bg-black/15",
         "entering:fade-in-0 entering:animate-in entering:duration-500",
         "exiting:fade-out-0 exiting:animate-out exiting:duration-300",
-        isBlurred && "backdrop-blur-sm backdrop-filter",
+        isBlurred && "backdrop-blur-sm backdrop-filter"
       )}
       {...props}
     >
@@ -109,7 +113,7 @@ const SheetContent = ({
             side,
             isFloat,
             className,
-          }),
+          })
         )}
       >
         <Dialog aria-label={props["aria-label"]} role={role}>
@@ -117,42 +121,45 @@ const SheetContent = ({
             <>
               {typeof children === "function" ? children(values) : children}
               {closeButton && (
-                <DialogCloseIcon className="top-2.5 right-2.5" isDismissable={isDismissable} />
+                <DialogCloseIcon
+                  className="top-2.5 right-2.5"
+                  isDismissable={isDismissable}
+                />
               )}
             </>
           )}
         </Dialog>
       </Modal>
     </ModalOverlay>
-  )
-}
+  );
+};
 
-const SheetTrigger = DialogTrigger
-const SheetFooter = DialogFooter
-const SheetHeader = DialogHeader
-const SheetTitle = DialogTitle
-const SheetDescription = DialogDescription
-const SheetBody = DialogBody
-const SheetClose = DialogClose
+const SheetTrigger = DialogTrigger;
+const SheetFooter = DialogFooter;
+const SheetHeader = DialogHeader;
+const SheetTitle = DialogTitle;
+const SheetDescription = DialogDescription;
+const SheetBody = DialogBody;
+const SheetClose = DialogClose;
 
-Sheet.Trigger = SheetTrigger
-Sheet.Footer = SheetFooter
-Sheet.Header = SheetHeader
-Sheet.Title = SheetTitle
-Sheet.Description = SheetDescription
-Sheet.Body = SheetBody
-Sheet.Close = SheetClose
-Sheet.Content = SheetContent
+Sheet.Trigger = SheetTrigger;
+Sheet.Footer = SheetFooter;
+Sheet.Header = SheetHeader;
+Sheet.Title = SheetTitle;
+Sheet.Description = SheetDescription;
+Sheet.Body = SheetBody;
+Sheet.Close = SheetClose;
+Sheet.Content = SheetContent;
 
-export type { SheetProps, SheetContentProps, Sides }
 export {
   Sheet,
-  SheetTrigger,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
   SheetBody,
   SheetClose,
   SheetContent,
-}
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+};
+export type { SheetContentProps, SheetProps, Sides };

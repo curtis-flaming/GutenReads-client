@@ -1,4 +1,5 @@
-import { IconLogout } from "@intentui/icons";
+import { useLogoutUser } from "@/api/endpoints/auth/mutations";
+import { currentUserOptions } from "@/api/endpoints/users/options";
 import { Avatar } from "@/components/ui/avatar";
 import {
   Menu,
@@ -8,9 +9,8 @@ import {
   MenuSection,
   MenuTrigger,
 } from "@/components/ui/menu";
+import { IconLogout } from "@intentui/icons";
 import { useQuery } from "@tanstack/react-query";
-import { currentUserOptions } from "@/api/endpoints/users/options";
-import { useLogoutUser } from "@/api/endpoints/auth/mutations";
 
 export function UserMenu() {
   const { data: currentUser } = useQuery(currentUserOptions);

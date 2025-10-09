@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
+import { cx } from "@/lib/primitive";
 import type {
   DialogTriggerProps,
   PopoverProps as PopoverPrimitiveProps,
-} from "react-aria-components"
+} from "react-aria-components";
 import {
   DialogTrigger as DialogTriggerPrimitive,
   OverlayArrow,
   Popover as PopoverPrimitive,
-} from "react-aria-components"
-import { cx } from "@/lib/primitive"
+} from "react-aria-components";
 import {
   DialogBody,
   DialogClose,
@@ -18,21 +18,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog"
+} from "./dialog";
 
-type PopoverProps = DialogTriggerProps
+type PopoverProps = DialogTriggerProps;
 const Popover = (props: PopoverProps) => {
-  return <DialogTriggerPrimitive {...props} />
-}
+  return <DialogTriggerPrimitive {...props} />;
+};
 
-const PopoverTitle = DialogTitle
-const PopoverHeader = DialogHeader
-const PopoverBody = DialogBody
-const PopoverFooter = DialogFooter
+const PopoverTitle = DialogTitle;
+const PopoverHeader = DialogHeader;
+const PopoverBody = DialogBody;
+const PopoverFooter = DialogFooter;
 
 interface PopoverContentProps extends PopoverPrimitiveProps {
-  showArrow?: boolean
-  ref?: React.Ref<HTMLDivElement>
+  showArrow?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 const PopoverContent = ({
@@ -42,7 +42,7 @@ const PopoverContent = ({
   ref,
   ...props
 }: PopoverContentProps) => {
-  const offset = props.offset ?? (showArrow ? 12 : 8)
+  const offset = props.offset ?? (showArrow ? 12 : 8);
   return (
     <PopoverPrimitive
       ref={ref}
@@ -53,7 +53,7 @@ const PopoverContent = ({
         "placement-left:entering:slide-in-from-right-1 placement-right:entering:slide-in-from-left-1 placement-top:entering:slide-in-from-bottom-1 placement-bottom:entering:slide-in-from-top-1",
         "placement-left:exiting:slide-out-to-right-1 placement-right:exiting:slide-out-to-left-1 placement-top:exiting:slide-out-to-bottom-1 placement-bottom:exiting:slide-out-to-top-1",
         "forced-colors:bg-[Canvas]",
-        className,
+        className
       )}
       {...props}
     >
@@ -75,31 +75,31 @@ const PopoverContent = ({
         </>
       )}
     </PopoverPrimitive>
-  )
-}
+  );
+};
 
-const PopoverTrigger = DialogTrigger
-const PopoverClose = DialogClose
-const PopoverDescription = DialogDescription
+const PopoverTrigger = DialogTrigger;
+const PopoverClose = DialogClose;
+const PopoverDescription = DialogDescription;
 
-Popover.Trigger = PopoverTrigger
-Popover.Close = PopoverClose
-Popover.Description = PopoverDescription
-Popover.Content = PopoverContent
-Popover.Body = PopoverBody
-Popover.Footer = PopoverFooter
-Popover.Header = PopoverHeader
-Popover.Title = PopoverTitle
+Popover.Trigger = PopoverTrigger;
+Popover.Close = PopoverClose;
+Popover.Description = PopoverDescription;
+Popover.Content = PopoverContent;
+Popover.Body = PopoverBody;
+Popover.Footer = PopoverFooter;
+Popover.Header = PopoverHeader;
+Popover.Title = PopoverTitle;
 
-export type { PopoverProps, PopoverContentProps }
 export {
   Popover,
-  PopoverTrigger,
-  PopoverClose,
-  PopoverDescription,
-  PopoverContent,
   PopoverBody,
+  PopoverClose,
+  PopoverContent,
+  PopoverDescription,
   PopoverFooter,
   PopoverHeader,
   PopoverTitle,
-}
+  PopoverTrigger,
+};
+export type { PopoverContentProps, PopoverProps };

@@ -1,4 +1,4 @@
-import { ButtonCore } from "@/component-custom/core/button-core";
+import { ButtonCore } from "@/component-custom/core/button/button-core";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 

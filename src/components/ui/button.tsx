@@ -106,5 +106,5 @@ const Button = ({ className, intent, size, isCircle, ref, ...props }: ButtonProp
   );
 };
 
-export type { ButtonProps };
 export { Button, buttonStyles };
+export type { ButtonProps };

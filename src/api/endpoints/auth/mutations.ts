@@ -1,8 +1,8 @@
 import { client } from "@/api/fetchClient";
 import type { LoginRequest, RegisterRequest } from "@/api/openapi-ts/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { currentUserOptions } from "../users/options";
 import Cookies from "js-cookie";
+import { currentUserOptions } from "../users/options";
 
 export function useRegisterUser() {
   const queryClient = useQueryClient();
